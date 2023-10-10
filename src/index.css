@@ -18,6 +18,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
+#preview {
+  aspect-ratio: 0.71;
+  padding: 9%;
+}
 
 #root {
   max-width: 1280px;

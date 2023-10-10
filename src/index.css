@@ -18,6 +18,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.profilePic {
+  border-radius: 50%;
+  width: 25%;
+  background-color: #242424;
+}
+
 #preview {
   aspect-ratio: 0.71;
   padding: 9%;

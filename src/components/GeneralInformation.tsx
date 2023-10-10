@@ -1,13 +1,28 @@
-import InputDiv from "./inputDiv"
-
-type changeHandler = (e: React.FormEvent<HTMLInputElement>) => void;
-export default function GeneralInfo({ onFirstNameChange, onLastNameChange, onDescriptionChange}: {onFirstNameChange: changeHandler, onLastNameChange: changeHandler, onDescriptionChange: changeHandler}) {
+import InputDiv from "./inputDivs";
+import { changeHandler } from "../types";
+export default function GeneralInfo({
+  onFirstNameChange,
+  onLastNameChange,
+  onLocationChange,
+  onProfessionChange,
+  onImageUpload,
+}: {
+  onFirstNameChange: changeHandler;
+  onLastNameChange: changeHandler;
+  onLocationChange: changeHandler;
+  onProfessionChange: changeHandler;
+  onImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   return (
     <form className=" bg-blue-100 text-black">
       <h2>Personal Information</h2>
-      <InputDiv name='First Name' id='fName' onChange = {onFirstNameChange}></InputDiv>
-      <InputDiv name='Last Name' id='lName' onChange={onLastNameChange}></InputDiv>
-      <InputDiv name='Description' id='description' onChange={onDescriptionChange}></InputDiv>
+      <div className="flex gap-1">
+        <InputDiv name="First Name" onChange={onFirstNameChange} type="text" />
+        <InputDiv name="Last Name" onChange={onLastNameChange} type="text" />
+      </div>
+      <InputDiv name="Profession" type="text" onChange={onProfessionChange} />
+      <InputDiv name="Location" type="text" onChange={onLocationChange} />
+      <InputDiv name="Upload Photo" type="file" onChange={onImageUpload} />
     </form>
-  )
+  );
 }

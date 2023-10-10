@@ -4,32 +4,41 @@ import GeneralInfo from "./components/GeneralInformation";
 import PracticalForm from "./components/Practical";
 import Preview from "./components/Preview";
 
+function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement>): void {
+  f(e.currentTarget.value);
+}
+
 function App() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [description, setDescription] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [location, setLocation] = useState("");
+  const [profession, setProfession] = useState("");
+  const [image, setImage] = useState('');
 
-  const fullName: string = firstName + ' ' + lastName;
-  function handleFirstNameChange(e: React.FormEvent<HTMLInputElement>) {
-    setFirstName(e.currentTarget.value);
+  const fullName: string = firstName + " " + lastName;
+
+  function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) {
+    // ...
+    } else {
+      const imgURL: string = (URL.createObjectURL(e.target.files[0]));
+      setImage(imgURL);
+    }
   }
-
-  function handleLastNameChange(e: React.FormEvent<HTMLInputElement>) {
-    setLastName(e.currentTarget.value);
-  }
-
-  function handleDescriptionChange(e: React.FormEvent<HTMLInputElement>) {
-    setDescription(e.currentTarget.value);
-  }
-
   return (
     <div className="flex flex-col lg:flex-row gap-4">
       <div className="flex flex-col gap-4 flex-grow">
-        <GeneralInfo onFirstNameChange={(e) => handleFirstNameChange(e)} onLastNameChange={(e) => handleLastNameChange(e)} onDescriptionChange={(e) => {handleDescriptionChange(e)}} />
+        <GeneralInfo
+          onFirstNameChange={(e) => handleChanges(setFirstName, e)}
+          onLastNameChange={(e) => handleChanges(setLastName, e)}
+          onLocationChange={(e) => handleChanges(setLocation, e)}
+          onProfessionChange={(e) => handleChanges(setProfession, e)}
+          onImageUpload={(e) => handleImageUpload(e)}
+        />
         <EducationForm />
         <PracticalForm />
       </div>
-      <Preview name={fullName} description={description} />
+      <Preview name={fullName} location={location} profession={profession} image={image} />
     </div>
   );
 }

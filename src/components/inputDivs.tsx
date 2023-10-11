@@ -1,11 +1,13 @@
 import { ReactElement } from "react";
 import country from "country-list-js";
 export default function InputDiv({
+  id,
   name,
   onChange,
   type,
   image,
 }: {
+  id: string;
   name: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
@@ -19,7 +21,8 @@ export default function InputDiv({
   if (type === "text") {
     return (
       <div className=" w-full flex justify-between items-center p-2">
-        <input className="w-full mx-2" type={type} placeholder={name} onChange={onChange}></input>
+        <label htmlFor={id} hidden>{name}</label>
+        <input id={id} className="w-full mx-2" type={type} placeholder={name} onChange={onChange}></input>
       </div>
     );
   } else if (type === "select") {

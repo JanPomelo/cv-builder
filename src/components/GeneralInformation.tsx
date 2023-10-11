@@ -22,12 +22,12 @@ export default function GeneralInfo({
         <h2 className="text-2xl font-bold">Personal Information</h2>
       </div>
       <div className="flex">
-        <InputDiv name="First Name" onChange={onFirstNameChange} type="text" />
-        <InputDiv name="Last Name" onChange={onLastNameChange} type="text" />
+        <InputDiv name="First Name" onChange={onFirstNameChange} type="text" id='fName' />
+        <InputDiv name="Last Name" onChange={onLastNameChange} type="text" id='lName'/>
       </div>
-      <InputDiv name="Profession" type="text" onChange={onProfessionChange} />
-      <InputDiv name="Location" type="text" onChange={onLocationChange} />
-      <InputDiv name="Upload Photo" type="file" onChange={onImageUpload} image={image} />
+      <InputDiv name="Profession" type="text" onChange={onProfessionChange} id='profession'/>
+      <InputDiv name="Location" type="text" onChange={onLocationChange} id='location'/>
+      <InputDiv name="Upload Photo" type="file" onChange={onImageUpload} image={image} id='photoUpload' />
     </form>
   );
 }

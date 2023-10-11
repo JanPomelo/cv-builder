@@ -37,8 +37,8 @@ function App() {
           onImageUpload={(e) => handleImageUpload(e)}
           image={{ imageURL, imageName }}
         />
-        <EducationForm />
         <PracticalForm />
+        <EducationForm />
       </div>
       <Preview name={fullName} location={location} profession={profession} image={{ imageURL, imageName }} />
     </div>

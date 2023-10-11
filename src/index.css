@@ -59,11 +59,25 @@ span {
   background-position: center;
 }
 
-#persoSpan {
+#persoSpan, #professionalSpan {
   width: 32px;
   height: 32px;
   background-size: 32px;
+}
+
+#addButtonSpan {
+  background-image: url(./src/assets/plus.svg);
+  width: 1em;
+  height: 1em;
+  background-size: 1em;
+}
+
+#persoSpan {
   background-image: url("./src/assets/personal-info.svg");
+}
+
+#professionalSpan {
+  background-image: url("./src/assets/professional.svg");
 }
 
 #locationSpan {
@@ -78,6 +92,8 @@ span {
   border-radius: 1rem;
   padding: 0.5rem;
   box-shadow: 0 3px 8px 6px rgba(232, 232, 232, 0.852);
+  display: flex;
+  flex-direction: column;
 }
 
 body {

@@ -28,7 +28,7 @@ function App() {
   }
   return (
     <div className="flex flex-col lg:flex-row gap-4">
-      <div className="flex flex-col gap-4 flex-grow">
+      <div className="flex flex-col gap-4 flex-grow no-print">
         <GeneralInfo
           onFirstNameChange={(e) => handleChanges(setFirstName, e)}
           onLastNameChange={(e) => handleChanges(setLastName, e)}

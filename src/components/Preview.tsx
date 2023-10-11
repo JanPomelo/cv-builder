@@ -13,10 +13,13 @@ function InfoResult({
 }): ReactElement {
   return (
     <div className="h-1/6 flex justify-between">
-      <div className="flex flex-col gap-2 items-start">
-        <h2 className="h-6">{name}</h2>
-        <h3 className="h-6">{profession}</h3>
-        <h3 className="h-5">{location}</h3>
+      <div className="flex flex-col items-start w-3/8 previewTitle">
+        <div className="font-bold previewName">{name}</div>
+        <div className="ml-3 font-bold previewOccupation">{profession}</div>
+        <div className="flex items-center">
+          <span id="locationSpan"></span>
+          <h3 className="">{location}</h3>
+        </div>
       </div>
       <img className="profilePic" src={image.imageURL}></img>
     </div>
@@ -35,7 +38,7 @@ export default function Preview({
   image: { imageURL: string; imageName: string };
 }) {
   return (
-    <div id="preview" className="flex-grow bg-white relative text-black text-xs">
+    <div id="preview" className="flex-grow bg-white relative text-black">
       <InfoResult name={name} location={location} profession={profession} image={image} />
       <hr className="h-1 bg-black"></hr>
     </div>

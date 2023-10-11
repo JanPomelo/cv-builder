@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   --grad1: linear-gradient(to right, #fcfafb, #c8d3d6);
   --grad2: linear-gradient(to right, #7fb7be, #d2f3ee);
-  font-family: 'Poppins', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -25,14 +24,26 @@
 
 .profilePic {
   border-radius: 50%;
-  width: 25%;
-  background-color: #242424;
+  aspect-ratio: 1;
+  background-color: darkgray;
+  margin-bottom: 0.5em;
 }
 
 #preview {
   aspect-ratio: 0.71;
   padding: 5%;
+  font-size: xx-small;
 }
+
+.previewTitle > div {
+  height: 33%;
+}
+
+.previewName {
+  font-size: 1.3em;
+}
+
+
 
 #root {
   max-width: 1280px;
@@ -43,16 +54,24 @@
   background: #375356;
 }
 
+span {
+  display: inline-block;
+  background-position: center;
+}
+
 #persoSpan {
   width: 32px;
   height: 32px;
-  display: inline-block;
-  background-position: center;
   background-size: 32px;
-  background-image: url('./src/assets/personal-info.svg');
+  background-image: url("./src/assets/personal-info.svg");
 }
 
-
+#locationSpan {
+  background-size: 1.25em;
+  background-image: url("./src/assets/location.svg");
+  height: 1.1em;
+  width: 1.2em;
+}
 
 .groupDiv {
   background: var(--grad2);
@@ -62,7 +81,7 @@
 }
 
 body {
-  font-family: 'Poppins', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: white;
   padding: 0;
   margin: 0;
@@ -72,7 +91,8 @@ body {
   min-height: 100vh;
 }
 
-input, label {
+input,
+label {
   appearance: none;
   outline: none;
   border-radius: 0.5rem;
@@ -83,8 +103,27 @@ input:focus {
   outline: 2px black solid;
 }
 
+@media screen and (min-width:640px) {
+  #preview {
+    font-size: medium;
+  }
+}
+
 @media screen and (min-width: 1024px) {
-  #preview { 
-    max-width: 60%;
+  #preview {
+    width: 60%;
+    font-size: large;
+  }
+
+}
+
+
+@media print {
+  .no-print {
+    display: none;
+  }
+  @page {
+    size: auto;
+    margin: 0;
   }
 }

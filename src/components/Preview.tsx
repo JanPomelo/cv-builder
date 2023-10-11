@@ -9,7 +9,7 @@ function InfoResult({
   name: string;
   location: string;
   profession: string;
-  image: string;
+  image: { imageURL: string; imageName: string };
 }): ReactElement {
   return (
     <div className="h-1/6 flex justify-between">
@@ -18,7 +18,7 @@ function InfoResult({
         <h3 className="h-6">{profession}</h3>
         <h3 className="h-5">{location}</h3>
       </div>
-      <img className="profilePic" src={image}></img>
+      <img className="profilePic" src={image.imageURL}></img>
     </div>
   );
 }
@@ -32,7 +32,7 @@ export default function Preview({
   name: string;
   location: string;
   profession: string;
-  image: string;
+  image: { imageURL: string; imageName: string };
 }) {
   return (
     <div id="preview" className="flex-grow bg-white relative text-black text-xs">

@@ -13,16 +13,17 @@ function App() {
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
   const [profession, setProfession] = useState("");
-  const [image, setImage] = useState('');
+  const [{ imageURL, imageName }, setImage] = useState({ imageURL: "", imageName: "" });
 
   const fullName: string = firstName + " " + lastName;
 
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) {
-    // ...
+      // ...
     } else {
-      const imgURL: string = (URL.createObjectURL(e.target.files[0]));
-      setImage(imgURL);
+      const imgURL: string = URL.createObjectURL(e.target.files[0]);
+      const imgName: string = e.target.files[0].name;
+      setImage({ imageURL: imgURL, imageName: imgName });
     }
   }
   return (
@@ -34,11 +35,12 @@ function App() {
           onLocationChange={(e) => handleChanges(setLocation, e)}
           onProfessionChange={(e) => handleChanges(setProfession, e)}
           onImageUpload={(e) => handleImageUpload(e)}
+          image={{ imageURL, imageName }}
         />
         <EducationForm />
         <PracticalForm />
       </div>
-      <Preview name={fullName} location={location} profession={profession} image={image} />
+      <Preview name={fullName} location={location} profession={profession} image={{ imageURL, imageName }} />
     </div>
   );
 }

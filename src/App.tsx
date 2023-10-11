@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EducationForm from "./components/Education";
 import GeneralInfo from "./components/GeneralInformation";
-import PracticalForm from "./components/Practical";
+import PracticalDiv from "./components/Practical";
 import Preview from "./components/Preview";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement>): void {
@@ -37,7 +37,7 @@ function App() {
           onImageUpload={(e) => handleImageUpload(e)}
           image={{ imageURL, imageName }}
         />
-        <PracticalForm />
+        <PracticalDiv />
         <EducationForm />
       </div>
       <Preview name={fullName} location={location} profession={profession} image={{ imageURL, imageName }} />

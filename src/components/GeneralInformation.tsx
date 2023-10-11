@@ -19,7 +19,7 @@ export default function GeneralInfo({
     <form className="groupDiv text-black">
       <div className="flex gap-2 items-center justify-center">
         <span id="persoSpan"></span>
-        <h2 className="text-2xl font-bold">Personal Information</h2>
+        <h2 className="text-xl font-bold">Personal Information</h2>
       </div>
       <div className="flex">
         <InputDiv name="First Name" onChange={onFirstNameChange} type="text" id='fName' />

@@ -20,25 +20,25 @@ export default function InputDiv({
   });
   if (type === "text") {
     return (
-      <div className=" w-full flex justify-between items-center p-2">
-        <label htmlFor={id} hidden>{name}</label>
-        <input id={id} className="w-full mx-2" type={type} placeholder={name} onChange={onChange}></input>
+      <div className=" w-full flex justify-between items-center py-2">
+        <label htmlFor={id} hidden>
+          {name}
+        </label>
+        <input id={id} className="w-full mx-1" type={type} placeholder={name} onChange={onChange}></input>
       </div>
     );
-  } else if (type === "select") {
+  } else if (type === "date") {
     return (
-      <div className=" w-full flex justify-between items-center p-2">
-        <select className="w-full m-2">
-          {countries.map((name) => {
-            return <option value={name}>{name}</option>;
-          })}
-        </select>
+      <div className="w-full flex py-2">
+        <label htmlFor={id} >{name}</label>
+        <input type={type} className="mr-1 flex-grow"/>
       </div>
     );
+  
   } else if (type === "file") {
     return (
-      <div className=" w-full flex justify-start items-center p-2">
-        <label htmlFor={name} className="w-full text-left bg-white mx-2">
+      <div className=" w-full flex justify-between items-center py-2">
+        <label htmlFor={name} className="w-full text-left bg-white mx-1">
           {image?.imageName === "" ? "Select Image" : image?.imageName}
         </label>
         <input hidden type={type} id={name} onChange={onChange}></input>

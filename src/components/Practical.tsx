@@ -20,17 +20,46 @@ function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonEleme
       }}
       id="addProfExp"
     >
-      <InputDiv id="company" name="Company" type="text" />
-      <InputDiv id="jobTitle" name="Job Title" type="text" />
-      <InputDiv id="startDateJob" name="Start Date" type="date" />
-      <InputDiv id="endDateJob" name="End Date" type="date" />
-      <InputDiv id="location" name="Location" type="text" />
+      <InputDiv id="company" name="Company" type="text" required={{ required: true }} />
+      <InputDiv id="jobTitle" name="Job Title" type="text" required={{ required: true }} />
+      <InputDiv id="startDateJob" name="Start Date" type="date" required={{ required: true }} />
+      <InputDiv id="endDateJob" name="End Date" type="date" required={{ required: true }} />
+      <InputDiv id="location" name="Location" type="text" required={{ required: true }} />
       <InputDiv id="jobDescription" name="Description" type="text" />
       <button className="ml-1" type="submit" form="addProfExp" onClick={onClick}>
         Save
       </button>
     </form>
   );
+}
+
+function checkValue(value: string) {
+  if (value === "") {
+    return false;
+  }
+  return true;
+}
+function checkForm(form: HTMLFormElement) {
+  const values: string[] = [
+    form.company.value,
+    form.jobTitle.value,
+    form.location.value,
+    form.startDateJob.value,
+    form.endDateJob.value,
+  ];
+  for (let i = 0; i < values.length; i++) {
+    if (!checkValue(values[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function adjustDateFormat(date: string): string {
+  const year: string = date.substring(0, 4);
+  const month: string = date.substring(5, 7);
+  const newDate: string = month + "/" + year;
+  return newDate;
 }
 
 export default function PracticalDiv() {
@@ -44,19 +73,20 @@ export default function PracticalDiv() {
   function handleSaveClick(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const form = document.getElementById("addProfExp") as HTMLFormElement;
-    console.log(form);
-    const newJob: profExp = {
-      company: form.company.value,
-      jobTitle: form.jobTitle.value,
-      description: form.jobDescription.value,
-      startDate: form.startDateJob.value,
-      endDate: form.endDateJob.value,
-      location: form.location.value,
-    };
-    jobs.push(newJob);
-    setJobs(jobs);
-    setEdit(false);
-    //setExp(exp.push())
+    if (checkForm(form)) {
+      adjustDateFormat(form.startDateJob.value);
+      const newJob: profExp = {
+        company: form.company.value,
+        jobTitle: form.jobTitle.value,
+        description: form.jobDescription.value,
+        startDate: adjustDateFormat(form.startDateJob.value),
+        endDate: adjustDateFormat(form.endDateJob.value),
+        location: form.location.value,
+      };
+      jobs.push(newJob);
+      setJobs(jobs);
+      setEdit(false);
+    }
   }
 
   return (
@@ -66,11 +96,16 @@ export default function PracticalDiv() {
         <h2 className="text-xl font-bold">Professional Experience</h2>
       </div>
       {jobs.map((job) => {
-        return <div className="flex flex-col text-white items-start bg-my-bg rounded-lg px-2 py-0.5 mb-2">
-          <h3><b>{job.jobTitle}</b> at {job.company}</h3>
-          <p>{job.startDate} - {job.endDate}</p>
-
-        </div>;
+        return (
+          <div className="flex flex-col text-white items-start bg-my-bg rounded-lg px-2 py-0.5 mb-2">
+            <h3>
+              <b>{job.jobTitle}</b> at {job.company}
+            </h3>
+            <p>
+              {job.startDate} - {job.endDate}
+            </p>
+          </div>
+        );
       })}
       {edit ? (
         <PracticalForm

@@ -6,12 +6,14 @@ export default function InputDiv({
   onChange,
   type,
   image,
+  required
 }: {
   id: string;
   name: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
-  image?: { imageURL: string; imageName: string };
+    image?: { imageURL: string; imageName: string };
+    required?: {required: boolean}
 }): ReactElement {
   const countries: string[] = [];
   Object.keys(country.all).forEach((key) => {
@@ -24,7 +26,7 @@ export default function InputDiv({
         <label htmlFor={id} hidden>
           {name}
         </label>
-        <input id={id} className="w-full mx-1" type={type} placeholder={name} onChange={onChange}></input>
+        <input id={id} className="w-full mx-1" type={type} placeholder={name} onChange={onChange} {...required}></input>
       </div>
     );
   } else if (type === "date") {

@@ -9,7 +9,7 @@ export default function InputDiv({
 }: {
   id: string;
   name: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
     image?: { imageURL: string; imageName: string };
     required?: {required: boolean}
@@ -27,7 +27,7 @@ export default function InputDiv({
     return (
       <div className="w-full flex py-2">
         <label htmlFor={id}>{name}</label>
-        <input id={id} pattern="\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}" type={type} {...required} className="mr-1 flex-grow" />
+        <input id={id} pattern="\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}" type={type} {...required} className="mr-1 flex-grow" onChange={onChange} />
       </div>
     );
   

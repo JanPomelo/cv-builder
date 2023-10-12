@@ -11,6 +11,25 @@ function AddButton({ id, onClick }: { id: string; onClick: MouseEventHandler<HTM
 }
 
 function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonElement> }) {
+
+  function handleStartDateChange() {
+    const form = document.getElementById('addProfExp') as HTMLFormElement;
+    if (form.endDateJob.value >= form.startDateJob.value) {
+      form.endDateJob.classList.remove("wrongsens");
+    } else {
+      form.endDateJob.classList.add("wrongsens");
+    }
+  }
+
+  function handleEndDateChange() {
+    const form = document.getElementById('addProfExp') as HTMLFormElement;
+    if (form.endDateJob.value >= form.startDateJob.value) {
+      form.endDateJob.classList.remove("wrongsens");
+    } else {
+      form.endDateJob.classList.add("wrongsens");
+    }
+  }
+
   return (
     <form
       className="flex flex-col justify-start"
@@ -22,8 +41,24 @@ function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonEleme
     >
       <InputDiv id="company" name="Company" type="text" required={{ required: true }} />
       <InputDiv id="jobTitle" name="Job Title" type="text" required={{ required: true }} />
-      <InputDiv id="startDateJob" name="Start Date" type="date" required={{ required: true }} />
-      <InputDiv id="endDateJob" name="End Date" type="date" required={{ required: true }} />
+      <InputDiv
+        id="startDateJob"
+        name="Start Date"
+        type="date"
+        required={{ required: true }}
+        onChange={() => {
+          handleStartDateChange();
+        }}
+      />
+      <InputDiv
+        id="endDateJob"
+        name="End Date"
+        type="date"
+        required={{ required: true }}
+        onChange={() => {
+          handleEndDateChange();
+        }}
+      />
       <InputDiv id="location" name="Location" type="text" required={{ required: true }} />
       <InputDiv id="jobDescription" name="Description" type="text" />
       <button className="ml-1" type="submit" form="addProfExp" onClick={onClick}>
@@ -34,25 +69,25 @@ function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonEleme
 }
 
 function checkValue(element: HTMLInputElement) {
-  element.classList.add('required');
-  if (element.value === "" || element.value === 'mm/dd/yyyy') {
+  element.classList.add("required");
+  if (element.value === "" || element.value === "mm/dd/yyyy") {
     return false;
   }
   return true;
 }
+    
+    
 function checkForm(form: HTMLFormElement) {
-  const elements: HTMLInputElement[] = [
-    form.company,
-    form.jobTitle,
-    form.location,
-    form.startDateJob, 
-    form.endDateJob
-  ];
+  const elements: HTMLInputElement[] = [form.company, form.jobTitle, form.location, form.startDateJob, form.endDateJob];
   let success: boolean = true;
   for (let i = 0; i < elements.length; i++) {
     if (!checkValue(elements[i])) {
       success = false;
     }
+  }
+  if (form.endDateJob.value < form.startDateJob.value) {
+    form.endDateJob.classList.add("wrongsens");
+    success = false;
   }
   return success;
 }
@@ -76,13 +111,14 @@ export default function PracticalDiv() {
     e.preventDefault();
     const form = document.getElementById("addProfExp") as HTMLFormElement;
     if (checkForm(form)) {
-      adjustDateFormat(form.startDateJob.value);
+      const startDate = adjustDateFormat(form.startDateJob.value);
+      const endDate = adjustDateFormat(form.endDateJob.value);
       const newJob: profExp = {
         company: form.company.value,
         jobTitle: form.jobTitle.value,
         description: form.jobDescription.value,
-        startDate: adjustDateFormat(form.startDateJob.value),
-        endDate: adjustDateFormat(form.endDateJob.value),
+        startDate: startDate,
+        endDate: endDate,
         location: form.location.value,
       };
       jobs.push(newJob);

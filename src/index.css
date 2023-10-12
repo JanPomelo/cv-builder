@@ -214,10 +214,22 @@ input:required:focus {
   outline: 2px red solid
 }
 
-input:required:valid {
+.required:required:valid:not(.wrongsens) {
   outline: 2px green solid
 }
 
+input:required:valid:focus:not(.wrongsens) {
+  outline: 2px green solid
+}
+
+#expErrorSpan {
+  background-color: #fcfafb;
+  display: inline;
+}
+
+.wrongsens, .wrongsens:focus {
+  outline: 2px red solid;
+}
 
 @media print {
   .no-print {

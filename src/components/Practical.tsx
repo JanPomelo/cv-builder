@@ -33,26 +33,28 @@ function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonEleme
   );
 }
 
-function checkValue(value: string) {
-  if (value === "") {
+function checkValue(element: HTMLInputElement) {
+  element.classList.add('required');
+  if (element.value === "" || element.value === 'mm/dd/yyyy') {
     return false;
   }
   return true;
 }
 function checkForm(form: HTMLFormElement) {
-  const values: string[] = [
-    form.company.value,
-    form.jobTitle.value,
-    form.location.value,
-    form.startDateJob.value,
-    form.endDateJob.value,
+  const elements: HTMLInputElement[] = [
+    form.company,
+    form.jobTitle,
+    form.location,
+    form.startDateJob, 
+    form.endDateJob
   ];
-  for (let i = 0; i < values.length; i++) {
-    if (!checkValue(values[i])) {
-      return false;
+  let success: boolean = true;
+  for (let i = 0; i < elements.length; i++) {
+    if (!checkValue(elements[i])) {
+      success = false;
     }
   }
-  return true;
+  return success;
 }
 
 function adjustDateFormat(date: string): string {

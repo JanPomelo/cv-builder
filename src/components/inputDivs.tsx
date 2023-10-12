@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import country from "country-list-js";
 export default function InputDiv({
   id,
   name,
@@ -14,26 +13,21 @@ export default function InputDiv({
   type: string;
     image?: { imageURL: string; imageName: string };
     required?: {required: boolean}
-}): ReactElement {
-  const countries: string[] = [];
-  Object.keys(country.all).forEach((key) => {
-    const land: { name: string } = country.all[key];
-    countries.push(land.name);
-  });
+  }): ReactElement {
   if (type === "text") {
     return (
       <div className=" w-full flex justify-between items-center py-2">
         <label htmlFor={id} hidden>
           {name}
         </label>
-        <input id={id} className="w-full mx-1" type={type} placeholder={name} onChange={onChange} {...required}></input>
+        <input id={id} className="w-full mx-1" type={type} placeholder={name} onChange={onChange} {...required} ></input>
       </div>
     );
   } else if (type === "date") {
     return (
       <div className="w-full flex py-2">
-        <label htmlFor={id} >{name}</label>
-        <input id={id} type={type} className="mr-1 flex-grow"/>
+        <label htmlFor={id}>{name}</label>
+        <input id={id} pattern="\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}" type={type} {...required} className="mr-1 flex-grow" />
       </div>
     );
   

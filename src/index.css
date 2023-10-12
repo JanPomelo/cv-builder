@@ -207,6 +207,18 @@ button {
   margin-right: auto;
 }
 
+input:required:focus {
+  outline: 2px red solid;
+}
+.required:required:invalid {
+  outline: 2px red solid
+}
+
+input:required:valid {
+  outline: 2px green solid
+}
+
+
 @media print {
   .no-print {
     display: none;

@@ -44,46 +44,6 @@
   align-self: center;
 }
 
-@media screen and (min-width: 500px) {
-  #preview {
-    width: calc(var(--a4width) * 2);
-    height: calc(var(--a4height) * 2);
-    font-size: calc(var(--a4fontSize) * 2);
-    padding: calc(var(--a4padTop) * 2) calc(var(--a4padRight) * 2) calc(var(--a4padBottom) * 2)
-      calc(var(--a4padLeft) * 2);
-  }
-}
-
-@media screen and (min-width: 800px) {
-  #preview {
-    width: calc(var(--a4width) * 3);
-    height: calc(var(--a4height) * 3);
-    font-size: calc(var(--a4fontSize) * 3);
-    padding: calc(var(--a4padTop) * 3) calc(var(--a4padRight) * 3) calc(var(--a4padBottom) * 3)
-      calc(var(--a4padLeft) * 3);
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  #preview {
-    width: calc(var(--a4width) * 2.5);
-    height: calc(var(--a4height) * 2.5);
-    font-size: calc(var(--a4fontSize) * 2.5);
-    padding: calc(var(--a4padTop) * 2.5) calc(var(--a4padRight) * 2.5) calc(var(--a4padBottom) * 2.5)
-      calc(var(--a4padLeft) * 2.5);
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  #preview {
-    width: calc(var(--a4width) * 3);
-    height: calc(var(--a4height) * 3);
-    font-size: calc(var(--a4fontSize) * 3);
-    padding: calc(var(--a4padTop) * 3) calc(var(--a4padRight) * 3) calc(var(--a4padBottom) * 3)
-      calc(var(--a4padLeft) * 3);
-  }
-}
-
 .previewName {
   font-size: 2em;
 }
@@ -125,6 +85,10 @@ span {
   width: 32px;
   height: 32px;
   background-size: 32px;
+}
+
+#addPracitalBut {
+  margin-right: auto;
 }
 
 #addButtonSpan {
@@ -200,12 +164,11 @@ textarea:focus {
   outline: 2px black solid;
 }
 
-button, button[type='submit'] {
+button, button[type='submit'], button[type='reset'] {
   border-radius: 0.5rem;
   padding: 0.125rem 0.5rem;
   border: 1px solid black;
   background-color: white;
-  margin-right: auto;
 }
 
 input:required:focus {
@@ -225,8 +188,11 @@ input:required:valid:focus:not(.wrongsens) {
 
 #expErrorSpan {
   position: absolute;
-  top: 3px;
-  left: 4rem;
+  left: 3.8rem;
+  right: 5rem;
+  top: -5px;
+  text-align: start;
+  font-size: xx-small;
   color: red;
 }
 
@@ -241,6 +207,56 @@ textarea {
   outline: none;
   border-radius: 0.5rem;
   padding-left: 0.5rem;
+}
+
+
+@media screen and (min-width: 500px) {
+  #preview {
+    width: calc(var(--a4width) * 2);
+    height: calc(var(--a4height) * 2);
+    font-size: calc(var(--a4fontSize) * 2);
+    padding: calc(var(--a4padTop) * 2) calc(var(--a4padRight) * 2) calc(var(--a4padBottom) * 2)
+      calc(var(--a4padLeft) * 2);
+  }
+
+  #expErrorSpan {
+    font-size: small;
+    left: 4rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #preview {
+    width: calc(var(--a4width) * 3);
+    height: calc(var(--a4height) * 3);
+    font-size: calc(var(--a4fontSize) * 3);
+    padding: calc(var(--a4padTop) * 3) calc(var(--a4padRight) * 3) calc(var(--a4padBottom) * 3)
+      calc(var(--a4padLeft) * 3);
+  }
+   #expErrorSpan {
+    font-size: medium;
+    top: 3px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #preview {
+    width: calc(var(--a4width) * 2.5);
+    height: calc(var(--a4height) * 2.5);
+    font-size: calc(var(--a4fontSize) * 2.5);
+    padding: calc(var(--a4padTop) * 2.5) calc(var(--a4padRight) * 2.5) calc(var(--a4padBottom) * 2.5)
+      calc(var(--a4padLeft) * 2.5);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #preview {
+    width: calc(var(--a4width) * 3);
+    height: calc(var(--a4height) * 3);
+    font-size: calc(var(--a4fontSize) * 3);
+    padding: calc(var(--a4padTop) * 3) calc(var(--a4padRight) * 3) calc(var(--a4padBottom) * 3)
+      calc(var(--a4padLeft) * 3);
+  }
 }
 
 @media print {

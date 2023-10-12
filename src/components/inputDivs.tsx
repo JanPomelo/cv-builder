@@ -7,7 +7,7 @@ export default function InputDiv({
   image,
   required,
   onFocus,
-  minLength = 20,
+  minLength = 0,
 }: {
   id: string;
   name: string;

@@ -10,35 +10,45 @@ function AddButton({ id, onClick }: { id: string; onClick: MouseEventHandler<HTM
   );
 }
 
-function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonElement> }) {
-  const [errorMsg, setErrorMsg] = useState('');
+function PracticalForm({
+  addOnClick,
+  cancelOnClick,
+}: {
+  addOnClick: MouseEventHandler<HTMLButtonElement>;
+  cancelOnClick: MouseEventHandler<HTMLButtonElement>;
+}) {
+  const [errorMsg, setErrorMsg] = useState("");
   const minTextLength = 2;
-  const companyErrMsg = `Company field needs to have at least ${minTextLength} characters.`
-  const jobTitleErrMsg = `Job title field needs to have at least ${minTextLength} characters.`
-  const locationErrMsg = `Location field needs to have at least ${minTextLength} characters.`
+  const companyErrMsg = `Company field needs to have at least ${minTextLength} characters.`;
+  const jobTitleErrMsg = `Job title field needs to have at least ${minTextLength} characters.`;
+  const locationErrMsg = `Location field needs to have at least ${minTextLength} characters.`;
   const dateErrMsg = `Date field needs to be filled with a proper date with the Datepicker`;
   const endDateBeforeStartDateErrMsg = `End date must be after the start date.`;
 
-
-
-  function handleFocusAndChange(e: React.FocusEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>, message: string): void {
+  function handleFocusAndChange(
+    e: React.FocusEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>,
+    message: string
+  ): void {
     if (!e.target.checkValidity()) {
       setErrorMsg(message);
     } else {
-      setErrorMsg('');
+      setErrorMsg("");
     }
   }
 
-  function handleDateChangeAndFocus(e: React.FocusEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>, message: string) {
+  function handleDateChangeAndFocus(
+    e: React.FocusEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>,
+    message: string
+  ) {
     handleFocusAndChange(e, message);
-    const form = document.getElementById('addProfExp') as HTMLFormElement;
+    const form = document.getElementById("addProfExp") as HTMLFormElement;
     if (form.endDateJob.value >= form.startDateJob.value) {
       form.endDateJob.classList.remove("wrongsens");
     } else {
       form.endDateJob.classList.add("wrongsens");
     }
     if (e.target === form.endDateJob) {
-      if (form.endDateJob.classList.contains('wrongsens')) {
+      if (form.endDateJob.classList.contains("wrongsens")) {
         setErrorMsg(endDateBeforeStartDateErrMsg);
       } else {
         handleFocusAndChange(e, message);
@@ -46,12 +56,11 @@ function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonEleme
     }
   }
 
-
   return (
     <form
       className="flex flex-col justify-start"
       onSubmit={(e) => {
-        onClick;
+        addOnClick;
         e.preventDefault();
       }}
       id="addProfExp"
@@ -117,13 +126,17 @@ function PracticalForm({ onClick }: { onClick: MouseEventHandler<HTMLButtonEleme
         onChange={(e) => {
           handleFocusAndChange(e as React.ChangeEvent<HTMLInputElement>, locationErrMsg);
         }}
+        minLength={minTextLength}
       />
       <InputDiv id="jobDescription" name="Description" type="textarea" />
-      <div className="relative flex justify-start">
-        <button className="ml-1" type="submit" form="addProfExp" onClick={onClick}>
+      <div className="relative flex justify-between">
+        <button className="ml-1" type="submit" form="addProfExp" onClick={addOnClick}>
           Save
         </button>
         <span id="expErrorSpan">{errorMsg}</span>
+        <button className="mr-1" id="cancelProfAdd" type='reset' form="addProfExp" onClick={cancelOnClick}>
+          Cancel
+        </button>
       </div>
     </form>
   );
@@ -136,8 +149,7 @@ function checkValue(element: HTMLInputElement) {
   }
   return true;
 }
-    
-    
+
 function checkForm(form: HTMLFormElement) {
   const elements: HTMLInputElement[] = [form.company, form.jobTitle, form.location, form.startDateJob, form.endDateJob];
   let success: boolean = true;
@@ -188,6 +200,10 @@ export default function PracticalDiv() {
     }
   }
 
+  function handleCancelClick() {
+    setEdit(false);
+  }
+
   return (
     <div className="groupDiv text-black">
       <div className="flex gap-2 items-center mb-2">
@@ -208,8 +224,11 @@ export default function PracticalDiv() {
       })}
       {edit ? (
         <PracticalForm
-          onClick={(e) => {
+          addOnClick={(e) => {
             handleSaveClick(e);
+          }}
+          cancelOnClick={() => {
+            handleCancelClick();
           }}
         />
       ) : (

@@ -31,7 +31,7 @@ export default function InputDiv({
     return (
       <div className="w-full flex py-2">
         <label htmlFor={id} >{name}</label>
-        <input type={type} className="mr-1 flex-grow"/>
+        <input id={id} type={type} className="mr-1 flex-grow"/>
       </div>
     );
   

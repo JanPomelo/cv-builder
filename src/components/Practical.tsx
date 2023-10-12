@@ -55,7 +55,6 @@ export default function PracticalDiv() {
     };
     jobs.push(newJob);
     setJobs(jobs);
-    window.print();
     setEdit(false);
     //setExp(exp.push())
   }

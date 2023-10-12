@@ -46,48 +46,55 @@
 
 @media screen and (min-width: 500px) {
   #preview {
-  width: calc(var(--a4width) * 2);
-  height: calc(var(--a4height) * 2);
-  font-size: calc(var(--a4fontSize) * 2);
-  padding: calc(var(--a4padTop)*2) calc(var(--a4padRight)*2) calc(var(--a4padBottom)*2) calc(var(--a4padLeft)*2);
-}
+    width: calc(var(--a4width) * 2);
+    height: calc(var(--a4height) * 2);
+    font-size: calc(var(--a4fontSize) * 2);
+    padding: calc(var(--a4padTop) * 2) calc(var(--a4padRight) * 2) calc(var(--a4padBottom) * 2)
+      calc(var(--a4padLeft) * 2);
+  }
 }
 
 @media screen and (min-width: 800px) {
   #preview {
-  width: calc(var(--a4width) * 3);
-  height: calc(var(--a4height) * 3);
-  font-size: calc(var(--a4fontSize) * 3);
-  padding: calc(var(--a4padTop)*3) calc(var(--a4padRight)*3) calc(var(--a4padBottom)*3) calc(var(--a4padLeft)*3);
-}
+    width: calc(var(--a4width) * 3);
+    height: calc(var(--a4height) * 3);
+    font-size: calc(var(--a4fontSize) * 3);
+    padding: calc(var(--a4padTop) * 3) calc(var(--a4padRight) * 3) calc(var(--a4padBottom) * 3)
+      calc(var(--a4padLeft) * 3);
+  }
 }
 
 @media screen and (min-width: 1024px) {
   #preview {
-  width: calc(var(--a4width) * 2.5);
-  height: calc(var(--a4height) * 2.5);
-  font-size: calc(var(--a4fontSize) * 2.5);
-  padding: calc(var(--a4padTop)*2.5) calc(var(--a4padRight)*2.5) calc(var(--a4padBottom)*2.5) calc(var(--a4padLeft)*2.5);
-}
+    width: calc(var(--a4width) * 2.5);
+    height: calc(var(--a4height) * 2.5);
+    font-size: calc(var(--a4fontSize) * 2.5);
+    padding: calc(var(--a4padTop) * 2.5) calc(var(--a4padRight) * 2.5) calc(var(--a4padBottom) * 2.5)
+      calc(var(--a4padLeft) * 2.5);
+  }
 }
 
 @media screen and (min-width: 1200px) {
   #preview {
-  width: calc(var(--a4width) * 3);
-  height: calc(var(--a4height) * 3);
-  font-size: calc(var(--a4fontSize) * 3);
-  padding: calc(var(--a4padTop)*3) calc(var(--a4padRight)*3) calc(var(--a4padBottom)*3) calc(var(--a4padLeft)*3);
+    width: calc(var(--a4width) * 3);
+    height: calc(var(--a4height) * 3);
+    font-size: calc(var(--a4fontSize) * 3);
+    padding: calc(var(--a4padTop) * 3) calc(var(--a4padRight) * 3) calc(var(--a4padBottom) * 3)
+      calc(var(--a4padLeft) * 3);
+  }
 }
-}
-
 
 .previewName {
   font-size: 2em;
 }
 
+.previewTitle > div {
+  height: 33%;
+}
+
 .previewOccupation {
   font-size: 1.6em;
-  margin-left: 1.2em;
+  margin-left: 1em;
   font-weight: bold;
   background-color: #375356;
   color: white;
@@ -98,7 +105,6 @@
 .previewLocation {
   font-size: 1.3em;
 }
-
 
 #root {
   max-width: 1280px;
@@ -114,7 +120,8 @@ span {
   background-position: center;
 }
 
-#persoSpan, #professionalSpan {
+#persoSpan,
+#professionalSpan {
   width: 32px;
   height: 32px;
   background-size: 32px;
@@ -142,7 +149,8 @@ span {
   width: 1.2em;
 }
 
-label[for='startDateJob'], label[for='endDateJob'] {
+label[for="startDateJob"],
+label[for="endDateJob"] {
   width: 6rem;
   text-align: left;
   background-color: white;
@@ -150,15 +158,14 @@ label[for='startDateJob'], label[for='endDateJob'] {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   margin-left: 0.25rem;
-  color: grey
+  color: grey;
 }
 
-input[type='date'] {
+input[type="date"] {
   border-radius: 0;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
-
 
 .groupDiv {
   background: var(--grad2);
@@ -188,7 +195,6 @@ label {
   padding-left: 0.5rem;
 }
 
-
 input:focus {
   outline: 2px black solid;
 }
@@ -201,16 +207,37 @@ button {
   margin-right: auto;
 }
 
-
-
-
-
 @media print {
   .no-print {
     display: none;
   }
   @page {
     size: auto;
+    margin: 0;
+  }
+
+  html,
+  body,
+  #root,
+  #preview {
+    width: 21cm;
+    height: 29cm;
+    font-size: 0.4322cm;
+  }
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html,
+  body,
+  #root {
+    padding: 0;
+    margin: 0;
+  }
+
+  #preview {
+    padding: 1.9cm 1.32cm 3.67cm 1.9cm;
     margin: 0;
   }
 }

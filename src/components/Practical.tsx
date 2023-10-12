@@ -1,4 +1,4 @@
-import { FormEvent, MouseEventHandler, SetStateAction, useState } from "react";
+import { FormEvent, MouseEventHandler, useState } from "react";
 import InputDiv from "./inputDivs";
 import { profExp } from "../types";
 
@@ -55,6 +55,7 @@ export default function PracticalDiv() {
     };
     jobs.push(newJob);
     setJobs(jobs);
+    window.print();
     setEdit(false);
     //setExp(exp.push())
   }

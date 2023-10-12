@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EducationForm from "./components/Education";
 import GeneralInfo from "./components/GeneralInformation";
-import PracticalDiv from "./components/Practical";
+import PracticalDiv from "./components/PracticalDiv";
 import Preview from "./components/Preview";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement>): void {

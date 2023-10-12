@@ -5,32 +5,52 @@ export default function InputDiv({
   onChange,
   type,
   image,
-  required
+  required,
+  onFocus,
+  minLength = 20,
 }: {
   id: string;
   name: string;
   onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
-    image?: { imageURL: string; imageName: string };
-    required?: {required: boolean}
-  }): ReactElement {
+  image?: { imageURL: string; imageName: string };
+  required?: { required: boolean };
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  minLength?: number;
+}): ReactElement {
   if (type === "text") {
     return (
       <div className=" w-full flex justify-between items-center py-2">
         <label htmlFor={id} hidden>
           {name}
         </label>
-        <input id={id} className="w-full mx-1" type={type} placeholder={name} onChange={onChange} {...required} ></input>
+        <input
+          id={id}
+          className="w-full mx-1"
+          type={type}
+          placeholder={name}
+          onChange={onChange}
+          {...required}
+          onFocus={onFocus}
+          minLength={minLength}
+        ></input>
       </div>
     );
   } else if (type === "date") {
     return (
       <div className="w-full flex py-2">
         <label htmlFor={id}>{name}</label>
-        <input id={id} pattern="\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}" type={type} {...required} className="mr-1 flex-grow" onChange={onChange} />
+        <input
+          id={id}
+          pattern="\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}"
+          type={type}
+          {...required}
+          className="mr-1 flex-grow"
+          onChange={onChange}
+          onFocus={onFocus}
+        />
       </div>
     );
-  
   } else if (type === "file") {
     return (
       <div className=" w-full flex justify-between items-center py-2">
@@ -38,6 +58,15 @@ export default function InputDiv({
           {image?.imageName === "" ? "Select Image" : image?.imageName}
         </label>
         <input hidden type={type} id={name} onChange={onChange}></input>
+      </div>
+    );
+  } else if (type === "textarea") {
+    return (
+      <div className=" w-full flex justify-between items-center py-2">
+        <label htmlFor={id} hidden>
+          {name}
+        </label>
+        <textarea id={id} className="w-full mx-1" placeholder={name}></textarea>
       </div>
     );
   } else {

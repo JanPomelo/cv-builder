@@ -195,11 +195,12 @@ label {
   padding-left: 0.5rem;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   outline: 2px black solid;
 }
 
-button {
+button, button[type='submit'] {
   border-radius: 0.5rem;
   padding: 0.125rem 0.5rem;
   border: 1px solid black;
@@ -211,24 +212,35 @@ input:required:focus {
   outline: 2px red solid;
 }
 .required:required:invalid {
-  outline: 2px red solid
+  outline: 2px red solid;
 }
 
 .required:required:valid:not(.wrongsens) {
-  outline: 2px green solid
+  outline: 2px green solid;
 }
 
 input:required:valid:focus:not(.wrongsens) {
-  outline: 2px green solid
+  outline: 2px green solid;
 }
 
 #expErrorSpan {
-  background-color: #fcfafb;
-  display: inline;
+  position: absolute;
+  top: 3px;
+  left: 4rem;
+  color: red;
 }
 
-.wrongsens, .wrongsens:focus {
+.wrongsens,
+.wrongsens:focus {
   outline: 2px red solid;
+}
+
+textarea {
+  min-height: 1.5em;
+  max-height: 10em;
+  outline: none;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 @media print {

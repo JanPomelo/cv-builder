@@ -7,6 +7,13 @@
 :root {
   --grad1: linear-gradient(to right, #fcfafb, #c8d3d6);
   --grad2: linear-gradient(to right, #7fb7be, #d2f3ee);
+  --a4width: 210px;
+  --a4height: 290px;
+  --a4fontSize: 4.233px;
+  --a4padLeft: 19px;
+  --a4padRight: 13.2px;
+  --a4padTop: 19px;
+  --a4padBottom: 36.7px;
   font-family: "Poppins", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -30,19 +37,67 @@
 }
 
 #preview {
-  aspect-ratio: 0.71;
-  padding: 5%;
-  font-size: xx-small;
+  width: calc(var(--a4width));
+  height: var(--a4height);
+  font-size: var(--a4fontSize);
+  padding: var(--a4padTop) var(--a4padRight) var(--a4padBottom) var(--a4padLeft);
+  align-self: center;
 }
 
-.previewTitle > div {
-  height: 33%;
+@media screen and (min-width: 500px) {
+  #preview {
+  width: calc(var(--a4width) * 2);
+  height: calc(var(--a4height) * 2);
+  font-size: calc(var(--a4fontSize) * 2);
+  padding: calc(var(--a4padTop)*2) calc(var(--a4padRight)*2) calc(var(--a4padBottom)*2) calc(var(--a4padLeft)*2);
 }
+}
+
+@media screen and (min-width: 800px) {
+  #preview {
+  width: calc(var(--a4width) * 3);
+  height: calc(var(--a4height) * 3);
+  font-size: calc(var(--a4fontSize) * 3);
+  padding: calc(var(--a4padTop)*3) calc(var(--a4padRight)*3) calc(var(--a4padBottom)*3) calc(var(--a4padLeft)*3);
+}
+}
+
+@media screen and (min-width: 1024px) {
+  #preview {
+  width: calc(var(--a4width) * 2.5);
+  height: calc(var(--a4height) * 2.5);
+  font-size: calc(var(--a4fontSize) * 2.5);
+  padding: calc(var(--a4padTop)*2.5) calc(var(--a4padRight)*2.5) calc(var(--a4padBottom)*2.5) calc(var(--a4padLeft)*2.5);
+}
+}
+
+@media screen and (min-width: 1200px) {
+  #preview {
+  width: calc(var(--a4width) * 3);
+  height: calc(var(--a4height) * 3);
+  font-size: calc(var(--a4fontSize) * 3);
+  padding: calc(var(--a4padTop)*3) calc(var(--a4padRight)*3) calc(var(--a4padBottom)*3) calc(var(--a4padLeft)*3);
+}
+}
+
 
 .previewName {
-  font-size: 1.3em;
+  font-size: 2em;
 }
 
+.previewOccupation {
+  font-size: 1.6em;
+  margin-left: 1.2em;
+  font-weight: bold;
+  background-color: #375356;
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 1em;
+}
+
+.previewLocation {
+  font-size: 1.3em;
+}
 
 
 #root {
@@ -146,19 +201,8 @@ button {
   margin-right: auto;
 }
 
-@media screen and (min-width:640px) {
-  #preview {
-    font-size: medium;
-  }
-}
 
-@media screen and (min-width: 1024px) {
-  #preview {
-    width: 60%;
-    font-size: large;
-  }
 
-}
 
 
 @media print {

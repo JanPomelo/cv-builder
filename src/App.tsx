@@ -5,6 +5,7 @@ import PracticalDiv from "./components/PracticalDiv";
 import Preview from "./components/Preview";
 import { profExp } from "./types";
 import { v4 as uuidv4 } from "uuid";
+import { format } from "date-fns";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement>): void {
   f(e.currentTarget.value);
@@ -57,18 +58,18 @@ function App() {
       return !(job.id === jobKey);
     });
     newJobs.sort((a, b) => {
-     if (a.startDate.substring(3) > b.startDate.substring(3)) {
-       return -1;
-     } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
-       if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
-         return -1;
-       } else {
-         return 1;
-       }
-     } else {
-       return 1;
-     }
-   });
+      if (a.startDate.substring(3) > b.startDate.substring(3)) {
+        return -1;
+      } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
+        if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+          return -1;
+        } else {
+          return 1;
+        }
+      } else {
+        return 1;
+      }
+    });
     setJobs([...newJobs]);
   }
 
@@ -79,7 +80,11 @@ function App() {
     const form = document.getElementById("addProfExp") as HTMLFormElement;
     if (checkJobForm(form)) {
       const startDate = adjustDateFormat(form.startDateJob.value);
-      const endDate = adjustDateFormat(form.endDateJob.value);
+      let endDate = adjustDateFormat(form.endDateJob.value);
+      const today = format(new Date(), "yyyy-MM-dd");
+      if (today === form.endDateJob.value) {
+        endDate = 'now';
+      }
       const newJob: profExp = {
         id: uuidv4(),
         company: form.company.value,

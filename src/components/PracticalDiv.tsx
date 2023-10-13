@@ -73,6 +73,14 @@ export default function PracticalDiv() {
     setEdit(false);
   }
 
+  function handleDeleteJob(job: profExp) {
+    console.log('hallo');
+    const jobIndex = jobs.indexOf(job);
+    jobs.splice(jobIndex, 1);
+    console.log(jobs.length);
+    setJobs([...jobs]);
+  }
+
   return (
     <div className="groupDiv text-black">
       <div className="flex gap-2 items-center mb-2">
@@ -81,13 +89,21 @@ export default function PracticalDiv() {
       </div>
       {jobs.map((job) => {
         return (
-          <div className="flex flex-col text-white items-start bg-my-bg rounded-lg px-2 py-0.5 mb-2" key={job.id}>
-            <h3>
-              <b>{job.jobTitle}</b> at {job.company}
-            </h3>
-            <p>
-              {job.startDate} - {job.endDate}
-            </p>
+          <div className="flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2" key={job.id}>
+            <div className="flex flex-col text-white items-start">
+              <h3>
+                <b>{job.jobTitle}</b> at {job.company}
+              </h3>
+              <p>
+                {job.startDate} - {job.endDate}
+              </p>
+            </div>
+            <button
+              className="mb-auto deleteJob"
+              onClick={() => {
+                handleDeleteJob(job);
+              }}
+            ></button>
           </div>
         );
       })}

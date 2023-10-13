@@ -210,6 +210,17 @@ textarea {
 }
 
 
+.deleteJob {
+  background-image: url('../src/assets/trash.svg');
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-size: 32px;
+  background-color: transparent;
+  border: 0;
+  margin-top: 5px;
+}
+
 @media screen and (min-width: 500px) {
   #preview {
     width: calc(var(--a4width) * 2);

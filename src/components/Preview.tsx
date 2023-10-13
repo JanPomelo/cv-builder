@@ -33,15 +33,15 @@ function JobExp({ jobs }: { jobs: profExp[] }) {
       <h2 className="previewJobHeading">Professional Experience</h2>
       {jobs.map((job) => {
         return (
-          <div className="previewJobDiv items-start justify-start text-left">
-            <p>{job.startDate + ' - ' + job.endDate}</p>
+          <div className="previewJobDiv items-start justify-start text-left" key={job.id}>
+            <p>{job.startDate + " - " + job.endDate}</p>
             <h3>{job.company}</h3>
             <p>{job.location}</p>
             <p>{job.jobTitle}</p>
             <p></p>
             <p className="previewJobDescription">{job.description}</p>
           </div>
-        )
+        );
       })}
     </div>
   );

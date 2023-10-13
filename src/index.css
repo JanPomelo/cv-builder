@@ -149,7 +149,9 @@ span {
 }
 
 label[for="startDateJob"],
-label[for="endDateJob"] {
+label[for="endDateJob"],
+label[for='startDateED'],
+label[for='endDateED'] {
   width: 6rem;
   text-align: left;
   background-color: white;

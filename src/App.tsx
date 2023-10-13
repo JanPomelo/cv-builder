@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import EducationForm from "./components/Education";
+import EducationDiv from "./components/EducationDiv";
 import GeneralInfo from "./components/GeneralInformation";
 import PracticalDiv from "./components/PracticalDiv";
 import Preview from "./components/Preview";
@@ -157,7 +157,7 @@ function App() {
             handleCancelClick();
           }}
         />
-        <EducationForm />
+        <EducationDiv />
       </div>
       <Preview
         name={fullName}

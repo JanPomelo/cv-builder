@@ -110,13 +110,15 @@ span {
 }
 
 #persoSpan,
-#professionalSpan {
+#professionalSpan,
+#educationSpan {
   width: 32px;
   height: 32px;
   background-size: 32px;
 }
 
-#addPracitalBut {
+#addPracitalBut,
+#addEducationBut {
   margin-right: auto;
 }
 
@@ -133,6 +135,10 @@ span {
 
 #professionalSpan {
   background-image: url("./src/assets/professional.svg");
+}
+
+#educationSpan {
+  background-image: url('./src/assets/education.svg');
 }
 
 #locationSpan {

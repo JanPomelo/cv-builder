@@ -1,15 +1,7 @@
 import { MouseEventHandler} from "react";
 import { profExp } from "../types";
 import PracticalForm from "./PracticalForm";
-
-
-function AddButton({ id, onClick }: { id: string; onClick: MouseEventHandler<HTMLButtonElement> }) {
-  return (
-    <button className="flex items-center gap-1" id={id} onClick={onClick}>
-      <span id="addButtonSpan"></span>Add
-    </button>
-  );
-}
+import AddButton from "./AddButton";
 
 
 export default function PracticalDiv({jobs, onDelete, onSave, edit, onAdd, onCancel}: {jobs: profExp[], onDelete: MouseEventHandler<HTMLButtonElement>, onSave: MouseEventHandler<HTMLButtonElement>, edit: boolean, onAdd: MouseEventHandler<HTMLButtonElement>, onCancel: MouseEventHandler<HTMLButtonElement>}) {

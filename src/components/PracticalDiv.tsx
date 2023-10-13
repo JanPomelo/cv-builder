@@ -82,14 +82,14 @@ export default function PracticalDiv() {
   }
 
   return (
-    <div className="groupDiv text-black">
+    <div className="groupDiv text-black flex flex-col gap-2">
       <div className="flex gap-2 items-center mb-2">
         <span id="professionalSpan"></span>
         <h2 className="text-xl font-bold">Professional Experience</h2>
       </div>
       {jobs.map((job) => {
         return (
-          <div className="flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2" key={job.id}>
+          <div className="jobExp flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2" key={job.id}>
             <div className="flex flex-col text-white items-start">
               <h3>
                 <b>{job.jobTitle}</b> at {job.company}

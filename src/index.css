@@ -251,15 +251,22 @@ textarea {
 }
 
 
-.deleteJob {
-  background-image: url('../src/assets/trash.svg');
-  width: 32px;
-  height: 32px;
+.deleteEntry, .editEntry {
+  width: 20px;
+  height: 20px;
   background-position: center;
-  background-size: 32px;
+  background-size: 20px;
   background-color: transparent;
   border: 0;
   margin-top: 5px;
+}
+
+.deleteEntry {
+  background-image: url('../src/assets/trash.svg');
+}
+
+.editEntry {
+  background-image: url('../src/assets/edit.svg')
 }
 
 @media screen and (min-width: 500px) {

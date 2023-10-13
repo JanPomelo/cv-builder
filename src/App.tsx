@@ -52,7 +52,7 @@ function App() {
 
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
-    const div: HTMLDivElement = button.parentElement as HTMLDivElement;
+    const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
     const jobKey = div.getAttribute("data-key") as string;
     const newJobs = jobs.filter((job) => {
       return !(job.id === jobKey);
@@ -83,7 +83,7 @@ function App() {
       let endDate = adjustDateFormat(form.endDateJob.value);
       const today = format(new Date(), "yyyy-MM-dd");
       if (today === form.endDateJob.value) {
-        endDate = 'now';
+        endDate = "now";
       }
       const newJob: profExp = {
         id: uuidv4(),
@@ -156,6 +156,7 @@ function App() {
           onCancel={() => {
             handleCancelClick();
           }}
+          onEdit={() => {}}
         />
         <EducationDiv />
       </div>

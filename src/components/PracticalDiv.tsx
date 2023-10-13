@@ -1,11 +1,25 @@
-import { MouseEventHandler} from "react";
+import { MouseEventHandler } from "react";
 import { profExp } from "../types";
 import PracticalForm from "./PracticalForm";
 import AddButton from "./AddButton";
 
-
-export default function PracticalDiv({jobs, onDelete, onSave, edit, onAdd, onCancel}: {jobs: profExp[], onDelete: MouseEventHandler<HTMLButtonElement>, onSave: MouseEventHandler<HTMLButtonElement>, edit: boolean, onAdd: MouseEventHandler<HTMLButtonElement>, onCancel: MouseEventHandler<HTMLButtonElement>}) {
-
+export default function PracticalDiv({
+  jobs,
+  onDelete,
+  onSave,
+  edit,
+  onAdd,
+  onCancel,
+  onEdit,
+}: {
+  jobs: profExp[];
+  onDelete: MouseEventHandler<HTMLButtonElement>;
+  onSave: MouseEventHandler<HTMLButtonElement>;
+  edit: boolean;
+  onAdd: MouseEventHandler<HTMLButtonElement>;
+  onCancel: MouseEventHandler<HTMLButtonElement>;
+  onEdit: MouseEventHandler<HTMLButtonElement>;
+}) {
   return (
     <div className="groupDiv text-black flex flex-col gap-2">
       <div className="flex gap-2 items-center mb-2">
@@ -29,20 +43,18 @@ export default function PracticalDiv({jobs, onDelete, onSave, edit, onAdd, onCan
                 {job.startDate} - {job.endDate}
               </p>
             </div>
-            <button className="mb-auto deleteJob" onClick={onDelete}></button>
+            <div className="flex flex-col justify-between">
+              {edit ? <></> : <button className="editEntry" onClick={onEdit}></button>}
+
+              <button className="deleteEntry" onClick={onDelete}></button>
+            </div>
           </div>
         );
       })}
       {edit ? (
-        <PracticalForm
-          addOnClick={onSave}
-          cancelOnClick={onCancel}
-        />
+        <PracticalForm addOnClick={onSave} cancelOnClick={onCancel} />
       ) : (
-        <AddButton
-          id="addPracitalBut"
-          onClick={onAdd}
-        />
+        <AddButton id="addPracitalBut" onClick={onAdd} />
       )}
     </div>
   );

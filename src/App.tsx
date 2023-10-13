@@ -56,6 +56,19 @@ function App() {
     const newJobs = jobs.filter((job) => {
       return !(job.id === jobKey);
     });
+    newJobs.sort((a, b) => {
+     if (a.startDate.substring(3) > b.startDate.substring(3)) {
+       return -1;
+     } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
+       if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+         return -1;
+       } else {
+         return 1;
+       }
+     } else {
+       return 1;
+     }
+   });
     setJobs([...newJobs]);
   }
 
@@ -77,7 +90,20 @@ function App() {
         location: form.location.value,
       };
       jobs.push(newJob);
-      //setJobs(jobs);
+      jobs.sort((a, b) => {
+        if (a.startDate.substring(3) > b.startDate.substring(3)) {
+          return -1;
+        } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
+          if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+            return -1;
+          } else {
+            return 1;
+          }
+        } else {
+          return 1;
+        }
+      });
+      setJobs(jobs);
       setEdit(false);
     }
   }

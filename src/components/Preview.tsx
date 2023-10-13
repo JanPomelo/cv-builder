@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { profExp } from "../types";
 
 function InfoResult({
   name,
@@ -26,21 +27,44 @@ function InfoResult({
   );
 }
 
+function JobExp({ jobs }: { jobs: profExp[] }) {
+  return (
+    <div className="mt-2">
+      <h2 className="previewJobHeading">Professional Experience</h2>
+      {jobs.map((job) => {
+        return (
+          <div className="previewJobDiv items-start justify-start text-left">
+            <p>{job.startDate + ' - ' + job.endDate}</p>
+            <h3>{job.company}</h3>
+            <p>{job.location}</p>
+            <p>{job.jobTitle}</p>
+            <p></p>
+            <p className="previewJobDescription">{job.description}</p>
+          </div>
+        )
+      })}
+    </div>
+  );
+}
+
 export default function Preview({
   name,
   location,
   profession,
   image,
+  jobs,
 }: {
   name: string;
   location: string;
   profession: string;
   image: { imageURL: string; imageName: string };
+  jobs: profExp[];
 }) {
   return (
     <div id="preview" className="bg-white relative text-black">
       <InfoResult name={name} location={location} profession={profession} image={image} />
       <hr className="h-1 bg-black"></hr>
+      <JobExp jobs={jobs} />
     </div>
   );
 }

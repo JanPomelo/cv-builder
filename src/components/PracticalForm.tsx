@@ -1,5 +1,6 @@
 import { MouseEventHandler, useState } from "react";
 import InputDiv from "./inputDivs";
+import SaveAndCancel from "./SaveAndCancel";
 
 export default function PracticalForm({
   addOnClick,
@@ -120,15 +121,7 @@ export default function PracticalForm({
         minLength={minTextLength}
       />
       <InputDiv id="jobDescription" name="Description" type="textarea" />
-      <div className="relative flex justify-between">
-        <button className="ml-1" type="submit" form="addProfExp" onClick={addOnClick}>
-          Save
-        </button>
-        <span id="expErrorSpan">{errorMsg}</span>
-        <button className="mr-1" id="cancelProfAdd" type="reset" form="addProfExp" onClick={cancelOnClick}>
-          Cancel
-        </button>
-      </div>
+      <SaveAndCancel addOnClick={addOnClick} cancelOnClick={cancelOnClick} errorMsg={errorMsg} form="addProfExp" />
     </form>
   );
 }

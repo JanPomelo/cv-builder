@@ -225,7 +225,7 @@ input:required:valid:focus:not(.wrongsens) {
   box-shadow: 0 3px 8px 6px rgba(48, 48, 48, 0.852);
 }
 
-#expErrorSpan {
+.errorSpan {
   position: absolute;
   left: 3.8rem;
   right: 5rem;

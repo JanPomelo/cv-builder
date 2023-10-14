@@ -55,6 +55,7 @@ function App() {
     endDate: "",
     id: "",
   });
+  const fullName: string = firstName + " " + lastName;
 
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
@@ -100,8 +101,6 @@ function App() {
     setEditJob(true);
     setJobToEdit(theJob);
   }
-
-  const fullName: string = firstName + " " + lastName;
 
   function handleSaveJob(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -152,8 +151,8 @@ function App() {
     }
   }
 
-  function handleAddJob() {
-    setEditJob(true);
+  function handleAddClick(f: (b: boolean) => void, bool: boolean) {
+    f(bool);
   }
 
   function handleCancelJob() {
@@ -161,9 +160,6 @@ function App() {
     setEditJob(false);
   }
 
-  function handleAddEducation() {
-    setEditEducation(true);
-  }
 
   function handleCancelEducation() {
     setEducationToEdit({
@@ -303,7 +299,7 @@ function App() {
           }}
           edit={editJob}
           onAdd={() => {
-            handleAddJob();
+            handleAddClick(setEditJob, true);
           }}
           onCancel={() => {
             handleCancelJob();
@@ -316,7 +312,7 @@ function App() {
         <EducationDiv
           educations={educations}
           onAdd={() => {
-            handleAddEducation();
+            handleAddClick(setEditEducation, true);
           }}
           onCancel={() => {
             handleCancelEducation();

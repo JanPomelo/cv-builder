@@ -8,14 +8,20 @@ export default function EducationDiv({
   educations,
   onAdd,
   onCancel,
+  onDelete,
+  onEdit,
   onSave,
   edit,
+  educationToEdit,
 }: {
-  educations: education[]
+  educations: education[];
   edit: boolean;
   onAdd: MouseEventHandler<HTMLButtonElement>;
   onCancel: MouseEventHandler<HTMLButtonElement>;
+  onDelete: MouseEventHandler<HTMLButtonElement>;
+  onEdit: MouseEventHandler<HTMLButtonElement>;
   onSave: MouseEventHandler<HTMLButtonElement>;
+  educationToEdit: education;
 }) {
   return (
     <div className="groupDiv text-black flex flex-col gap-2">
@@ -46,11 +52,16 @@ export default function EducationDiv({
                 {startDate} - {endDate}
               </p>
             </div>
+            <div className="flex flex-col justify-between">
+              {edit ? <></> : <button className="editEntry" onClick={onEdit}></button>}
+
+              <button className="deleteEntry" onClick={onDelete}></button>
+            </div>
           </div>
-        )
+        );
       })}
       {edit ? (
-        <EducationForm onSave={onSave} errorMsg="" onCancel={onCancel} />
+        <EducationForm onSave={onSave} errorMsg="" onCancel={onCancel} educationToEdit={educationToEdit} />
       ) : (
         <AddButton id="addEducationBut" onClick={onAdd} />
       )}

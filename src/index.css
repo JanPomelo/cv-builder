@@ -223,7 +223,7 @@ input:required:valid:focus:not(.wrongsens) {
   outline: 2px green solid;
 }
 
-.jobExp {
+.jobExp, .educationExp {
   box-shadow: 0 3px 8px 6px rgba(48, 48, 48, 0.852);
 }
 

@@ -38,7 +38,7 @@ export default function EducationDiv({
         }
         return (
           <div
-            className="EducationExp flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2"
+            className="educationExp flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2"
             key={education.id}
             data-key={education.id}
           >

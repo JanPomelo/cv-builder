@@ -343,6 +343,7 @@ function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {
         profession={profession}
         image={{ imageURL, imageName }}
         jobs={jobs}
+        educations={educations}
       />
     </div>
   );

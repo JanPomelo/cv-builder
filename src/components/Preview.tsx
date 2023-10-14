@@ -1,5 +1,15 @@
 import { ReactElement } from "react";
 import { profExp } from "../types";
+import format from "date-fns/format";
+
+
+
+function adjustDateFormat(date: string): string {
+  const year: string = date.substring(0, 4);
+  const month: string = date.substring(5, 7);
+  const newDate: string = month + "/" + year;
+  return newDate;
+}
 
 function InfoResult({
   name,
@@ -32,9 +42,15 @@ function JobExp({ jobs }: { jobs: profExp[] }) {
     <div className="mt-2">
       <h2 className="previewJobHeading">Professional Experience</h2>
       {jobs.map((job) => {
+           const startDate = adjustDateFormat(job.startDate);
+           let endDate = adjustDateFormat(job.endDate);
+           const today = format(new Date(), "yyyy-MM-dd");
+           if (today === job.endDate) {
+             endDate = "now";
+           }
         return (
           <div className="previewJobDiv items-start justify-start text-left" key={job.id}>
-            <p>{job.startDate + " - " + job.endDate}</p>
+            <p>{startDate + " - " + endDate}</p>
             <h3>{job.company}</h3>
             <p>{job.location}</p>
             <p>{job.jobTitle}</p>

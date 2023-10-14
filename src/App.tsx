@@ -5,19 +5,10 @@ import PracticalDiv from "./components/PracticalDiv";
 import Preview from "./components/Preview";
 import { profExp } from "./types";
 import { v4 as uuidv4 } from "uuid";
-import { format } from "date-fns";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement>): void {
   f(e.currentTarget.value);
 }
-
-function adjustDateFormat(date: string): string {
-  const year: string = date.substring(0, 4);
-  const month: string = date.substring(5, 7);
-  const newDate: string = month + "/" + year;
-  return newDate;
-}
-
 function checkValue(element: HTMLInputElement) {
   element.classList.add("required");
   if (element.value === "" || element.value === "mm/dd/yyyy") {
@@ -49,6 +40,15 @@ function App() {
   const [{ imageURL, imageName }, setImage] = useState({ imageURL: "", imageName: "" });
   const [jobs, setJobs] = useState<profExp[]>([]);
   const [edit, setEdit] = useState(false);
+  const [jobToEdit, setJobToEdit] = useState({
+    company: "",
+    jobTitle: "",
+    location: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+    id: "",
+  });
 
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
@@ -73,25 +73,51 @@ function App() {
     setJobs([...newJobs]);
   }
 
+  function handleJobEdit(e: React.MouseEvent<HTMLButtonElement>) {
+    const button: HTMLButtonElement = e.target as HTMLButtonElement;
+    const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
+    let theJob: profExp = {
+      company: "",
+      jobTitle: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+      id: "",
+    };
+    const jobKey = div.getAttribute("data-key") as string;
+    for (let i = 0; i < jobs.length; i++) {
+      if (jobs[i].id === jobKey) {
+        theJob = jobs[i];
+      }
+    }
+    setEdit(true);
+    setJobToEdit(theJob);
+  }
+
   const fullName: string = firstName + " " + lastName;
 
   function handleSaveClick(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const form = document.getElementById("addProfExp") as HTMLFormElement;
     if (checkJobForm(form)) {
-      const startDate = adjustDateFormat(form.startDateJob.value);
-      let endDate = adjustDateFormat(form.endDateJob.value);
-      const today = format(new Date(), "yyyy-MM-dd");
-      if (today === form.endDateJob.value) {
-        endDate = "now";
+      
+      if (jobToEdit.id != "") {
+        let jobIndex = 0;
+        for (let i = 0; i < jobs.length; i++) {
+          if (jobs[i].id === jobToEdit.id) {
+            jobIndex = i;
+          }
+        }
+        jobs.splice(jobIndex, 1);
       }
       const newJob: profExp = {
         id: uuidv4(),
         company: form.company.value,
         jobTitle: form.jobTitle.value,
         description: form.jobDescription.value,
-        startDate: startDate,
-        endDate: endDate,
+        startDate: form.startDateJob.value,
+        endDate: form.endDateJob.value,
         location: form.location.value,
       };
       jobs.push(newJob);
@@ -108,7 +134,8 @@ function App() {
           return 1;
         }
       });
-      setJobs(jobs);
+      setJobToEdit({ company: "", jobTitle: "", startDate: "", endDate: "", location: "", description: "", id: "" });
+      setJobs([...jobs]);
       setEdit(false);
     }
   }
@@ -118,6 +145,7 @@ function App() {
   }
 
   function handleCancelClick() {
+    setJobToEdit({ company: "", jobTitle: "", startDate: "", endDate: "", location: "", description: "", id: "" });
     setEdit(false);
   }
 
@@ -156,7 +184,10 @@ function App() {
           onCancel={() => {
             handleCancelClick();
           }}
-          onEdit={() => {}}
+          onEdit={(e) => {
+            handleJobEdit(e);
+          }}
+          jobToEdit={jobToEdit}
         />
         <EducationDiv />
       </div>

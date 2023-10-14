@@ -2,6 +2,17 @@ import { MouseEventHandler } from "react";
 import { profExp } from "../types";
 import PracticalForm from "./PracticalForm";
 import AddButton from "./AddButton";
+import { format } from "date-fns";
+
+
+function adjustDateFormat(date: string): string {
+  const year: string = date.substring(0, 4);
+  const month: string = date.substring(5, 7);
+  const newDate: string = month + "/" + year;
+  return newDate;
+}
+
+
 
 export default function PracticalDiv({
   jobs,
@@ -11,6 +22,7 @@ export default function PracticalDiv({
   onAdd,
   onCancel,
   onEdit,
+  jobToEdit,
 }: {
   jobs: profExp[];
   onDelete: MouseEventHandler<HTMLButtonElement>;
@@ -19,6 +31,7 @@ export default function PracticalDiv({
   onAdd: MouseEventHandler<HTMLButtonElement>;
   onCancel: MouseEventHandler<HTMLButtonElement>;
   onEdit: MouseEventHandler<HTMLButtonElement>;
+  jobToEdit: profExp;
 }) {
   return (
     <div className="groupDiv text-black flex flex-col gap-2">
@@ -27,6 +40,12 @@ export default function PracticalDiv({
         <h2 className="text-xl font-bold">Professional Experience</h2>
       </div>
       {jobs.map((job) => {
+        const startDate = adjustDateFormat(job.startDate);
+        let endDate = adjustDateFormat(job.endDate);
+        const today = format(new Date(), "yyyy-MM-dd");
+        if (today === job.endDate) {
+          endDate = "now";
+        }
         return (
           <div
             className="jobExp flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2"
@@ -40,7 +59,7 @@ export default function PracticalDiv({
                 </b>
               </h3>
               <p>
-                {job.startDate} - {job.endDate}
+                {startDate} - {endDate}
               </p>
             </div>
             <div className="flex flex-col justify-between">
@@ -52,7 +71,7 @@ export default function PracticalDiv({
         );
       })}
       {edit ? (
-        <PracticalForm addOnClick={onSave} cancelOnClick={onCancel} />
+        <PracticalForm addOnClick={onSave} cancelOnClick={onCancel} jobToEdit={jobToEdit} />
       ) : (
         <AddButton id="addPracitalBut" onClick={onAdd} />
       )}

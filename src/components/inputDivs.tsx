@@ -8,6 +8,7 @@ export default function InputDiv({
   required,
   onFocus,
   minLength = 0,
+  initValue
 }: {
   id: string;
   name: string;
@@ -16,7 +17,8 @@ export default function InputDiv({
   image?: { imageURL: string; imageName: string };
   required?: { required: boolean };
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  minLength?: number;
+    minLength?: number;
+    initValue?: string;
 }): ReactElement {
   if (type === "text") {
     return (
@@ -33,6 +35,7 @@ export default function InputDiv({
           {...required}
           onFocus={onFocus}
           minLength={minLength}
+          defaultValue={initValue}
         ></input>
       </div>
     );
@@ -48,6 +51,7 @@ export default function InputDiv({
           className="mr-1 flex-grow"
           onChange={onChange}
           onFocus={onFocus}
+          defaultValue={initValue}
         />
       </div>
     );
@@ -66,7 +70,7 @@ export default function InputDiv({
         <label htmlFor={id} hidden>
           {name}
         </label>
-        <textarea id={id} className="w-full mx-1" placeholder={name}></textarea>
+        <textarea id={id} className="w-full mx-1" placeholder={name} defaultValue={initValue}></textarea>
       </div>
     );
   } else {

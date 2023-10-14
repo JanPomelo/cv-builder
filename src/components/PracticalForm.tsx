@@ -1,13 +1,16 @@
 import { MouseEventHandler, useState } from "react";
 import InputDiv from "./inputDivs";
 import SaveAndCancel from "./SaveAndCancel";
+import { profExp } from "../types";
 
 export default function PracticalForm({
   addOnClick,
   cancelOnClick,
+  jobToEdit,
 }: {
   addOnClick: MouseEventHandler<HTMLButtonElement>;
   cancelOnClick: MouseEventHandler<HTMLButtonElement>;
+  jobToEdit: profExp;
 }) {
   const [errorMsg, setErrorMsg] = useState("");
   const minTextLength = 2;
@@ -69,6 +72,7 @@ export default function PracticalForm({
           handleFocusAndChange(e as React.ChangeEvent<HTMLInputElement>, companyErrMsg);
         }}
         minLength={minTextLength}
+        initValue={jobToEdit.company}
       />
       <InputDiv
         id="jobTitle"
@@ -82,6 +86,7 @@ export default function PracticalForm({
           handleFocusAndChange(e as React.ChangeEvent<HTMLInputElement>, jobTitleErrMsg);
         }}
         minLength={minTextLength}
+        initValue={jobToEdit.jobTitle}
       />
       <InputDiv
         id="startDateJob"
@@ -94,6 +99,7 @@ export default function PracticalForm({
         onFocus={(e) => {
           handleDateChangeAndFocus(e, dateErrMsg);
         }}
+        initValue={jobToEdit.startDate}
       />
       <InputDiv
         id="endDateJob"
@@ -106,6 +112,7 @@ export default function PracticalForm({
         onFocus={(e) => {
           handleDateChangeAndFocus(e, dateErrMsg);
         }}
+        initValue={jobToEdit.endDate}
       />
       <InputDiv
         id="location"
@@ -119,8 +126,9 @@ export default function PracticalForm({
           handleFocusAndChange(e as React.ChangeEvent<HTMLInputElement>, locationErrMsg);
         }}
         minLength={minTextLength}
+        initValue={jobToEdit.location}
       />
-      <InputDiv id="jobDescription" name="Description" type="textarea" />
+      <InputDiv id="jobDescription" name="Description" type="textarea" initValue={jobToEdit.description} />
       <SaveAndCancel addOnClick={addOnClick} cancelOnClick={cancelOnClick} errorMsg={errorMsg} form="addProfExp" />
     </form>
   );

@@ -41,7 +41,7 @@ export default function EducationForm({
     message: string
   ) {
     handleFocusAndChange(e, message);
-    const form = document.getElementById("addProfExp") as HTMLFormElement;
+    const form = document.getElementById("addEducation") as HTMLFormElement;
     if (form.endDateED.value >= form.startDateED.value) {
       form.endDateED.classList.remove("wrongsens");
     } else {
@@ -105,7 +105,7 @@ export default function EducationForm({
         id="startDateED"
         name="Start Date"
         onChange={(e) => {
-          handleDateChangeAndFocus(e, dateErrMsg);
+          handleDateChangeAndFocus(e as React.ChangeEvent<HTMLInputElement>, dateErrMsg);
         }}
         type="date"
         onFocus={(e) => {
@@ -119,7 +119,7 @@ export default function EducationForm({
         id="endDateED"
         name="End Date"
         onChange={(e) => {
-          handleDateChangeAndFocus(e, dateErrMsg);
+          handleDateChangeAndFocus(e as React.ChangeEvent<HTMLInputElement>, dateErrMsg);
         }}
         type="date"
         onFocus={(e) => {

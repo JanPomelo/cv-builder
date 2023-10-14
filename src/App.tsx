@@ -49,6 +49,7 @@ function App() {
     endDate: "",
     id: "",
   });
+  const [editEducation, setEditEducation] = useState(false);
 
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
@@ -97,7 +98,7 @@ function App() {
 
   const fullName: string = firstName + " " + lastName;
 
-  function handleSaveClick(e: FormEvent<HTMLButtonElement>) {
+  function handleSaveJob(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const form = document.getElementById("addProfExp") as HTMLFormElement;
     if (checkJobForm(form)) {
@@ -140,14 +141,26 @@ function App() {
     }
   }
 
-  function handleAddClick() {
+  function handleAddJob() {
     setEditJob(true);
   }
 
-  function handleCancelClick() {
+  function handleCancelJob() {
     setJobToEdit({ company: "", jobTitle: "", startDate: "", endDate: "", location: "", description: "", id: "" });
     setEditJob(false);
   }
+
+
+    function handleAddEducation() {
+      setEditEducation(true);
+    }
+
+    function handleCancelEducation() {
+      setEditEducation(false);
+    }
+
+
+
 
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) {
@@ -175,21 +188,29 @@ function App() {
             handleDeleteJob(e);
           }}
           onSave={(e) => {
-            handleSaveClick(e);
+            handleSaveJob(e);
           }}
           edit={editJob}
           onAdd={() => {
-            handleAddClick();
+            handleAddJob();
           }}
           onCancel={() => {
-            handleCancelClick();
+            handleCancelJob();
           }}
           onEdit={(e) => {
             handleEditJob(e);
           }}
           jobToEdit={jobToEdit}
         />
-        <EducationDiv />
+        <EducationDiv
+          onAdd={() => {
+            handleAddEducation()
+          }}
+          onCancel={() => {
+            handleCancelEducation()
+          }}
+          edit={editEducation}
+        />
       </div>
       <Preview
         name={fullName}

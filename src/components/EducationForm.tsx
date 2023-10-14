@@ -3,13 +3,13 @@ import SaveAndCancel from "./SaveAndCancel";
 import InputDiv from "./inputDivs";
 
 export default function EducationForm({
-  addOnClick,
+  onSave,
   errorMsg,
-  cancelOnClick,
+  onCancel,
 }: {
-  addOnClick: MouseEventHandler<HTMLButtonElement>;
+  onSave: MouseEventHandler<HTMLButtonElement>;
   errorMsg: string;
-  cancelOnClick: MouseEventHandler<HTMLButtonElement>;
+  onCancel: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <form>
@@ -19,7 +19,7 @@ export default function EducationForm({
       <InputDiv id="startDateED" name="Start Date" onChange={() => {}} type="date" onFocus={() => {}} />
       <InputDiv id="endDateED" name="End Date" onChange={() => {}} type="date" onFocus={() => {}} />
       <InputDiv id="locationED" name="Location" onChange={() => {}} type="text" onFocus={() => {}} minLength={2} />
-      <SaveAndCancel addOnClick={addOnClick} errorMsg={errorMsg} cancelOnClick={cancelOnClick} form="educationForm" />
+      <SaveAndCancel addOnClick={onSave} errorMsg={errorMsg} cancelOnClick={onCancel} form="educationForm" />
     </form>
   );
 }

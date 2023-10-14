@@ -6,8 +6,8 @@ import Preview from "./components/Preview";
 import { profExp } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
-function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement>): void {
-  f(e.currentTarget.value);
+function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
+  if (e) f(e.currentTarget.value);
 }
 function checkValue(element: HTMLInputElement) {
   element.classList.add("required");
@@ -39,7 +39,7 @@ function App() {
   const [profession, setProfession] = useState("");
   const [{ imageURL, imageName }, setImage] = useState({ imageURL: "", imageName: "" });
   const [jobs, setJobs] = useState<profExp[]>([]);
-  const [edit, setEdit] = useState(false);
+  const [editJob, setEditJob] = useState(false);
   const [jobToEdit, setJobToEdit] = useState({
     company: "",
     jobTitle: "",
@@ -73,7 +73,7 @@ function App() {
     setJobs([...newJobs]);
   }
 
-  function handleJobEdit(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleEditJob(e: React.MouseEvent<HTMLButtonElement>) {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
     const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
     let theJob: profExp = {
@@ -91,7 +91,7 @@ function App() {
         theJob = jobs[i];
       }
     }
-    setEdit(true);
+    setEditJob(true);
     setJobToEdit(theJob);
   }
 
@@ -136,17 +136,17 @@ function App() {
       });
       setJobToEdit({ company: "", jobTitle: "", startDate: "", endDate: "", location: "", description: "", id: "" });
       setJobs([...jobs]);
-      setEdit(false);
+      setEditJob(false);
     }
   }
 
   function handleAddClick() {
-    setEdit(true);
+    setEditJob(true);
   }
 
   function handleCancelClick() {
     setJobToEdit({ company: "", jobTitle: "", startDate: "", endDate: "", location: "", description: "", id: "" });
-    setEdit(false);
+    setEditJob(false);
   }
 
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -166,7 +166,7 @@ function App() {
           onLastNameChange={(e) => handleChanges(setLastName, e)}
           onLocationChange={(e) => handleChanges(setLocation, e)}
           onProfessionChange={(e) => handleChanges(setProfession, e)}
-          onImageUpload={(e) => handleImageUpload(e)}
+          onImageUpload={(e) => handleImageUpload(e as React.ChangeEvent<HTMLInputElement>)}
           image={{ imageURL, imageName }}
         />
         <PracticalDiv
@@ -177,7 +177,7 @@ function App() {
           onSave={(e) => {
             handleSaveClick(e);
           }}
-          edit={edit}
+          edit={editJob}
           onAdd={() => {
             handleAddClick();
           }}
@@ -185,7 +185,7 @@ function App() {
             handleCancelClick();
           }}
           onEdit={(e) => {
-            handleJobEdit(e);
+            handleEditJob(e);
           }}
           jobToEdit={jobToEdit}
         />

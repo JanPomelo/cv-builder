@@ -165,6 +165,9 @@ function App() {
   }
 
   function handleCancelEducation() {
+    setEducationToEdit({
+      degree: '', fos: '', id: '', startDate: '', endDate: '', location: '', university: ''
+    });
     setEditEducation(false);
   }
 

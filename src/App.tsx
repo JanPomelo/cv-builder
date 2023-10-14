@@ -32,6 +32,23 @@ function checkJobForm(form: HTMLFormElement) {
   return success;
 }
 
+function checkEducationForm(form: HTMLFormElement) {
+  const elements: HTMLInputElement[] = [form.degree, form.university, form.locationED, form.startDateED, form.endDateED, form.fos];
+  let success: boolean = true;
+  for (let i = 0; i < elements.length; i++) {
+    if (!checkValue(elements[i])) {
+      success = false;
+    }
+  }
+  if (form.endDateED.value < form.startDateED.value) {
+    form.endDateED.classList.add("wrongsens");
+    success = false;
+  }
+  return success;
+}
+
+
+
 function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -174,7 +191,7 @@ function App() {
   function handleSaveEducation(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const form = document.getElementById("addEducation") as HTMLFormElement;
-    //if (checkEducationForm(form)) {
+    if (checkEducationForm(form)) {
     if (educationToEdit.id != "") {
       let educationIndex = 0;
       for (let i = 0; i < educations.length; i++) {
@@ -210,7 +227,7 @@ function App() {
     setEducationToEdit({ degree: "", university: "", startDate: "", endDate: "", location: "", fos: "", id: "" });
     setEducations([...educations]);
     setEditEducation(false);
-    //}
+    }
   }
 
   function handleEditEducation(e: React.MouseEvent<HTMLButtonElement>) {

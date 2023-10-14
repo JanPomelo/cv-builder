@@ -17,37 +17,15 @@ function checkValue(element: HTMLInputElement) {
   return true;
 }
 
-function checkJobForm(form: HTMLFormElement) {
-  const elements: HTMLInputElement[] = [form.company, form.jobTitle, form.location, form.startDateJob, form.endDateJob];
+function checkForm(arr: HTMLInputElement[]): boolean {
   let success: boolean = true;
-  for (let i = 0; i < elements.length; i++) {
-    if (!checkValue(elements[i])) {
+  for (let i = 0; i < arr.length; i++) {
+    if (!checkValue(arr[i])) {
       success = false;
     }
   }
-  if (form.endDateJob.value < form.startDateJob.value) {
-    form.endDateJob.classList.add("wrongsens");
-    success = false;
-  }
   return success;
 }
-
-function checkEducationForm(form: HTMLFormElement) {
-  const elements: HTMLInputElement[] = [form.degree, form.university, form.locationED, form.startDateED, form.endDateED, form.fos];
-  let success: boolean = true;
-  for (let i = 0; i < elements.length; i++) {
-    if (!checkValue(elements[i])) {
-      success = false;
-    }
-  }
-  if (form.endDateED.value < form.startDateED.value) {
-    form.endDateED.classList.add("wrongsens");
-    success = false;
-  }
-  return success;
-}
-
-
 
 function App() {
   const [firstName, setFirstName] = useState("");
@@ -77,7 +55,6 @@ function App() {
     endDate: "",
     id: "",
   });
-
 
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
@@ -129,7 +106,14 @@ function App() {
   function handleSaveJob(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const form = document.getElementById("addProfExp") as HTMLFormElement;
-    if (checkJobForm(form)) {
+    const elements: HTMLInputElement[] = [
+      form.company,
+      form.jobTitle,
+      form.location,
+      form.startDateJob,
+      form.endDateJob,
+    ];
+    if (checkForm(elements)) {
       if (jobToEdit.id != "") {
         let jobIndex = 0;
         for (let i = 0; i < jobs.length; i++) {
@@ -183,7 +167,13 @@ function App() {
 
   function handleCancelEducation() {
     setEducationToEdit({
-      degree: '', fos: '', id: '', startDate: '', endDate: '', location: '', university: ''
+      degree: "",
+      fos: "",
+      id: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      university: "",
     });
     setEditEducation(false);
   }
@@ -191,42 +181,50 @@ function App() {
   function handleSaveEducation(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     const form = document.getElementById("addEducation") as HTMLFormElement;
-    if (checkEducationForm(form)) {
-    if (educationToEdit.id != "") {
-      let educationIndex = 0;
-      for (let i = 0; i < educations.length; i++) {
-        if (educations[i].id === educationToEdit.id) {
-          educationIndex = i;
+    const elements: HTMLInputElement[] = [
+      form.degree,
+      form.university,
+      form.locationED,
+      form.startDateED,
+      form.endDateED,
+      form.fos,
+    ];
+    if (checkForm(elements)) {
+      if (educationToEdit.id != "") {
+        let educationIndex = 0;
+        for (let i = 0; i < educations.length; i++) {
+          if (educations[i].id === educationToEdit.id) {
+            educationIndex = i;
+          }
         }
+        educations.splice(educationIndex, 1);
       }
-      educations.splice(educationIndex, 1);
-    }
-    const newEducation: education = {
-      id: uuidv4(),
-      university: form.university.value,
-      degree: form.degree.value,
-      fos: form.fos.value,
-      startDate: form.startDateED.value,
-      endDate: form.endDateED.value,
-      location: form.locationED.value,
-    };
-    educations.push(newEducation);
-    educations.sort((a, b) => {
-      if (a.startDate.substring(3) > b.startDate.substring(3)) {
-        return -1;
-      } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
-        if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+      const newEducation: education = {
+        id: uuidv4(),
+        university: form.university.value,
+        degree: form.degree.value,
+        fos: form.fos.value,
+        startDate: form.startDateED.value,
+        endDate: form.endDateED.value,
+        location: form.locationED.value,
+      };
+      educations.push(newEducation);
+      educations.sort((a, b) => {
+        if (a.startDate.substring(3) > b.startDate.substring(3)) {
           return -1;
+        } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
+          if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+            return -1;
+          } else {
+            return 1;
+          }
         } else {
           return 1;
         }
-      } else {
-        return 1;
-      }
-    });
-    setEducationToEdit({ degree: "", university: "", startDate: "", endDate: "", location: "", fos: "", id: "" });
-    setEducations([...educations]);
-    setEditEducation(false);
+      });
+      setEducationToEdit({ degree: "", university: "", startDate: "", endDate: "", location: "", fos: "", id: "" });
+      setEducations([...educations]);
+      setEditEducation(false);
     }
   }
 
@@ -252,29 +250,28 @@ function App() {
     setEducationToEdit(theEducation);
   }
 
-function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {
-  const button: HTMLButtonElement = e.target as HTMLButtonElement;
-  const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
-  const educationKey = div.getAttribute("data-key") as string;
-  const newEducations = educations.filter((education) => {
-    return !(education.id === educationKey);
-  });
-  newEducations.sort((a, b) => {
-    if (a.startDate.substring(3) > b.startDate.substring(3)) {
-      return -1;
-    } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
-      if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+  function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {
+    const button: HTMLButtonElement = e.target as HTMLButtonElement;
+    const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
+    const educationKey = div.getAttribute("data-key") as string;
+    const newEducations = educations.filter((education) => {
+      return !(education.id === educationKey);
+    });
+    newEducations.sort((a, b) => {
+      if (a.startDate.substring(3) > b.startDate.substring(3)) {
         return -1;
+      } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
+        if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+          return -1;
+        } else {
+          return 1;
+        }
       } else {
         return 1;
       }
-    } else {
-      return 1;
-    }
-  });
-  setEducations([...newEducations]);
-}
-
+    });
+    setEducations([...newEducations]);
+  }
 
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) {
@@ -325,10 +322,10 @@ function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {
             handleCancelEducation();
           }}
           onDelete={(e) => {
-            handleDeleteEducation(e)
+            handleDeleteEducation(e);
           }}
           onEdit={(e) => {
-            handleEditEducation(e)
+            handleEditEducation(e);
           }}
           onSave={(e) => {
             handleSaveEducation(e);

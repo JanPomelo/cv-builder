@@ -12,7 +12,7 @@ export default function GeneralInfo({
   onLastNameChange: changeHandler;
   onLocationChange: changeHandler;
   onProfessionChange: changeHandler;
-  onImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onImageUpload: (e: React.ChangeEvent<HTMLInputElement> | void) => void;
   image?: { imageURL: string; imageName: string };
 }) {
   return (

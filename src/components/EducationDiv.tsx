@@ -45,7 +45,7 @@ export default function EducationDiv({
             <div className="flex flex-col text-white items-start">
               <h3>
                 <b>
-                  {education.degree} ({education.fos}) at {education.university}
+                  {education.degree} ({education.fos})
                 </b>
               </h3>
               <p>

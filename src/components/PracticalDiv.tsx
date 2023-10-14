@@ -3,14 +3,7 @@ import { profExp } from "../types";
 import PracticalForm from "./PracticalForm";
 import AddButton from "./AddButton";
 import { format } from "date-fns";
-
-
-function adjustDateFormat(date: string): string {
-  const year: string = date.substring(0, 4);
-  const month: string = date.substring(5, 7);
-  const newDate: string = month + "/" + year;
-  return newDate;
-}
+import { adjustDateFormat } from "../dateFunctions";
 
 
 

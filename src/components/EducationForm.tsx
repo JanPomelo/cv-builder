@@ -12,9 +12,9 @@ export default function EducationForm({
   onCancel: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
-    <form>
+    <form id='addEducation'>
       <InputDiv id="degree" name="Degree" onChange={() => {}} type="text" onFocus={() => {}} minLength={2} />
-      <InputDiv id="school" name="University / School" onChange={() => {}} type="text" onFocus={() => {}} minLength={2} />
+      <InputDiv id="university" name="University / School" onChange={() => {}} type="text" onFocus={() => {}} minLength={2} />
       <InputDiv id="fos" name="Field of Study / Grade" onChange={() => {}} type="text" onFocus={() => {}} minLength={2} />
       <InputDiv id="startDateED" name="Start Date" onChange={() => {}} type="date" onFocus={() => {}} />
       <InputDiv id="endDateED" name="End Date" onChange={() => {}} type="date" onFocus={() => {}} />

@@ -3,7 +3,7 @@ import EducationDiv from "./components/EducationDiv";
 import GeneralInfo from "./components/GeneralInformation";
 import PracticalDiv from "./components/PracticalDiv";
 import Preview from "./components/Preview";
-import { profExp } from "./types";
+import { education, profExp } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
@@ -50,6 +50,7 @@ function App() {
     id: "",
   });
   const [editEducation, setEditEducation] = useState(false);
+  const [educations, setEducations] = useState<education[]>([]);
 
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
@@ -160,6 +161,47 @@ function App() {
     }
 
 
+  function handleSaveEducation(e: FormEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    const form = document.getElementById("addEducation") as HTMLFormElement;
+    //if (checkEducationForm(form)) {
+      //if (educationToEdit.id != "") {
+      //  let educationIndex = 0;
+      //  for (let i = 0; i < educations.length; i++) {
+      //    if (educations[i].id === educationToEdit.id) {
+      //      educationIndex = i;
+      //    }
+      //  }
+      //  educations.splice(educationIndex, 1);
+      //}
+      const newEducation: education = {
+        id: uuidv4(),
+        university: form.university.value,
+        degree: form.degree.value,
+        fos: form.fos.value,
+        startDate: form.startDateED.value,
+        endDate: form.endDateED.value,
+        location: form.locationED.value,
+      };
+      educations.push(newEducation);
+      /*jobs.sort((a, b) => {
+        if (a.startDate.substring(3) > b.startDate.substring(3)) {
+          return -1;
+        } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
+          if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
+            return -1;
+          } else {
+            return 1;
+          }
+        } else {
+          return 1;
+        }
+      }); */
+      //setEducationToEdit({ degree: "", university: "", startDate: "", endDate: "", location: "", fos: "", id: "" });
+      setEducations([...educations]);
+      setEditEducation(false);
+    //}
+  }
 
 
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -203,11 +245,15 @@ function App() {
           jobToEdit={jobToEdit}
         />
         <EducationDiv
+          educations={educations}
           onAdd={() => {
-            handleAddEducation()
+            handleAddEducation();
           }}
           onCancel={() => {
-            handleCancelEducation()
+            handleCancelEducation();
+          }}
+          onSave={(e) => {
+            handleSaveEducation(e);
           }}
           edit={editEducation}
         />

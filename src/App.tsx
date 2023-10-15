@@ -211,14 +211,13 @@ function App() {
     f(true);
   }
 
-  function handleCancelJob() {
-    setJobToEdit(emptyJob);
-    setEditJob(false);
-  }
-
-  function handleCancelEducation() {
-    setEducationToEdit(emptyEducation);
-    setEditEducation(false);
+  function handleCancelClick(initVal: profExp | education, fEdit: (b: boolean) => void) { 
+    if ('company' in initVal) {
+      setJobToEdit(initVal);
+    } else {
+      setEducationToEdit(initVal);
+    }
+    fEdit(false);
   }
 
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -252,7 +251,7 @@ function App() {
             handleAddClick(setEditJob);
           }}
           onCancel={() => {
-            handleCancelJob();
+            handleCancelClick(emptyJob, setEditJob);
           }}
           onEdit={(e) => {
             handleEditJob(e);
@@ -265,7 +264,7 @@ function App() {
             handleAddClick(setEditEducation);
           }}
           onCancel={() => {
-            handleCancelEducation();
+            handleCancelClick(emptyEducation, setEditEducation);
           }}
           onDelete={(e) => {
             handleDeleteEducation(e);

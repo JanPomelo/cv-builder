@@ -20,7 +20,7 @@ export default function InputDiv({
     minLength?: number;
     initValue?: string;
 }): ReactElement {
-  if (type === "text") {
+  if (type === "text" || type=== 'email') {
     return (
       <div className=" w-full flex justify-between items-center py-2">
         <label htmlFor={id} hidden>

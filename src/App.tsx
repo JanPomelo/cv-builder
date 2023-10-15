@@ -6,6 +6,7 @@ import Preview from "./components/Preview";
 import { education, profExp } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
+import ContactInfo from "./components/ContactInfo";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
   if (e) f(e.currentTarget.value);
@@ -278,6 +279,7 @@ function App() {
           edit={editEducation}
           educationToEdit={educationToEdit}
         />
+        <ContactInfo/>
       </div>
       <Preview
         name={fullName}

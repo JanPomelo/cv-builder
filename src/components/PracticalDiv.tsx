@@ -4,6 +4,7 @@ import PracticalForm from "./PracticalForm";
 import AddButton from "./AddButton";
 import { format } from "date-fns";
 import { adjustDateFormat } from "../dateFunctions";
+import GroupDivHeading from "./GroupDivHeading";
 
 
 
@@ -28,10 +29,7 @@ export default function PracticalDiv({
 }) {
   return (
     <div className="groupDiv text-black flex flex-col gap-2">
-      <div className="flex gap-2 items-center mb-2">
-        <span id="professionalSpan"></span>
-        <h2 className="text-xl font-bold">Professional Experience</h2>
-      </div>
+      <GroupDivHeading name='Professional Experience' spanID="professionalSpan"/>
       {jobs.map((job) => {
         const startDate = adjustDateFormat(job.startDate);
         let endDate = adjustDateFormat(job.endDate);

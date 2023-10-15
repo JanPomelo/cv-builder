@@ -72,14 +72,17 @@ function App() {
   function sortArray(arr: profExp[] | education[]): profExp[] | education[] {
     return arr.sort((a, b) => {
       if (a.startDate > b.startDate) {
-        return 1;
-      } else {
         return -1;
+      } else {
+        return 1;
       }
     });
   }
 
-  function filterArrDeleteID(e: React.MouseEvent<HTMLButtonElement>, arr: profExp[] | education[]): profExp[] | education[] {
+  function filterArrDeleteID(
+    e: React.MouseEvent<HTMLButtonElement>,
+    arr: profExp[] | education[]
+  ): profExp[] | education[] {
     const key = getKeyFromElement(e);
     const newArr = arr.filter((el) => {
       return !(el.id === key);
@@ -123,27 +126,21 @@ function App() {
     setEducationToEdit(theEducation);
   }
 
-  function handleSaveJob(e: FormEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    const form = document.getElementById("addProfExp") as HTMLFormElement;
-    const elements: HTMLInputElement[] = [
-      form.company,
-      form.jobTitle,
-      form.location,
-      form.startDateJob,
-      form.endDateJob,
-    ];
-    if (checkForm(elements)) {
-      if (jobToEdit.id != "") {
-        let jobIndex = 0;
-        for (let i = 0; i < jobs.length; i++) {
-          if (jobs[i].id === jobToEdit.id) {
-            jobIndex = i;
-          }
+  function getElementIndex(experiences: profExp[] | education[], expToEdit: profExp | education): number | undefined {
+    let index;
+    if (expToEdit.id !== "") {
+      for (let i = 0; i < experiences.length; i++) {
+        if (experiences[i].id === expToEdit.id) {
+          index = i;
         }
-        jobs.splice(jobIndex, 1);
       }
-      const newJob: profExp = {
+    }
+    return index;
+  }
+
+  function createNewExperience(form: HTMLFormElement, type: string) {
+    if (type === "job") {
+      return {
         id: uuidv4(),
         company: form.company.value,
         jobTitle: form.jobTitle.value,
@@ -152,23 +149,60 @@ function App() {
         endDate: form.endDateJob.value,
         location: form.location.value,
       };
+    } else {
+      return {
+        id: uuidv4(),
+        university: form.university.value,
+        degree: form.degree.value,
+        fos: form.fos.value,
+        startDate: form.startDateED.value,
+        endDate: form.endDateED.value,
+        location: form.locationED.value,
+      };
+    }
+  }
+
+  function getElementsFromForm(form: HTMLFormElement): HTMLInputElement[] {
+    if (form.id === "addProfExp") {
+      return [form.company, form.jobTitle, form.location, form.startDateJob, form.endDateJob];
+    } else {
+      return [form.degree, form.university, form.locationED, form.startDateED, form.endDateED, form.fos];
+    }
+  }
+
+  function handleSaveJob(e: FormEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    const form = document.getElementById("addProfExp") as HTMLFormElement;
+    const elements: HTMLInputElement[] = getElementsFromForm(form);
+    if (checkForm(elements)) {
+      const index = getElementIndex(jobs, jobToEdit);
+      if (index !== undefined) {
+        jobs.splice(index, 1);
+      }
+      const newJob: profExp = createNewExperience(form, "job") as profExp;
       jobs.push(newJob);
-      jobs.sort((a, b) => {
-        if (a.startDate.substring(3) > b.startDate.substring(3)) {
-          return -1;
-        } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
-          if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
-            return -1;
-          } else {
-            return 1;
-          }
-        } else {
-          return 1;
-        }
-      });
-      setJobToEdit({ company: "", jobTitle: "", startDate: "", endDate: "", location: "", description: "", id: "" });
-      setJobs([...jobs]);
+      const newJobs: profExp[] = sortArray(jobs) as profExp[];
+      setJobToEdit(emptyJob);
+      setJobs([...newJobs]);
       setEditJob(false);
+    }
+  }
+
+  function handleSaveEducation(e: FormEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    const form = document.getElementById("addEducation") as HTMLFormElement;
+    const elements: HTMLInputElement[] = getElementsFromForm(form);
+    if (checkForm(elements)) {
+      const index = getElementIndex(educations, educationToEdit);
+      if (index !== undefined) {
+        educations.splice(index, 1);
+      }
+      const newEducation: education = createNewExperience(form, "education") as education;
+      educations.push(newEducation);
+      const newEducations: education[] = sortArray(educations) as education[];
+      setEducationToEdit(emptyEducation);
+      setEducations([...newEducations]);
+      setEditEducation(false);
     }
   }
 
@@ -187,60 +221,8 @@ function App() {
     setEditEducation(false);
   }
 
-  function handleSaveEducation(e: FormEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    const form = document.getElementById("addEducation") as HTMLFormElement;
-    const elements: HTMLInputElement[] = [
-      form.degree,
-      form.university,
-      form.locationED,
-      form.startDateED,
-      form.endDateED,
-      form.fos,
-    ];
-    if (checkForm(elements)) {
-      if (educationToEdit.id != "") {
-        let educationIndex = 0;
-        for (let i = 0; i < educations.length; i++) {
-          if (educations[i].id === educationToEdit.id) {
-            educationIndex = i;
-          }
-        }
-        educations.splice(educationIndex, 1);
-      }
-      const newEducation: education = {
-        id: uuidv4(),
-        university: form.university.value,
-        degree: form.degree.value,
-        fos: form.fos.value,
-        startDate: form.startDateED.value,
-        endDate: form.endDateED.value,
-        location: form.locationED.value,
-      };
-      educations.push(newEducation);
-      educations.sort((a, b) => {
-        if (a.startDate.substring(3) > b.startDate.substring(3)) {
-          return -1;
-        } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
-          if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
-            return -1;
-          } else {
-            return 1;
-          }
-        } else {
-          return 1;
-        }
-      });
-      setEducationToEdit({ degree: "", university: "", startDate: "", endDate: "", location: "", fos: "", id: "" });
-      setEducations([...educations]);
-      setEditEducation(false);
-    }
-  }
-
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!e.target.files) {
-      // ...
-    } else {
+    if (e.target.files) {
       const imgURL: string = URL.createObjectURL(e.target.files[0]);
       const imgName: string = e.target.files[0].name;
       setImage({ imageURL: imgURL, imageName: imgName });

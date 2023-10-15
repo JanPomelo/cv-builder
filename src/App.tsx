@@ -85,26 +85,35 @@ function App() {
     setJobs([...newJobs]);
   }
 
-  function handleEditJob(e: React.MouseEvent<HTMLButtonElement>) {
+  function getKeyFromElement(e: React.MouseEvent<HTMLButtonElement>): string {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
     const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
-    let theJob: profExp = {
-      company: "",
-      jobTitle: "",
-      location: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-      id: "",
-    };
-    const jobKey = div.getAttribute("data-key") as string;
+    const key = div.getAttribute("data-key") as string;
+    return key;
+  }
+
+  function handleEditJob(e: React.MouseEvent<HTMLButtonElement>) {
+    let theJob: profExp = {...emptyJob };
+    const key = getKeyFromElement(e);
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].id === jobKey) {
+      if (jobs[i].id === key) {
         theJob = jobs[i];
       }
     }
     setEditJob(true);
     setJobToEdit(theJob);
+  }
+
+  function handleEditEducation(e: React.MouseEvent<HTMLButtonElement>) {
+    let theEducation: education = { ...emptyEducation };
+    const key = getKeyFromElement(e);
+    for (let i = 0; i < educations.length; i++) {
+      if (educations[i].id === key) {
+        theEducation = educations[i];
+      }
+    }
+    setEditEducation(true);
+    setEducationToEdit(theEducation);
   }
 
   function handleSaveJob(e: FormEvent<HTMLButtonElement>) {
@@ -219,28 +228,6 @@ function App() {
       setEducations([...educations]);
       setEditEducation(false);
     }
-  }
-
-  function handleEditEducation(e: React.MouseEvent<HTMLButtonElement>) {
-    const button: HTMLButtonElement = e.target as HTMLButtonElement;
-    const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
-    let theEducation: education = {
-      university: "",
-      degree: "",
-      location: "",
-      startDate: "",
-      endDate: "",
-      fos: "",
-      id: "",
-    };
-    const educationKey = div.getAttribute("data-key") as string;
-    for (let i = 0; i < educations.length; i++) {
-      if (educations[i].id === educationKey) {
-        theEducation = educations[i];
-      }
-    }
-    setEditEducation(true);
-    setEducationToEdit(theEducation);
   }
 
   function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {

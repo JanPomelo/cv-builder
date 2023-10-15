@@ -62,29 +62,6 @@ function App() {
 
   const fullName: string = firstName + " " + lastName;
 
-  function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
-    const button: HTMLButtonElement = e.target as HTMLButtonElement;
-    const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
-    const jobKey = div.getAttribute("data-key") as string;
-    const newJobs = jobs.filter((job) => {
-      return !(job.id === jobKey);
-    });
-    newJobs.sort((a, b) => {
-      if (a.startDate.substring(3) > b.startDate.substring(3)) {
-        return -1;
-      } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
-        if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
-          return -1;
-        } else {
-          return 1;
-        }
-      } else {
-        return 1;
-      }
-    });
-    setJobs([...newJobs]);
-  }
-
   function getKeyFromElement(e: React.MouseEvent<HTMLButtonElement>): string {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
     const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
@@ -92,8 +69,38 @@ function App() {
     return key;
   }
 
+  function sortArray(arr: profExp[] | education[]): profExp[] | education[] {
+    return arr.sort((a, b) => {
+      if (a.startDate > b.startDate) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  }
+
+  function filterArrDeleteID(e: React.MouseEvent<HTMLButtonElement>, arr: profExp[] | education[]): profExp[] | education[] {
+    const key = getKeyFromElement(e);
+    const newArr = arr.filter((el) => {
+      return !(el.id === key);
+    });
+    return newArr as profExp[] | education[];
+  }
+
+  function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
+    let newJobs = filterArrDeleteID(e, jobs);
+    newJobs = sortArray(newJobs) as profExp[];
+    setJobs([...newJobs]);
+  }
+
+  function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {
+    let newEducations = filterArrDeleteID(e, educations);
+    newEducations = sortArray(newEducations) as education[];
+    setEducations([...newEducations]);
+  }
+
   function handleEditJob(e: React.MouseEvent<HTMLButtonElement>) {
-    let theJob: profExp = {...emptyJob };
+    let theJob: profExp = { ...emptyJob };
     const key = getKeyFromElement(e);
     for (let i = 0; i < jobs.length; i++) {
       if (jobs[i].id === key) {
@@ -230,29 +237,6 @@ function App() {
     }
   }
 
-  function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {
-    const button: HTMLButtonElement = e.target as HTMLButtonElement;
-    const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
-    const educationKey = div.getAttribute("data-key") as string;
-    const newEducations = educations.filter((education) => {
-      return !(education.id === educationKey);
-    });
-    newEducations.sort((a, b) => {
-      if (a.startDate.substring(3) > b.startDate.substring(3)) {
-        return -1;
-      } else if (a.startDate.substring(3) === b.startDate.substring(3)) {
-        if (a.startDate.substring(0, 2) > b.startDate.substring(0, 2)) {
-          return -1;
-        } else {
-          return 1;
-        }
-      } else {
-        return 1;
-      }
-    });
-    setEducations([...newEducations]);
-  }
-
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) {
       // ...
@@ -286,7 +270,7 @@ function App() {
             handleAddClick(setEditJob);
           }}
           onCancel={() => {
-            handleCancelJob()
+            handleCancelJob();
           }}
           onEdit={(e) => {
             handleEditJob(e);

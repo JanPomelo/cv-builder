@@ -5,6 +5,7 @@ import PracticalDiv from "./components/PracticalDiv";
 import Preview from "./components/Preview";
 import { education, profExp } from "./types";
 import { v4 as uuidv4 } from "uuid";
+import React from "react";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
   if (e) f(e.currentTarget.value);
@@ -28,25 +29,16 @@ function checkForm(arr: HTMLInputElement[]): boolean {
 }
 
 function App() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [location, setLocation] = useState("");
-  const [profession, setProfession] = useState("");
-  const [{ imageURL, imageName }, setImage] = useState({ imageURL: "", imageName: "" });
-  const [jobs, setJobs] = useState<profExp[]>([]);
-  const [editJob, setEditJob] = useState(false);
-  const [jobToEdit, setJobToEdit] = useState({
+  const emptyJob: profExp = {
     company: "",
     jobTitle: "",
     location: "",
-    description: "",
     startDate: "",
     endDate: "",
+    description: "",
     id: "",
-  });
-  const [editEducation, setEditEducation] = useState(false);
-  const [educations, setEducations] = useState<education[]>([]);
-  const [educationToEdit, setEducationToEdit] = useState({
+  };
+  const emptyEducation: education = {
     degree: "",
     fos: "",
     location: "",
@@ -54,7 +46,20 @@ function App() {
     startDate: "",
     endDate: "",
     id: "",
-  });
+  };
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [location, setLocation] = useState("");
+  const [profession, setProfession] = useState("");
+  const [{ imageURL, imageName }, setImage] = useState({ imageURL: "", imageName: "" });
+  const [jobs, setJobs] = useState<profExp[]>([]);
+  const [editJob, setEditJob] = useState(false);
+  const [jobToEdit, setJobToEdit] = useState<profExp>(emptyJob);
+  const [editEducation, setEditEducation] = useState(false);
+  const [educations, setEducations] = useState<education[]>([]);
+  const [educationToEdit, setEducationToEdit] = useState<education>(emptyEducation);
+
   const fullName: string = firstName + " " + lastName;
 
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
@@ -151,26 +156,18 @@ function App() {
     }
   }
 
-  function handleAddClick(f: (b: boolean) => void, bool: boolean) {
-    f(bool);
+  // function to handle both Add clicks on the professional exp and the education divs. Takes a funtion and that sets the edit status to true (setJobEdit or setEducationEdit)
+  function handleAddClick(f: (b: boolean) => void) {
+    f(true);
   }
 
   function handleCancelJob() {
-    setJobToEdit({ company: "", jobTitle: "", startDate: "", endDate: "", location: "", description: "", id: "" });
+    setJobToEdit(emptyJob);
     setEditJob(false);
   }
 
-
   function handleCancelEducation() {
-    setEducationToEdit({
-      degree: "",
-      fos: "",
-      id: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-      university: "",
-    });
+    setEducationToEdit(emptyEducation);
     setEditEducation(false);
   }
 
@@ -299,10 +296,10 @@ function App() {
           }}
           edit={editJob}
           onAdd={() => {
-            handleAddClick(setEditJob, true);
+            handleAddClick(setEditJob);
           }}
           onCancel={() => {
-            handleCancelJob();
+            handleCancelJob()
           }}
           onEdit={(e) => {
             handleEditJob(e);
@@ -312,7 +309,7 @@ function App() {
         <EducationDiv
           educations={educations}
           onAdd={() => {
-            handleAddClick(setEditEducation, true);
+            handleAddClick(setEditEducation);
           }}
           onCancel={() => {
             handleCancelEducation();

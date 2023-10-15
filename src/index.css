@@ -41,7 +41,6 @@
   height: var(--a4height);
   font-size: var(--a4fontSize);
   padding: var(--a4padTop) var(--a4padRight) var(--a4padBottom) var(--a4padLeft);
-  align-self: center;
 }
 
 .previewName {

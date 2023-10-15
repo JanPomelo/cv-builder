@@ -97,7 +97,7 @@ export default function Preview({
   educations: education[];
 }) {
   return (
-    <div id="preview" className="bg-white relative text-black">
+    <div id="preview" className="bg-white relative text-black self-center lg:self-start">
       <InfoResult name={name} location={location} profession={profession} image={image} />
       <hr className="h-1 bg-black"></hr>
       <JobExp jobs={jobs} />

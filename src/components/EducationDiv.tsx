@@ -24,7 +24,7 @@ export default function EducationDiv({
   educationToEdit: education;
 }) {
   return (
-    <div className="groupDiv text-black flex flex-col gap-2">
+    <div className="groupDiv">
       <GroupDivHeading name="Education" spanID="educationSpan" />
       <EducationExperiences edit={edit} onEdit={onEdit} onDelete={onDelete} educations={educations} />
       {edit ? (

@@ -168,6 +168,10 @@ input[type="date"] {
 }
 
 .groupDiv {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   background: var(--grad2);
   border-radius: 1rem;
   padding: 0.5rem 1rem;

@@ -17,7 +17,7 @@ export default function GeneralInfo({
   image?: { imageURL: string; imageName: string };
 }) {
   return (
-    <form className="groupDiv text-black">
+    <form className="groupDiv">
       <GroupDivHeading name="General Information" spanID="persoSpan" />
       <div className="flex">
         <InputDiv name="First Name" onChange={onFirstNameChange} type="text" id="fName" />

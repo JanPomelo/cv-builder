@@ -3,6 +3,10 @@ import { education, profExp } from "../types";
 import format from "date-fns/format";
 import { adjustDateFormat } from "../dateFunctions";
 
+function handlePrintClick() {
+  window.print();
+}
+
 function InfoResult({
   name,
   location,
@@ -166,13 +170,14 @@ export default function Preview({
   linkedIn: string;
 }) {
   return (
-    <div id="preview" className="bg-white relative text-black self-center lg:self-start">
+    <div id="preview" className="bg-white relative text-black self-center lg:self-start overflow-hidden">
       <InfoResult name={name} location={location} profession={profession} image={image} />
       <hr className="h-1 bg-black"></hr>
       <ContactInfo email={email} phone={phone} website={website} gitHub={gitHub} linkedIn={linkedIn} />
       <hr className="h-1 bg-black"></hr>
       <JobExp jobs={jobs} />
       <EducationExp educations={educations} />
+      <button id="printBut" className="no-print" onClick={handlePrintClick}>Print</button>
     </div>
   );
 }

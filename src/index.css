@@ -8,7 +8,7 @@
   --grad1: linear-gradient(to right, #fcfafb, #c8d3d6);
   --grad2: linear-gradient(to right, #7fb7be, #d2f3ee);
   --a4width: 210px;
-  --a4height: 290px;
+  --a4height: 297px;
   --a4fontSize: 4.233px;
   --a4padLeft: 19px;
   --a4padRight: 13.2px;
@@ -198,6 +198,14 @@ hr {
   background-image: url("./src/assets/location.svg");
   height: 1.1em;
   width: 1.2em;
+}
+
+#printBut {
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.5em;
+  background-color: #375356;
+  color: white;
 }
 
 form {
@@ -405,16 +413,16 @@ textarea {
     display: none;
   }
   @page {
-    size: auto;
+    size: A4;
     margin: 0;
   }
 
   html,
-  body,
+  body, 
   #root,
   #preview {
     width: 21cm;
-    height: 29cm;
+    height: 29.7cm;
     font-size: 0.4322cm;
   }
   body {

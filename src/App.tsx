@@ -7,6 +7,7 @@ import { education, profExp } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
 import ContactInfo from "./components/ContactInfo";
+import Options from "./components/Options";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
   if (e) f(e.currentTarget.value);
@@ -307,6 +308,7 @@ function App() {
             handleChanges(setLinkedIn, e);
           }}
         />
+        <Options />
       </div>
       <Preview
         name={fullName}

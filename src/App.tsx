@@ -66,8 +66,11 @@ function App() {
   const [educationToEdit, setEducationToEdit] = useState<education>(emptyEducation);
 
   // Contact Info States
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [website, setWebsite] = useState("");
+  const [linkedIn, setLinkedIn] = useState("");
+  const [gitHub, setGitHub] = useState("");
 
   const fullName: string = firstName + " " + lastName;
 
@@ -220,8 +223,8 @@ function App() {
     f(true);
   }
 
-  function handleCancelClick(initVal: profExp | education, fEdit: (b: boolean) => void) { 
-    if ('company' in initVal) {
+  function handleCancelClick(initVal: profExp | education, fEdit: (b: boolean) => void) {
+    if ("company" in initVal) {
       setJobToEdit(initVal);
     } else {
       setEducationToEdit(initVal);
@@ -287,7 +290,23 @@ function App() {
           edit={editEducation}
           educationToEdit={educationToEdit}
         />
-        <ContactInfo onEmailChange={(e) => {handleChanges(setEmail, e) }} onPhoneChange={(e) => {handleChanges(setPhone, e)}} />
+        <ContactInfo
+          onEmailChange={(e) => {
+            handleChanges(setEmail, e);
+          }}
+          onPhoneChange={(e) => {
+            handleChanges(setPhone, e);
+          }}
+          onWebsiteChange={(e) => {
+            handleChanges(setWebsite, e);
+          }}
+          onGitHubChange={(e) => {
+            handleChanges(setGitHub, e);
+          }}
+          onLinkedInChange={(e) => {
+            handleChanges(setLinkedIn, e);
+          }}
+        />
       </div>
       <Preview
         name={fullName}
@@ -298,6 +317,9 @@ function App() {
         educations={educations}
         email={email}
         phone={phone}
+        website={website}
+        linkedIn={linkedIn}
+        gitHub={gitHub}
       />
     </div>
   );

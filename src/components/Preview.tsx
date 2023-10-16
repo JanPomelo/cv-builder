@@ -81,7 +81,19 @@ function EducationExp({ educations }: { educations: education[] }) {
   );
 }
 
-function ContactInfo({ email, phone }: { email: string, phone: string }) {
+function ContactInfo({
+  email,
+  phone,
+  website,
+  gitHub,
+  linkedIn,
+}: {
+  email: string;
+  phone: string;
+  website: string;
+  gitHub: string;
+  linkedIn: string;
+}) {
   return (
     <>
       {email === "" ? (
@@ -98,6 +110,27 @@ function ContactInfo({ email, phone }: { email: string, phone: string }) {
           <p>{phone}</p>
         </div>
       )}
+      {website === "" ? (
+        <></>
+      ) : (
+        <div>
+          <p>{website}</p>
+        </div>
+      )}
+      {gitHub === "" ? (
+        <></>
+      ) : (
+        <div>
+          <p>{gitHub}</p>
+        </div>
+      )}
+      {linkedIn === "" ? (
+        <></>
+      ) : (
+        <div>
+          <p>{linkedIn}</p>
+        </div>
+      )}
     </>
   );
 }
@@ -110,7 +143,10 @@ export default function Preview({
   jobs,
   educations,
   email,
-  phone
+  phone,
+  website,
+  gitHub,
+  linkedIn,
 }: {
   name: string;
   location: string;
@@ -118,14 +154,17 @@ export default function Preview({
   image: { imageURL: string; imageName: string };
   jobs: profExp[];
   educations: education[];
-    email: string;
-    phone: string;
+  email: string;
+  phone: string;
+  website: string;
+  gitHub: string;
+  linkedIn: string;
 }) {
   return (
     <div id="preview" className="bg-white relative text-black self-center lg:self-start">
       <InfoResult name={name} location={location} profession={profession} image={image} />
       <hr className="h-1 bg-black"></hr>
-      <ContactInfo email={email} phone={phone} />
+      <ContactInfo email={email} phone={phone} website={website} gitHub={gitHub} linkedIn={linkedIn} />
       <JobExp jobs={jobs} />
       <EducationExp educations={educations} />
     </div>

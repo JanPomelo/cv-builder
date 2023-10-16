@@ -108,6 +108,38 @@ span {
   background-position: center;
 }
 
+.contactInfos {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.previewContact {
+  width: 1em;
+  height: 1em;
+  background-size: 1em;
+}
+
+#emailSpan {
+  background-image: url(./src/assets/email.svg);
+}
+
+#websiteSpan {
+  background-image: url(./src/assets/website.svg);
+}
+
+#phoneSpan {
+  background-image: url(./src/assets/phone.svg);
+}
+
+#githubSpan {
+  background-image: url(./src/assets/github.svg);
+}
+
+#linkedinSpan {
+  background-image: url(./src/assets/linkedin.svg);
+}
+
 #persoSpan,
 #professionalSpan,
 #educationSpan, #contactSpan {

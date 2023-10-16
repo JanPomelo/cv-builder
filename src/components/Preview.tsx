@@ -99,35 +99,40 @@ function ContactInfo({
       {email === "" ? (
         <></>
       ) : (
-        <div>
+        <div className="contactInfos">
+          <span className="previewContact" id="emailSpan"></span>
           <p>{email}</p>
         </div>
       )}
       {phone === "" ? (
         <></>
       ) : (
-        <div>
+        <div className="contactInfos">
+          <span className="previewContact" id="phoneSpan"></span>
           <p>{phone}</p>
         </div>
       )}
       {website === "" ? (
         <></>
       ) : (
-        <div>
+        <div className="contactInfos">
+          <span className="previewContact" id="websiteSpan"></span>
           <p>{website}</p>
         </div>
       )}
       {gitHub === "" ? (
         <></>
       ) : (
-        <div>
+        <div className="contactInfos">
+          <span className="previewContact" id="githubSpan"></span>
           <p>{gitHub}</p>
         </div>
       )}
       {linkedIn === "" ? (
         <></>
       ) : (
-        <div>
+        <div className="contactInfos">
+          <span className="previewContact" id="linkedinSpan"></span>
           <p>{linkedIn}</p>
         </div>
       )}

@@ -19,12 +19,8 @@ export default function PracticalExperiences({
         const startDate = adjustDateFormat(job.startDate);
         const endDate = turnToday2Now(job);
         return (
-          <div
-            className="jobExp flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2"
-            key={job.id}
-            data-key={job.id}
-          >
-            <div className="flex flex-col text-white items-start">
+          <div className="experience" key={job.id} data-key={job.id}>
+            <div className="expData">
               <h3>
                 <b>
                   {job.jobTitle} at {job.company}
@@ -34,9 +30,8 @@ export default function PracticalExperiences({
                 {startDate} - {endDate}
               </p>
             </div>
-            <div className="flex flex-col justify-between">
+            <div className="expButtons">
               {edit ? <></> : <button className="editEntry" onClick={onEdit}></button>}
-
               <button className="deleteEntry" onClick={onDelete}></button>
             </div>
           </div>

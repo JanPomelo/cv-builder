@@ -150,7 +150,7 @@ span {
 form {
   display: flex;
   flex-direction: column;
-  justify-items: flex-start;
+  justify-content: flex-start;
 }
 
 label[for="startDateJob"],
@@ -232,8 +232,28 @@ input:required:valid:focus:not(.wrongsens) {
   outline: 2px green solid;
 }
 
-.jobExp, .educationExp {
+.experience {
   box-shadow: 0 3px 8px 6px rgba(48, 48, 48, 0.852);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #375356;
+  border-radius: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.expData {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: start;
+}
+
+.expButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .errorSpan {

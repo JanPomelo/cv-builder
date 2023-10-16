@@ -16,16 +16,12 @@ export default function EducationExperiences({
   return (
     <>
       {educations.map((education) => {
-        const startDate = adjustDateFormat(education.startDate);   
+        const startDate = adjustDateFormat(education.startDate);
         const endDate = turnToday2Now(education);
-        
+
         return (
-          <div
-            className="educationExp flex justify-between w-full bg-my-bg rounded-lg px-2 py-0.5 mb-2"
-            key={education.id}
-            data-key={education.id}
-          >
-            <div className="flex flex-col text-white items-start">
+          <div className="experience" key={education.id} data-key={education.id}>
+            <div className="expData">
               <h3>
                 <b>
                   {education.degree} ({education.fos})
@@ -35,9 +31,8 @@ export default function EducationExperiences({
                 {startDate} - {endDate}
               </p>
             </div>
-            <div className="flex flex-col justify-between">
+            <div className="expButtons">
               {edit ? <></> : <button className="editEntry" onClick={onEdit}></button>}
-
               <button className="deleteEntry" onClick={onDelete}></button>
             </div>
           </div>

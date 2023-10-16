@@ -95,7 +95,7 @@ function ContactInfo({
   linkedIn: string;
 }) {
   return (
-    <>
+    <div className="contactInfoWrapper">
       {email === "" ? (
         <></>
       ) : (
@@ -136,7 +136,7 @@ function ContactInfo({
           <p>{linkedIn}</p>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

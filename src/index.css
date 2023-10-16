@@ -110,11 +110,12 @@ span {
 
 #persoSpan,
 #professionalSpan,
-#educationSpan {
+#educationSpan, #contactSpan {
   width: 32px;
   height: 32px;
   background-size: 32px;
 }
+
 
 #addPracitalBut,
 #addEducationBut {
@@ -138,6 +139,10 @@ span {
 
 #educationSpan {
   background-image: url('./src/assets/education.svg');
+}
+
+#contactSpan {
+  background-image: url('./src/assets/contact-info.svg');
 }
 
 #locationSpan {

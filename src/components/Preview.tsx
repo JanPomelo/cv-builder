@@ -15,7 +15,7 @@ function InfoResult({
   image: { imageURL: string; imageName: string };
 }): ReactElement {
   return (
-    <div className="h-1/6 flex justify-between">
+    <div className="h-1/6 flex justify-around">
       <div className="flex flex-col items-start w-3/8 previewTitle">
         <div className="font-bold previewName">{name}</div>
         <div className="previewOccupation">{profession}</div>

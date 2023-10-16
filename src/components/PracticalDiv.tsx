@@ -27,7 +27,7 @@ export default function PracticalDiv({
   jobToEdit: profExp;
 }) {
   return (
-    <div className="groupDiv">
+    <div className="groupDiv closed">
       <GroupDivHeading name='Professional Experience' spanID="professionalSpan" />
       <PracticalExperiences edit={edit} onEdit={onEdit} onDelete={onDelete} jobs={jobs} />
       {edit ? (

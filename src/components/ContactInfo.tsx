@@ -10,7 +10,7 @@ export default function ContactInfo({ onEmailChange, onPhoneChange, onWebsiteCha
   onLinkedInChange: changeHandler;
 }) {
   return (
-    <div className="groupDiv">
+    <div className="groupDiv closed">
       <GroupDivHeading name="Contact Information" spanID="contactSpan" />
       <form>
         <InputDiv type="email" id="email" name="E-Mail" onChange={onEmailChange} />

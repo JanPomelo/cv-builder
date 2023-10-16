@@ -120,7 +120,7 @@ span {
   background-size: 1em;
   filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(149deg) brightness(103%) contrast(108%);
   margin-bottom: 0.5em;
-  margin-top:0.5em;
+  margin-top: 0.5em;
 }
 
 hr {
@@ -133,7 +133,7 @@ hr {
   justify-content: space-around;
   background-color: #375356;
   color: white;
-  column-gap: 1em;  
+  column-gap: 1em;
 }
 
 #emailSpan {
@@ -158,12 +158,12 @@ hr {
 
 #persoSpan,
 #professionalSpan,
-#educationSpan, #contactSpan {
+#educationSpan,
+#contactSpan {
   width: 32px;
   height: 32px;
   background-size: 32px;
 }
-
 
 #addPracitalBut,
 #addEducationBut {
@@ -186,11 +186,11 @@ hr {
 }
 
 #educationSpan {
-  background-image: url('./src/assets/education.svg');
+  background-image: url("./src/assets/education.svg");
 }
 
 #contactSpan {
-  background-image: url('./src/assets/contact-info.svg');
+  background-image: url("./src/assets/contact-info.svg");
 }
 
 #locationSpan {
@@ -216,8 +216,8 @@ form {
 
 label[for="startDateJob"],
 label[for="endDateJob"],
-label[for='startDateED'],
-label[for='endDateED'] {
+label[for="startDateED"],
+label[for="endDateED"] {
   width: 6rem;
   text-align: left;
   background-color: white;
@@ -271,7 +271,9 @@ textarea:focus {
   outline: 2px black solid;
 }
 
-button, button[type='submit'], button[type='reset'] {
+button,
+button[type="submit"],
+button[type="reset"] {
   border-radius: 0.5rem;
   padding: 0.125rem 0.5rem;
   border: 1px solid black;
@@ -340,8 +342,8 @@ textarea {
   padding-left: 0.5rem;
 }
 
-
-.deleteEntry, .editEntry {
+.deleteEntry,
+.editEntry {
   width: 20px;
   height: 20px;
   background-position: center;
@@ -352,11 +354,55 @@ textarea {
 }
 
 .deleteEntry {
-  background-image: url('../src/assets/trash.svg');
+  background-image: url("../src/assets/trash.svg");
 }
 
 .editEntry {
-  background-image: url('../src/assets/edit.svg')
+  background-image: url("../src/assets/edit.svg");
+}
+
+button:active {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.expandButIn,
+.expandButOut {
+  border-radius: 50%;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  transition: transform 0.2s linear;
+}
+
+.expandButOut {
+  transform: rotate(180deg);
+}
+
+.closed,
+.expanded {
+  transition-property: max-height;
+  transform-origin: top;
+  transition-duration: 0.2s;
+  overflow: hidden;
+}
+
+.expandButIn {
+  transform: rotate(0deg);
+}
+
+.expandBut > img {
+  src: url(../src/assets/arrow.svg);
+}
+
+.expanded {
+  max-height: 60vw;
+}
+
+.closed {
+  max-height: 3em;
 }
 
 @media screen and (min-width: 500px) {
@@ -382,7 +428,7 @@ textarea {
     padding: calc(var(--a4padTop) * 3) calc(var(--a4padRight) * 3) calc(var(--a4padBottom) * 3)
       calc(var(--a4padLeft) * 3);
   }
-   #expErrorSpan {
+  #expErrorSpan {
     font-size: medium;
     top: 3px;
   }
@@ -418,7 +464,7 @@ textarea {
   }
 
   html,
-  body, 
+  body,
   #root,
   #preview {
     width: 21cm;

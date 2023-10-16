@@ -17,7 +17,7 @@ export default function GeneralInfo({
   image?: { imageURL: string; imageName: string };
 }) {
   return (
-    <div className="groupDiv">
+    <div className="groupDiv closed">
       <GroupDivHeading name="General Information" spanID="persoSpan" />
       <form>
         <div className="flex">

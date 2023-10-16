@@ -159,7 +159,8 @@ hr {
 #persoSpan,
 #professionalSpan,
 #educationSpan,
-#contactSpan {
+#contactSpan,
+#customizeSpan {
   width: 32px;
   height: 32px;
   background-size: 32px;
@@ -191,6 +192,10 @@ hr {
 
 #contactSpan {
   background-image: url("./src/assets/contact-info.svg");
+}
+
+#customizeSpan {
+  background-image: url('./src/assets/customize.svg');
 }
 
 #locationSpan {

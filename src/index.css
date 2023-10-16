@@ -119,6 +119,12 @@ span {
   height: 1em;
   background-size: 1em;
   filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(149deg) brightness(103%) contrast(108%);
+  margin-bottom: 0.5em;
+  margin-top:0.5em;
+}
+
+hr {
+  border: 0;
 }
 
 .contactInfoWrapper {
@@ -127,8 +133,7 @@ span {
   justify-content: space-around;
   background-color: #375356;
   color: white;
-  column-gap: 1em;
-  padding: 0.25em 0;
+  column-gap: 1em;  
 }
 
 #emailSpan {

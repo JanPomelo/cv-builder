@@ -170,6 +170,7 @@ export default function Preview({
       <InfoResult name={name} location={location} profession={profession} image={image} />
       <hr className="h-1 bg-black"></hr>
       <ContactInfo email={email} phone={phone} website={website} gitHub={gitHub} linkedIn={linkedIn} />
+      <hr className="h-1 bg-black"></hr>
       <JobExp jobs={jobs} />
       <EducationExp educations={educations} />
     </div>

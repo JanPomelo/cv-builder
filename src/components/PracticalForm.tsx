@@ -53,7 +53,6 @@ export default function PracticalForm({
 
   return (
     <form
-      className="flex flex-col justify-start"
       onSubmit={(e) => {
         addOnClick;
         e.preventDefault();

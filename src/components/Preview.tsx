@@ -70,14 +70,35 @@ function EducationExp({ educations }: { educations: education[] }) {
           <div className="previewJobDiv items-start justify-start text-left" key={education.id}>
             <p>{startDate + " - " + endDate}</p>
             <h3>{education.degree}</h3>
-            <p/>
+            <p />
             <p>{education.fos}</p>
-            <p/>
+            <p />
             <p>{education.university}</p>
           </div>
         );
       })}
     </div>
+  );
+}
+
+function ContactInfo({ email, phone }: { email: string, phone: string }) {
+  return (
+    <>
+      {email === "" ? (
+        <></>
+      ) : (
+        <div>
+          <p>{email}</p>
+        </div>
+      )}
+      {phone === "" ? (
+        <></>
+      ) : (
+        <div>
+          <p>{phone}</p>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -88,6 +109,8 @@ export default function Preview({
   image,
   jobs,
   educations,
+  email,
+  phone
 }: {
   name: string;
   location: string;
@@ -95,11 +118,14 @@ export default function Preview({
   image: { imageURL: string; imageName: string };
   jobs: profExp[];
   educations: education[];
+    email: string;
+    phone: string;
 }) {
   return (
     <div id="preview" className="bg-white relative text-black self-center lg:self-start">
       <InfoResult name={name} location={location} profession={profession} image={image} />
       <hr className="h-1 bg-black"></hr>
+      <ContactInfo email={email} phone={phone} />
       <JobExp jobs={jobs} />
       <EducationExp educations={educations} />
     </div>

@@ -48,18 +48,26 @@ function App() {
     endDate: "",
     id: "",
   };
-
+  // General Information States
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
   const [profession, setProfession] = useState("");
   const [{ imageURL, imageName }, setImage] = useState({ imageURL: "", imageName: "" });
+
+  // Professional Experiences States
   const [jobs, setJobs] = useState<profExp[]>([]);
   const [editJob, setEditJob] = useState(false);
   const [jobToEdit, setJobToEdit] = useState<profExp>(emptyJob);
+
+  // Education States
   const [editEducation, setEditEducation] = useState(false);
   const [educations, setEducations] = useState<education[]>([]);
   const [educationToEdit, setEducationToEdit] = useState<education>(emptyEducation);
+
+  // Contact Info States
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   const fullName: string = firstName + " " + lastName;
 
@@ -279,7 +287,7 @@ function App() {
           edit={editEducation}
           educationToEdit={educationToEdit}
         />
-        <ContactInfo/>
+        <ContactInfo onEmailChange={(e) => {handleChanges(setEmail, e) }} onPhoneChange={(e) => {handleChanges(setPhone, e)}} />
       </div>
       <Preview
         name={fullName}
@@ -288,6 +296,8 @@ function App() {
         image={{ imageURL, imageName }}
         jobs={jobs}
         educations={educations}
+        email={email}
+        phone={phone}
       />
     </div>
   );

@@ -4,9 +4,13 @@ import GroupDivHeading from "./GroupDivHeading";
 export default function Options({
   onClick,
   onFontChange,
+  onColorChange,
+  onFontColorChange,
 }: {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   onFontChange: React.ChangeEventHandler<HTMLSelectElement>;
+  onColorChange: React.ChangeEventHandler<HTMLInputElement>;
+  onFontColorChange: React.ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
     <div className="groupDiv closed">
@@ -27,6 +31,14 @@ export default function Options({
           <option value="Times New Roman">Times New Roman</option>
           <option value="Verdana">Verdana</option>
         </select>
+      </div>
+      <div className="flex gap-2 items-center">
+        <label htmlFor="favcolor">Accent color: </label>
+        <input type="color" id="favcolor" name="favcolor" defaultValue="#375356" onChange={onColorChange}></input>
+      </div>
+      <div className="flex gap-2 items-center">
+        <label htmlFor="fontcolor">Accent color: </label>
+        <input type="color" id="fontcolor" name="favcolor" defaultValue="#FFFFFF" onChange={onFontColorChange}></input>
       </div>
     </div>
   );

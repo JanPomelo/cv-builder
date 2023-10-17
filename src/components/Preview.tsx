@@ -12,17 +12,29 @@ function InfoResult({
   location,
   profession,
   image,
+  color,
+  fontColor,
 }: {
   name: string;
   location: string;
   profession: string;
   image: { imageURL: string; imageName: string };
+  color: string;
+  fontColor: { fontColor: string; svgFilter: string };
 }): ReactElement {
   return (
     <div className="h-1/6 flex justify-around">
       <div className="flex flex-col items-start w-3/8 previewTitle">
         <div className="font-bold previewName">{name}</div>
-        <div className="previewOccupation">{profession}</div>
+        <div
+          className="previewOccupation"
+          style={{
+            backgroundColor: color,
+            color: fontColor.fontColor,
+          }}
+        >
+          {profession}
+        </div>
         <div className="flex items-center">
           <span id="locationSpan"></span>
           <h3 className="">{location}</h3>
@@ -33,10 +45,26 @@ function InfoResult({
   );
 }
 
-function JobExp({ jobs }: { jobs: profExp[] }) {
+function JobExp({
+  jobs,
+  color,
+  fontColor,
+}: {
+  jobs: profExp[];
+  color: string;
+  fontColor: { fontColor: string; svgFilter: string };
+}) {
   return (
     <div className="mt-2">
-      <h2 className="previewHeading">Professional Experience</h2>
+      <h2
+        className="previewHeading"
+        style={{
+          backgroundColor: color,
+          color: fontColor.fontColor,
+        }}
+      >
+        Professional Experience
+      </h2>
       {jobs.map((job) => {
         const startDate = adjustDateFormat(job.startDate);
         let endDate = adjustDateFormat(job.endDate);
@@ -59,10 +87,26 @@ function JobExp({ jobs }: { jobs: profExp[] }) {
   );
 }
 
-function EducationExp({ educations }: { educations: education[] }) {
+function EducationExp({
+  educations,
+  color,
+  fontColor,
+}: {
+  educations: education[];
+  color: string;
+  fontColor: { fontColor: string; svgFilter: string };
+}) {
   return (
     <div className="mt-2">
-      <h2 className="previewHeading">Education</h2>
+      <h2
+        className="previewHeading"
+        style={{
+          backgroundColor: color,
+          color: fontColor.fontColor,
+        }}
+      >
+        Education
+      </h2>
       {educations.map((education) => {
         const startDate = adjustDateFormat(education.startDate);
         let endDate = adjustDateFormat(education.endDate);
@@ -91,20 +135,30 @@ function ContactInfo({
   website,
   gitHub,
   linkedIn,
+  color,
+  fontColor,
 }: {
   email: string;
   phone: string;
   website: string;
   gitHub: string;
   linkedIn: string;
+  color: string;
+  fontColor: { fontColor: string; svgFilter: string };
 }) {
   return (
-    <div className="contactInfoWrapper">
+    <div
+      className="contactInfoWrapper"
+      style={{
+        backgroundColor: color,
+        color: fontColor.fontColor,
+      }}
+    >
       {email === "" ? (
         <></>
       ) : (
         <div className="contactInfos">
-          <span className="previewContact" id="emailSpan"></span>
+          <span className="previewContact" id="emailSpan" style={{ filter: fontColor.svgFilter }}></span>
           <p>{email}</p>
         </div>
       )}
@@ -112,7 +166,7 @@ function ContactInfo({
         <></>
       ) : (
         <div className="contactInfos">
-          <span className="previewContact" id="phoneSpan"></span>
+          <span className="previewContact" id="phoneSpan" style={{ filter: fontColor.svgFilter }}></span>
           <p>{phone}</p>
         </div>
       )}
@@ -120,7 +174,7 @@ function ContactInfo({
         <></>
       ) : (
         <div className="contactInfos">
-          <span className="previewContact" id="websiteSpan"></span>
+          <span className="previewContact" id="websiteSpan" style={{ filter: fontColor.svgFilter }}></span>
           <p>{website}</p>
         </div>
       )}
@@ -128,7 +182,7 @@ function ContactInfo({
         <></>
       ) : (
         <div className="contactInfos">
-          <span className="previewContact" id="githubSpan"></span>
+          <span className="previewContact" id="githubSpan" style={{ filter: fontColor.svgFilter }}></span>
           <p>{gitHub}</p>
         </div>
       )}
@@ -136,7 +190,7 @@ function ContactInfo({
         <></>
       ) : (
         <div className="contactInfos">
-          <span className="previewContact" id="linkedinSpan"></span>
+          <span className="previewContact" id="linkedinSpan" style={{ filter: fontColor.svgFilter }}></span>
           <p>{linkedIn}</p>
         </div>
       )}
@@ -158,6 +212,8 @@ export default function Preview({
   linkedIn,
   blackLine,
   font,
+  color,
+  fontColor,
 }: {
   name: string;
   location: string;
@@ -172,6 +228,8 @@ export default function Preview({
   linkedIn: string;
   blackLine: boolean;
   font: string;
+  color: string;
+  fontColor: { fontColor: string; svgFilter: string };
 }) {
   return (
     <div
@@ -181,13 +239,28 @@ export default function Preview({
         fontFamily: font,
       }}
     >
-      <InfoResult name={name} location={location} profession={profession} image={image} />
+      <InfoResult
+        name={name}
+        location={location}
+        profession={profession}
+        image={image}
+        color={color}
+        fontColor={fontColor}
+      />
       {blackLine ? <hr className="h-1 bg-black"></hr> : <></>}
-      <ContactInfo email={email} phone={phone} website={website} gitHub={gitHub} linkedIn={linkedIn} />
+      <ContactInfo
+        email={email}
+        phone={phone}
+        website={website}
+        gitHub={gitHub}
+        linkedIn={linkedIn}
+        color={color}
+        fontColor={fontColor}
+      />
       {blackLine ? <hr className="h-1 bg-black"></hr> : <></>}
-      <JobExp jobs={jobs} />
-      <EducationExp educations={educations} />
-      <button id="printBut" className="no-print" onClick={handlePrintClick}>
+      <JobExp jobs={jobs} color={color} fontColor={fontColor} />
+      <EducationExp educations={educations} color={color} fontColor={fontColor} />
+      <button id="printBut" className="no-print" onClick={handlePrintClick} color={color}>
         Print
       </button>
     </div>

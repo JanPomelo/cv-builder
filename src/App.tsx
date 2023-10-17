@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import React from "react";
 import ContactInfo from "./components/ContactInfo";
 import Options from "./components/Options";
+import { gimmeDaFilter } from "./svgColorChanger.js";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
   if (e) f(e.currentTarget.value);
@@ -76,7 +77,8 @@ function App() {
   //customization States
   const [blackLine, setBlackLine] = useState(true);
   const [font, setFont] = useState("Arial");
-
+  const [color, setColor] = useState("#375356");
+  const [fontColor, setFontColor] = useState({ fontColor: "white", svgFilter: "" });
   const fullName: string = firstName + " " + lastName;
 
   function getKeyFromElement(e: React.MouseEvent<HTMLButtonElement>): string {
@@ -255,6 +257,17 @@ function App() {
     setFont(value);
   }
 
+  function handleColorChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setColor(value);
+  }
+
+  function handleFontColorChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    const filter = gimmeDaFilter(e.target.value);
+    setFontColor({ fontColor: value, svgFilter: filter });
+  }
+
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
       const imgURL: string = URL.createObjectURL(e.target.files[0]);
@@ -262,7 +275,6 @@ function App() {
       setImage({ imageURL: imgURL, imageName: imgName });
     }
   }
-
 
   return (
     <div className="flex flex-col lg:flex-row gap-4">
@@ -339,6 +351,12 @@ function App() {
           onFontChange={(e) => {
             handleFontChange(e);
           }}
+          onColorChange={(e) => {
+            handleColorChange(e);
+          }}
+          onFontColorChange={(e) => {
+            handleFontColorChange(e);
+          }}
         />
       </div>
       <Preview
@@ -355,6 +373,8 @@ function App() {
         gitHub={gitHub}
         blackLine={blackLine}
         font={font}
+        color={color}
+        fontColor={fontColor}
       />
     </div>
   );

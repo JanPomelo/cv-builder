@@ -402,8 +402,20 @@ button:active {
   grid-template-rows: 0fr;
 }
 
+.closed > * {
+  visibility: hidden;
+}
+
 .expanded {
   grid-template-rows: 1fr;
+}
+
+.arrow {
+  pointer-events: none;
+}
+
+.expanded > * {
+  visibility: visible;
 }
 
 .expandButIn {

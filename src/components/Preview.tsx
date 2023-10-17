@@ -157,6 +157,7 @@ export default function Preview({
   gitHub,
   linkedIn,
   blackLine,
+  font,
 }: {
   name: string;
   location: string;
@@ -170,9 +171,16 @@ export default function Preview({
   gitHub: string;
   linkedIn: string;
   blackLine: boolean;
+  font: string;
 }) {
   return (
-    <div id="preview" className="bg-white relative text-black self-center lg:self-start overflow-hidden">
+    <div
+      id="preview"
+      className="bg-white relative text-black self-center lg:self-start overflow-hidden"
+      style={{
+        fontFamily: font,
+      }}
+    >
       <InfoResult name={name} location={location} profession={profession} image={image} />
       {blackLine ? <hr className="h-1 bg-black"></hr> : <></>}
       <ContactInfo email={email} phone={phone} website={website} gitHub={gitHub} linkedIn={linkedIn} />

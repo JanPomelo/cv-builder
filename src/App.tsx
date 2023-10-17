@@ -75,6 +75,7 @@ function App() {
 
   //customization States
   const [blackLine, setBlackLine] = useState(true);
+  const [font, setFont] = useState("Arial");
 
   const fullName: string = firstName + " " + lastName;
 
@@ -249,6 +250,11 @@ function App() {
     }
   }
 
+  function handleFontChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const value = e.target.value;
+    setFont(value);
+  }
+
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
       const imgURL: string = URL.createObjectURL(e.target.files[0]);
@@ -330,6 +336,9 @@ function App() {
           onClick={() => {
             handleBlackLineClick();
           }}
+          onFontChange={(e) => {
+            handleFontChange(e);
+          }}
         />
       </div>
       <Preview
@@ -345,6 +354,7 @@ function App() {
         linkedIn={linkedIn}
         gitHub={gitHub}
         blackLine={blackLine}
+        font={font}
       />
     </div>
   );

@@ -58,7 +58,7 @@ export default function InputDiv({
   } else if (type === "file") {
     return (
       <div className=" w-full flex justify-between items-center py-2">
-        <label htmlFor={name} className="w-full text-left bg-white mx-1">
+        <label htmlFor={name} className="w-full text-left bg-white mx-1 rounded-lg px-2">
           {image?.imageName === "" ? "Select Image" : image?.imageName}
         </label>
         <input hidden type={type} id={name} onChange={onChange}></input>

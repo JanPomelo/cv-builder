@@ -5,4 +5,4 @@
 - [ ] expand forms from prof and education smoothly
 - [ ] restyle page
 - [ ] add themes to the website
-- [ ] style print button according to the preview styles
+- [x] style print button according to the preview styles

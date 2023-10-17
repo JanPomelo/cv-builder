@@ -260,7 +260,15 @@ export default function Preview({
       {blackLine ? <hr className="h-1 bg-black"></hr> : <></>}
       <JobExp jobs={jobs} color={color} fontColor={fontColor} />
       <EducationExp educations={educations} color={color} fontColor={fontColor} />
-      <button id="printBut" className="no-print" onClick={handlePrintClick} color={color}>
+      <button
+        id="printBut"
+        className="no-print"
+        onClick={handlePrintClick}
+        style={{
+          backgroundColor: color,
+          color: fontColor.fontColor,
+        }}
+      >
         Print
       </button>
     </div>

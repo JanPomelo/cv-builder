@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import GroupDivHeading from "./GroupDivHeading";
 
 export default function Options({
@@ -12,17 +12,20 @@ export default function Options({
   onColorChange: React.ChangeEventHandler<HTMLInputElement>;
   onFontColorChange: React.ChangeEventHandler<HTMLInputElement>;
 }) {
+  const [fontColorFocus, setFontColorFocus] = useState(false);
+  const [bgColorFocus, setBgColorFocus] = useState(false);
+
   return (
     <div className="groupDiv closed">
       <GroupDivHeading name="Customization" spanID="customizeSpan" />
-      <div className="flex gap-2 items-center">
+      <div className="optionsRow">
+        <p>Show black horizontal line: </p>
         <button className="checked" id="blackLine" onClick={onClick} />
-        <p>Show black horizontal line</p>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="optionsRow">
         <label htmlFor="font">Font</label>
         <select name="fonts" id="font" onChange={onFontChange}>
-          <option value="Arial" selected>
+          <option value="Arial" defaultValue="selected">
             Arial
           </option>
           <option value="Courier New">Courier New</option>
@@ -32,13 +35,47 @@ export default function Options({
           <option value="Verdana">Verdana</option>
         </select>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="optionsRow">
         <label htmlFor="favcolor">Accent color: </label>
-        <input type="color" id="favcolor" name="favcolor" defaultValue="#375356" onChange={onColorChange}></input>
+        <div
+          className="colorDiv"
+          style={bgColorFocus ? { border: "3px solid black" } : { border: "1px solid black" }}
+        >
+          <input
+            type="color"
+            id="favcolor"
+            name="favcolor"
+            defaultValue="#375356"
+            onChange={onColorChange}
+            onFocus={() => {
+              setBgColorFocus(true);
+            }}
+            onBlur={() => {
+              setBgColorFocus(false);
+            }}
+          ></input>
+        </div>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="optionsRow">
         <label htmlFor="fontcolor">Accent color: </label>
-        <input type="color" id="fontcolor" name="favcolor" defaultValue="#FFFFFF" onChange={onFontColorChange}></input>
+        <div
+          className="colorDiv"
+          style={fontColorFocus ? { border: "3px solid black" } : { border: "1px solid black" }}
+        >
+          <input
+            type="color"
+            id="fontcolor"
+            name="favcolor"
+            defaultValue="#FFFFFF"
+            onChange={onFontColorChange}
+            onFocus={() => {
+              setFontColorFocus(true);
+            }}
+            onBlur={() => {
+              setFontColorFocus(false);
+            }}
+          ></input>
+        </div>
       </div>
     </div>
   );

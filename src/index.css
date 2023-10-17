@@ -429,6 +429,41 @@ button:active {
   background-position: center;
 }
 
+.optionsRow {
+  background-color: white;
+  padding: 0.1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+}
+
+select {
+  padding-left: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px black solid
+}
+
+select:focus {
+  outline: 2px black solid;
+}
+
+.colorDiv {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 1.3rem;
+  height: 1.3rem;
+  position: relative;
+  border: 1px black solid;
+}
+
+input[type='color'] {
+  transform: translate(-5px, -5px);
+  height: 2.5rem;
+}
+
+
+
 @media screen and (min-width: 500px) {
   #preview {
     width: calc(var(--a4width) * 2);

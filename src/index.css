@@ -41,6 +41,8 @@
   height: var(--a4height);
   font-size: var(--a4fontSize);
   padding: var(--a4padTop) var(--a4padRight) var(--a4padBottom) var(--a4padLeft);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
 }
 
 .previewName {
@@ -232,7 +234,8 @@ label[for="endDateED"] {
   color: grey;
 }
 
-.optionsRow > p, .optionsRow > label {
+.optionsRow > p,
+.optionsRow > label {
   color: grey;
 }
 
@@ -556,6 +559,7 @@ input[type="color"] {
   }
 
   #preview {
+    border: none;
     padding: 1.9cm 1.32cm 3.67cm 1.9cm;
     margin: 0;
   }

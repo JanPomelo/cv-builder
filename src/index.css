@@ -232,6 +232,10 @@ label[for="endDateED"] {
   color: grey;
 }
 
+.optionsRow > p, .optionsRow > label {
+  color: grey;
+}
+
 input[type="date"] {
   border-radius: 0;
   border-top-right-radius: 0.5rem;

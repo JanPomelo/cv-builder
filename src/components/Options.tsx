@@ -20,11 +20,11 @@ export default function Options({
       <GroupDivHeading name="Customization" spanID="customizeSpan" />
       <div className="expandWrapper closed">
         <div className="innerExpandWrapper">
-          <div className="optionsRow">
-            <p>Show black horizontal line: </p>
+          <div className="optionsRow my-2">
+            <p>Show black horizontal line </p>
             <button className="checked" id="blackLine" onClick={onClick} />
           </div>
-          <div className="optionsRow">
+          <div className="optionsRow my-4">
             <label htmlFor="font">Font</label>
             <select name="fonts" id="font" onChange={onFontChange}>
               <option value="Arial" defaultValue="selected">
@@ -37,8 +37,8 @@ export default function Options({
               <option value="Verdana">Verdana</option>
             </select>
           </div>
-          <div className="optionsRow">
-            <label htmlFor="favcolor">Accent color: </label>
+          <div className="optionsRow my-4">
+            <label htmlFor="favcolor">Accent Background Color </label>
             <div
               className="colorDiv"
               style={bgColorFocus ? { border: "3px solid black" } : { border: "1px solid black" }}
@@ -58,8 +58,8 @@ export default function Options({
               ></input>
             </div>
           </div>
-          <div className="optionsRow">
-            <label htmlFor="fontcolor">Accent color: </label>
+          <div className="optionsRow my-2">
+            <label htmlFor="fontcolor">Accent Font Color </label>
             <div
               className="colorDiv"
               style={fontColorFocus ? { border: "3px solid black" } : { border: "1px solid black" }}

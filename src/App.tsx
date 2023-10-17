@@ -73,6 +73,9 @@ function App() {
   const [linkedIn, setLinkedIn] = useState("");
   const [gitHub, setGitHub] = useState("");
 
+  //customization States
+  const [blackLine, setBlackLine] = useState(true);
+
   const fullName: string = firstName + " " + lastName;
 
   function getKeyFromElement(e: React.MouseEvent<HTMLButtonElement>): string {
@@ -233,6 +236,19 @@ function App() {
     fEdit(false);
   }
 
+  function handleBlackLineClick() {
+    const button = document.getElementById("blackLine") as HTMLButtonElement;
+    if (button.classList.contains("checked")) {
+      button.classList.add("unchecked");
+      button.classList.remove("checked");
+      setBlackLine(false);
+    } else {
+      button.classList.remove("unchecked");
+      button.classList.add("checked");
+      setBlackLine(true);
+    }
+  }
+
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
       const imgURL: string = URL.createObjectURL(e.target.files[0]);
@@ -240,6 +256,8 @@ function App() {
       setImage({ imageURL: imgURL, imageName: imgName });
     }
   }
+
+
   return (
     <div className="flex flex-col lg:flex-row gap-4">
       <div className="flex flex-col gap-4 flex-grow no-print">
@@ -308,7 +326,11 @@ function App() {
             handleChanges(setLinkedIn, e);
           }}
         />
-        <Options />
+        <Options
+          onClick={() => {
+            handleBlackLineClick();
+          }}
+        />
       </div>
       <Preview
         name={fullName}
@@ -322,6 +344,7 @@ function App() {
         website={website}
         linkedIn={linkedIn}
         gitHub={gitHub}
+        blackLine={blackLine}
       />
     </div>
   );

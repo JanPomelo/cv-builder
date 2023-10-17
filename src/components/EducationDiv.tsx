@@ -24,14 +24,18 @@ export default function EducationDiv({
   educationToEdit: education;
 }) {
   return (
-    <div className="groupDiv closed">
+    <div className="groupDiv">
       <GroupDivHeading name="Education" spanID="educationSpan" />
-        <EducationExperiences edit={edit} onEdit={onEdit} onDelete={onDelete} educations={educations} />
-        {edit ? (
-          <EducationForm onSave={onSave} errorMsg="" onCancel={onCancel} educationToEdit={educationToEdit} />
-        ) : (
-          <AddButton id="addEducationBut" onClick={onAdd} />
-        )}
+      <div className="expandWrapper closed">
+        <div className="innerExpandWrapper">
+          <EducationExperiences edit={edit} onEdit={onEdit} onDelete={onDelete} educations={educations} />
+          {edit ? (
+            <EducationForm onSave={onSave} errorMsg="" onCancel={onCancel} educationToEdit={educationToEdit} />
+          ) : (
+            <AddButton id="addEducationBut" onClick={onAdd} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -5,8 +5,6 @@ import AddButton from "./AddButton";
 import GroupDivHeading from "./GroupDivHeading";
 import PracticalExperiences from "./PracticalExperiences";
 
-
-
 export default function PracticalDiv({
   jobs,
   onDelete,
@@ -27,14 +25,18 @@ export default function PracticalDiv({
   jobToEdit: profExp;
 }) {
   return (
-    <div className="groupDiv closed">
-      <GroupDivHeading name='Professional Experience' spanID="professionalSpan" />
-      <PracticalExperiences edit={edit} onEdit={onEdit} onDelete={onDelete} jobs={jobs} />
-      {edit ? (
-        <PracticalForm addOnClick={onSave} cancelOnClick={onCancel} jobToEdit={jobToEdit} />
-      ) : (
-        <AddButton id="addPracitalBut" onClick={onAdd} />
-      )}
+    <div className="groupDiv">
+      <GroupDivHeading name="Professional Experience" spanID="professionalSpan" />
+      <div className="expandWrapper closed">
+        <div className="innerExpandWrapper">
+          <PracticalExperiences edit={edit} onEdit={onEdit} onDelete={onDelete} jobs={jobs} />
+          {edit ? (
+            <PracticalForm addOnClick={onSave} cancelOnClick={onCancel} jobToEdit={jobToEdit} />
+          ) : (
+            <AddButton id="addPracitalBut" onClick={onAdd} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

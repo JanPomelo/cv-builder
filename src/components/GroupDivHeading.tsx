@@ -1,7 +1,7 @@
 function handleOnClick(e: React.MouseEvent<HTMLButtonElement>) {
   const img = e.target as HTMLImageElement;
   const button = img.parentElement as HTMLButtonElement;
-  const contentDiv = button.parentElement!.parentElement as HTMLDivElement;
+  const contentDiv = button.parentElement?.nextSibling as HTMLDivElement;
   console.log(contentDiv);
   button.classList.toggle("expandButIn");
   button.classList.toggle("expandButOut");

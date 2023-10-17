@@ -192,7 +192,7 @@ hr {
 }
 
 #customizeSpan {
-  background-image: url('./src/assets/customize.svg');
+  background-image: url("./src/assets/customize.svg");
 }
 
 #locationSpan {
@@ -236,8 +236,6 @@ input[type="date"] {
   border-bottom-right-radius: 0.5rem;
 }
 
-
-
 .groupDiv {
   color: black;
   display: flex;
@@ -263,11 +261,9 @@ body {
   min-height: 100vh;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='phone']
-input[type='date']
-label {
+input[type="text"],
+input[type="email"],
+input[type="phone"] input[type="date"] label {
   appearance: none;
   outline: none;
   border-radius: 0.5rem;
@@ -279,7 +275,7 @@ textarea:focus {
   outline: 2px black solid;
 }
 
-input[type='checkbox']:focus {
+input[type="checkbox"]:focus {
   outline: none;
 }
 
@@ -386,19 +382,28 @@ button:active {
   border: 0;
   background-color: transparent;
   padding: 0;
-  transition: transform 0.2s linear;
+  transition: transform 0.3s linear;
 }
 
 .expandButOut {
   transform: rotate(180deg);
 }
 
-.closed,
-.expanded {
-  transition-property: max-height;
-  transform-origin: top;
-  transition-duration: 0.2s;
+.expandWrapper {
+  display: grid;
+  transition: grid-template-rows 300ms;
+}
+
+.innerExpandWrapper {
   overflow: hidden;
+}
+
+.closed {
+  grid-template-rows: 0fr;
+}
+
+.expanded {
+  grid-template-rows: 1fr;
 }
 
 .expandButIn {
@@ -407,14 +412,6 @@ button:active {
 
 .expandBut > img {
   src: url(../src/assets/arrow.svg);
-}
-
-.expanded {
-  max-height: 60vw;
-}
-
-.closed {
-  max-height: 3em;
 }
 
 #blackLine {
@@ -441,7 +438,7 @@ button:active {
 select {
   padding-left: 0.5rem;
   border-radius: 0.5rem;
-  border: 1px black solid
+  border: 1px black solid;
 }
 
 select:focus {
@@ -457,12 +454,10 @@ select:focus {
   border: 1px black solid;
 }
 
-input[type='color'] {
+input[type="color"] {
   transform: translate(-5px, -5px);
   height: 2.5rem;
 }
-
-
 
 @media screen and (min-width: 500px) {
   #preview {

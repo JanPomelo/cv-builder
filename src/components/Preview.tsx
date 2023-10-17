@@ -73,7 +73,7 @@ function JobExp({
           endDate = "now";
         }
         return (
-          <div className="previewJobDiv items-start justify-start text-left" key={job.id}>
+          <div className="previewJobDiv text-left" key={job.id}>
             <p>{startDate + " - " + endDate}</p>
             <h3>{job.company}</h3>
             <p>{job.location}</p>
@@ -115,7 +115,7 @@ function EducationExp({
           endDate = "now";
         }
         return (
-          <div className="previewJobDiv items-start justify-start text-left" key={education.id}>
+          <div className="previewJobDiv text-left" key={education.id}>
             <p>{startDate + " - " + endDate}</p>
             <h3>{education.degree}</h3>
             <p />

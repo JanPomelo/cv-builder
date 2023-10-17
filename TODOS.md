@@ -1,6 +1,6 @@
 - [x] Fix Focussing when Divs are not expanded 
 - [x] GeneralInfo Image Selector Styling
-- [ ] Preview Grid for eudcation and professional experience adjust heights
+- [x] Preview Grid for eudcation and professional experience adjust heights
 - [ ] style customization
 - [ ] expand forms from prof and education smoothly
 - [ ] restyle page

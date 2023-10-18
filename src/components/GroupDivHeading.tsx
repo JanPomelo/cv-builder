@@ -15,7 +15,7 @@ export default function GroupDivHeading({ name, spanID }: { name: string; spanID
         <h2 className="text-xl text-left font-bold">{name}</h2>
       </div>
       <button className="expandButIn" onClick={handleOnClick}>
-        <img src="../src/assets/arrow.svg" alt="arrow" className="arrow"/>
+        <img src="/arrow.svg" alt="arrow" className="arrow"/>
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import EducationDiv from "./components/EducationDiv";
 import GeneralInfo from "./components/GeneralInformation";
 import PracticalDiv from "./components/PracticalDiv";
@@ -79,6 +79,8 @@ function App() {
   const [font, setFont] = useState("Arial");
   const [color, setColor] = useState("#375356");
   const [fontColor, setFontColor] = useState({ fontColor: "white", svgFilter: "" });
+
+  const [theme, setTheme] = useState("");
   const fullName: string = firstName + " " + lastName;
 
   function getKeyFromElement(e: React.MouseEvent<HTMLButtonElement>): string {
@@ -97,6 +99,10 @@ function App() {
       }
     });
   }
+
+  useEffect(() => {
+    document.body.className = theme;
+  });
 
   function filterArrDeleteID(
     e: React.MouseEvent<HTMLButtonElement>,
@@ -143,6 +149,10 @@ function App() {
     }
     setEditEducation(true);
     setEducationToEdit(theEducation);
+  }
+
+  function handleThemeChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setTheme(e.target.value);
   }
 
   function getElementIndex(experiences: profExp[] | education[], expToEdit: profExp | education): number | undefined {
@@ -277,11 +287,10 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col justify-start gap-1">
+    <div className={theme + " flex flex-col justify-start gap-1 relative"}>
       <header className="flex flex-col items-center mb-2 relative no-print">
-          <h1 className="text-xl font-bold">CV Builder</h1>
+        <h1 className="text-xl font-bold">CV Builder</h1>
         <p>made by JanPomelo</p>
-        <button className="themeBut"><img className="themeButImg" src="./src/assets/themes.svg" alt="Themes"/></button>
       </header>
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-grow no-print">
@@ -362,6 +371,9 @@ function App() {
             }}
             onFontColorChange={(e) => {
               handleFontColorChange(e);
+            }}
+            onThemeChange={(e) => {
+              handleThemeChange(e);
             }}
           />
         </div>

@@ -6,11 +6,13 @@ export default function Options({
   onFontChange,
   onColorChange,
   onFontColorChange,
+  onThemeChange,
 }: {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   onFontChange: React.ChangeEventHandler<HTMLSelectElement>;
   onColorChange: React.ChangeEventHandler<HTMLInputElement>;
   onFontColorChange: React.ChangeEventHandler<HTMLInputElement>;
+  onThemeChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) {
   const [fontColorFocus, setFontColorFocus] = useState(false);
   const [bgColorFocus, setBgColorFocus] = useState(false);
@@ -58,7 +60,7 @@ export default function Options({
               ></input>
             </div>
           </div>
-          <div className="optionsRow my-2">
+          <div className="optionsRow my-4">
             <label htmlFor="fontcolor">Accent Font Color </label>
             <div
               className="colorDiv"
@@ -78,6 +80,19 @@ export default function Options({
                 }}
               ></input>
             </div>
+          </div>
+          <div className="optionsRow my-2">
+            <label htmlFor="theme">Website Theme</label>
+            <select name="theme" id="theme" onChange={onThemeChange}>
+              <option value="" defaultValue="selected">
+                Black & Grey (Standard)
+              </option>
+              <option value="blackAndGold">Black & Gold</option>
+              <option value="blueAndWhite">Blue & White</option>
+              <option value="greenTones">Green Tones</option>
+              <option value="halloween">Halloween</option>
+              <option value="graphiteRed">Red Graphite</option>
+            </select>
           </div>
         </div>
       </div>

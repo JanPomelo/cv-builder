@@ -101,6 +101,14 @@ function App() {
   }
 
   useEffect(() => {
+    document.title = "CV Builder";
+    let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    link.href = "/favicon.svg";
     document.body.className = theme;
   });
 
@@ -290,7 +298,9 @@ function App() {
     <div className={theme + " flex flex-col justify-start gap-1 relative"}>
       <header className="flex flex-col items-center mb-2 relative no-print">
         <h1 className="text-xl font-bold">CV Builder</h1>
-        <p>made by <a href="https://www.janpomelo.com">JanPomelo</a></p>
+        <p>
+          made by <a href="https://www.janpomelo.com">JanPomelo</a>
+        </p>
       </header>
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-grow no-print">

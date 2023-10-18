@@ -5,8 +5,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  --grad1: linear-gradient(to right, #fcfafb, #c8d3d6);
-  --grad2: linear-gradient(to right, #7fb7be, #d2f3ee);
+  --bgColorBody: #262626;
+  --bgColorDivs: linear-gradient(135deg, #b3b3b3, #ffffff);
+  --textColor: black;
+  --shadowColor: rgba(155, 155, 155, 0.852);
+  --svgHeadingFilter: none;
+  --svgAddButtonFilter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(7482%) hue-rotate(43deg)
+    brightness(105%) contrast(105%);
+  --buttonTextColor: white;
   --a4width: 210px;
   --a4height: 297px;
   --a4fontSize: 4.233px;
@@ -102,7 +108,7 @@
   padding: 2rem;
   text-align: center;
   flex-grow: 1;
-  background: #375356;
+  background: var(--bgColorBody);
 }
 
 span {
@@ -165,6 +171,7 @@ hr {
   width: 32px;
   height: 32px;
   background-size: 32px;
+  filter: var(--svgHeadingFilter);
 }
 
 #addPracitalBut,
@@ -177,6 +184,7 @@ hr {
   width: 1em;
   height: 1em;
   background-size: 1em;
+  filter: var(--svgAddButtonFilter);
 }
 
 #persoSpan {
@@ -210,7 +218,7 @@ hr {
   position: absolute;
   bottom: 0.5em;
   right: 0.5em;
-  background-color: #375356;
+  background-color: var(--bgColorBody);
   color: white;
 }
 
@@ -231,12 +239,16 @@ label[for="endDateED"] {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   margin-left: 0.25rem;
-  color: grey;
+  color: #626161;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #626161;
 }
 
 .optionsRow > p,
 .optionsRow > label {
-  color: grey;
+  color: #626161;
 }
 
 input[type="date"] {
@@ -250,10 +262,10 @@ input[type="date"] {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background: var(--grad2);
+  background: var(--bgColorDivs);
   border-radius: 1rem;
   padding: 0.5rem 1rem;
-  box-shadow: 0 3px 8px 6px rgba(232, 232, 232, 0.852);
+  box-shadow: 0 3px 8px 6px var(--shadowColor);
   display: flex;
   flex-direction: column;
 }
@@ -265,7 +277,7 @@ body {
   margin: 0;
   display: flex;
   align-items: start;
-  background-color: #375356;
+  background-color: var(--bgColorBody);
   min-width: 320px;
   min-height: 100vh;
 }
@@ -293,8 +305,8 @@ button[type="submit"],
 button[type="reset"] {
   border-radius: 0.5rem;
   padding: 0.125rem 0.5rem;
-  border: 1px solid black;
-  background-color: white;
+  background-color: var(--bgColorBody);
+  color: var(--buttonTextColor);
 }
 
 input:required:focus {
@@ -313,11 +325,11 @@ input:required:valid:focus:not(.wrongsens) {
 }
 
 .experience {
-  box-shadow: 0 3px 8px 6px rgba(48, 48, 48, 0.852);
+  box-shadow: 0px 0px 0px 0px var(--experienceShadow);
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: #375356;
+  background-color: var(--bgColorBody);
   border-radius: 0.5rem;
   padding: 0.125rem 0.5rem;
   margin-bottom: 0.5rem;
@@ -343,7 +355,11 @@ input:required:valid:focus:not(.wrongsens) {
   top: -5px;
   text-align: start;
   font-size: xx-small;
-  color: red;
+  color: var(--textColor);
+}
+
+.groupDivHeading {
+  color: var(--textColor);
 }
 
 .wrongsens,
@@ -372,10 +388,12 @@ textarea {
 
 .deleteEntry {
   background-image: url("../src/assets/trash.svg");
+  filter: var(--svgAddButtonFilter);
 }
 
 .editEntry {
   background-image: url("../src/assets/edit.svg");
+  filter: var(--svgAddButtonFilter);
 }
 
 button:active {
@@ -421,6 +439,7 @@ button:active {
 
 .arrow {
   pointer-events: none;
+  filter: var(--svgHeadingFilter);
 }
 
 .expanded > * {
@@ -478,6 +497,60 @@ select:focus {
 input[type="color"] {
   transform: translate(-5px, -5px);
   height: 2.5rem;
+}
+
+.blackAndGold {
+  --bgColorBody: #000000;
+  --bgColorDivs: linear-gradient(to right, #ffd700, #ffac33);
+  --textColor: black;
+  --svgHeadingFilter: none;
+  --buttonTextColor: white;
+  --shadowColor: rgba(193, 159, 27, 0.852);
+  --svgAddButtonFilter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(7482%) hue-rotate(43deg)
+    brightness(105%) contrast(105%);
+}
+
+.blueAndWhite {
+  --bgColorBody: #0074d9;
+  --bgColorDivs: linear-gradient(135deg, #cccccc, #ffffff);
+  --textColor: black;
+  --buttonTextColor: white;
+  --shadowColor: rgba(176, 183, 189, 0.852);
+  --svgAddButtonFilter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(7482%) hue-rotate(43deg)
+    brightness(105%) contrast(105%);
+}
+
+.greenTones {
+  --bgColorBody: #375356;
+  --bgColorDivs: linear-gradient(to right, #7fb7be, #d2f3ee);
+  --textColor: black;
+  --shadowColor: rgba(232, 232, 232, 0.852);
+  --svgHeadingFilter: none;
+  --svgAddButtonFilter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(7482%) hue-rotate(43deg)
+    brightness(105%) contrast(105%);
+  --buttonTextColor: white;
+}
+
+.halloween {
+  --bgColorBody: #9933ff;
+  --bgColorDivs: linear-gradient(135deg, #33ff99, #006600);
+  --textColor: #ff6600;
+  --shadowColor: rgba(10, 130, 48, 0.852);
+  --svgHeadingFilter: invert(47%) sepia(36%) saturate(5513%) hue-rotate(1deg) brightness(103%) contrast(105%);
+  --svgAddButtonFilter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(7482%) hue-rotate(43deg)
+    brightness(105%) contrast(105%);
+  --buttonTextColor: white;
+}
+
+.graphiteRed {
+  --bgColorBody: #dc143c;
+  --bgColorDivs: linear-gradient(135deg, #666666, #333333);
+  --textColor: white;
+  --shadowColor: rgba(69, 58, 58, 0.852);
+  --svgHeadingFilter: invert(100%) sepia(0%) saturate(7486%) hue-rotate(28deg) brightness(88%) contrast(114%);
+  --svgAddButtonFilter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(7482%) hue-rotate(43deg)
+    brightness(105%) contrast(105%);
+  --buttonTextColor: white;
 }
 
 @media screen and (min-width: 500px) {

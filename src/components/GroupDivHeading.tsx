@@ -9,7 +9,7 @@ function handleOnClick(e: React.MouseEvent<HTMLButtonElement> ) {
 
 export default function GroupDivHeading({ name, spanID }: { name: string; spanID: string }) {
   return (
-    <div className="flex justify-between items-center min-h-fit">
+    <div className="flex justify-between items-center min-h-fit groupDivHeading">
       <div className="flex gap-2 items-center mb-2">
         <span id={spanID}></span>
         <h2 className="text-xl text-left font-bold">{name}</h2>

@@ -275,7 +275,7 @@ function App() {
       setImage({ imageURL: imgURL, imageName: imgName });
     }
   }
-
+  
   return (
     <div className="flex flex-col lg:flex-row gap-4">
       <div className="flex flex-col gap-4 flex-grow no-print">

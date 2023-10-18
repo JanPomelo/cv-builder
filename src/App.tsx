@@ -275,107 +275,114 @@ function App() {
       setImage({ imageURL: imgURL, imageName: imgName });
     }
   }
-  
+
   return (
-    <div className="flex flex-col lg:flex-row gap-4">
-      <div className="flex flex-col gap-4 flex-grow no-print">
-        <GeneralInfo
-          onFirstNameChange={(e) => handleChanges(setFirstName, e)}
-          onLastNameChange={(e) => handleChanges(setLastName, e)}
-          onLocationChange={(e) => handleChanges(setLocation, e)}
-          onProfessionChange={(e) => handleChanges(setProfession, e)}
-          onImageUpload={(e) => handleImageUpload(e as React.ChangeEvent<HTMLInputElement>)}
+    <div className="flex flex-col justify-start gap-1">
+      <header className="flex flex-col items-center mb-2 relative no-print">
+          <h1 className="text-xl font-bold">CV Builder</h1>
+        <p>made by JanPomelo</p>
+        <button className="themeBut"><img className="themeButImg" src="./src/assets/themes.svg" alt="Themes"/></button>
+      </header>
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col gap-4 flex-grow no-print">
+          <GeneralInfo
+            onFirstNameChange={(e) => handleChanges(setFirstName, e)}
+            onLastNameChange={(e) => handleChanges(setLastName, e)}
+            onLocationChange={(e) => handleChanges(setLocation, e)}
+            onProfessionChange={(e) => handleChanges(setProfession, e)}
+            onImageUpload={(e) => handleImageUpload(e as React.ChangeEvent<HTMLInputElement>)}
+            image={{ imageURL, imageName }}
+          />
+          <PracticalDiv
+            jobs={jobs}
+            onDelete={(e) => {
+              handleDeleteJob(e);
+            }}
+            onSave={(e) => {
+              handleSaveJob(e);
+            }}
+            edit={editJob}
+            onAdd={() => {
+              handleAddClick(setEditJob);
+            }}
+            onCancel={() => {
+              handleCancelClick(emptyJob, setEditJob);
+            }}
+            onEdit={(e) => {
+              handleEditJob(e);
+            }}
+            jobToEdit={jobToEdit}
+          />
+          <EducationDiv
+            educations={educations}
+            onAdd={() => {
+              handleAddClick(setEditEducation);
+            }}
+            onCancel={() => {
+              handleCancelClick(emptyEducation, setEditEducation);
+            }}
+            onDelete={(e) => {
+              handleDeleteEducation(e);
+            }}
+            onEdit={(e) => {
+              handleEditEducation(e);
+            }}
+            onSave={(e) => {
+              handleSaveEducation(e);
+            }}
+            edit={editEducation}
+            educationToEdit={educationToEdit}
+          />
+          <ContactInfo
+            onEmailChange={(e) => {
+              handleChanges(setEmail, e);
+            }}
+            onPhoneChange={(e) => {
+              handleChanges(setPhone, e);
+            }}
+            onWebsiteChange={(e) => {
+              handleChanges(setWebsite, e);
+            }}
+            onGitHubChange={(e) => {
+              handleChanges(setGitHub, e);
+            }}
+            onLinkedInChange={(e) => {
+              handleChanges(setLinkedIn, e);
+            }}
+          />
+          <Options
+            onClick={() => {
+              handleBlackLineClick();
+            }}
+            onFontChange={(e) => {
+              handleFontChange(e);
+            }}
+            onColorChange={(e) => {
+              handleColorChange(e);
+            }}
+            onFontColorChange={(e) => {
+              handleFontColorChange(e);
+            }}
+          />
+        </div>
+        <Preview
+          name={fullName}
+          location={location}
+          profession={profession}
           image={{ imageURL, imageName }}
-        />
-        <PracticalDiv
           jobs={jobs}
-          onDelete={(e) => {
-            handleDeleteJob(e);
-          }}
-          onSave={(e) => {
-            handleSaveJob(e);
-          }}
-          edit={editJob}
-          onAdd={() => {
-            handleAddClick(setEditJob);
-          }}
-          onCancel={() => {
-            handleCancelClick(emptyJob, setEditJob);
-          }}
-          onEdit={(e) => {
-            handleEditJob(e);
-          }}
-          jobToEdit={jobToEdit}
-        />
-        <EducationDiv
           educations={educations}
-          onAdd={() => {
-            handleAddClick(setEditEducation);
-          }}
-          onCancel={() => {
-            handleCancelClick(emptyEducation, setEditEducation);
-          }}
-          onDelete={(e) => {
-            handleDeleteEducation(e);
-          }}
-          onEdit={(e) => {
-            handleEditEducation(e);
-          }}
-          onSave={(e) => {
-            handleSaveEducation(e);
-          }}
-          edit={editEducation}
-          educationToEdit={educationToEdit}
-        />
-        <ContactInfo
-          onEmailChange={(e) => {
-            handleChanges(setEmail, e);
-          }}
-          onPhoneChange={(e) => {
-            handleChanges(setPhone, e);
-          }}
-          onWebsiteChange={(e) => {
-            handleChanges(setWebsite, e);
-          }}
-          onGitHubChange={(e) => {
-            handleChanges(setGitHub, e);
-          }}
-          onLinkedInChange={(e) => {
-            handleChanges(setLinkedIn, e);
-          }}
-        />
-        <Options
-          onClick={() => {
-            handleBlackLineClick();
-          }}
-          onFontChange={(e) => {
-            handleFontChange(e);
-          }}
-          onColorChange={(e) => {
-            handleColorChange(e);
-          }}
-          onFontColorChange={(e) => {
-            handleFontColorChange(e);
-          }}
+          email={email}
+          phone={phone}
+          website={website}
+          linkedIn={linkedIn}
+          gitHub={gitHub}
+          blackLine={blackLine}
+          font={font}
+          color={color}
+          fontColor={fontColor}
         />
       </div>
-      <Preview
-        name={fullName}
-        location={location}
-        profession={profession}
-        image={{ imageURL, imageName }}
-        jobs={jobs}
-        educations={educations}
-        email={email}
-        phone={phone}
-        website={website}
-        linkedIn={linkedIn}
-        gitHub={gitHub}
-        blackLine={blackLine}
-        font={font}
-        color={color}
-        fontColor={fontColor}
-      />
     </div>
   );
 }

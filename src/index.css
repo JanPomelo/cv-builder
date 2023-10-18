@@ -164,23 +164,23 @@ hr {
 }
 
 #emailSpan {
-  background-image: url(./src/assets/email.svg);
+  background-image: url(/email.svg);
 }
 
 #websiteSpan {
-  background-image: url(./src/assets/website.svg);
+  background-image: url(/website.svg);
 }
 
 #phoneSpan {
-  background-image: url(./src/assets/phone.svg);
+  background-image: url(/phone.svg);
 }
 
 #githubSpan {
-  background-image: url(./src/assets/github.svg);
+  background-image: url(/github.svg);
 }
 
 #linkedinSpan {
-  background-image: url(./src/assets/linkedin.svg);
+  background-image: url(/linkedin.svg);
 }
 
 #persoSpan,
@@ -200,7 +200,7 @@ hr {
 }
 
 #addButtonSpan {
-  background-image: url(./src/assets/plus.svg);
+  background-image: url(/plus.svg);
   width: 1em;
   height: 1em;
   background-size: 1em;
@@ -208,28 +208,28 @@ hr {
 }
 
 #persoSpan {
-  background-image: url("./src/assets/personal-info.svg");
+  background-image: url(/personal-info.svg);
 }
 
 #professionalSpan {
-  background-image: url("./src/assets/professional.svg");
+  background-image: url(/professional.svg);
 }
 
 #educationSpan {
-  background-image: url("./src/assets/education.svg");
+  background-image: url(/education.svg);
 }
 
 #contactSpan {
-  background-image: url("./src/assets/contact-info.svg");
+  background-image: url(/contact-info.svg);
 }
 
 #customizeSpan {
-  background-image: url("./src/assets/customize.svg");
+  background-image: url(/customize.svg);
 }
 
 #locationSpan {
   background-size: 1.25em;
-  background-image: url("./src/assets/location.svg");
+  background-image: url(/location.svg);
   height: 1.1em;
   width: 1.2em;
 }
@@ -407,12 +407,12 @@ textarea {
 }
 
 .deleteEntry {
-  background-image: url("../src/assets/trash.svg");
+  background-image: url(/trash.svg);
   filter: var(--svgAddButtonFilter);
 }
 
 .editEntry {
-  background-image: url("../src/assets/edit.svg");
+  background-image: url(/edit.svg);
   filter: var(--svgAddButtonFilter);
 }
 
@@ -471,7 +471,7 @@ button:active {
 }
 
 .expandBut > img {
-  src: url(../src/assets/arrow.svg);
+  src: url(/arrow.svg);
 }
 
 #blackLine {
@@ -484,7 +484,7 @@ button:active {
 
 .checked {
   background-size: 1.3rem;
-  background-image: url(../src/assets/check.svg);
+  background-image: url(/check.svg);
   background-position: center;
 }
 
@@ -521,8 +521,6 @@ input[type="color"] {
   transform: translate(-5px, -5px);
   height: 2.5rem;
 }
-
-
 
 .blackAndGold {
   --bgColorBody: #000000;

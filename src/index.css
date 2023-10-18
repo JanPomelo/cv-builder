@@ -495,6 +495,7 @@ button:active {
   align-items: center;
   justify-content: space-between;
   border-radius: 0.5rem;
+  flex-wrap: wrap;
 }
 
 select {

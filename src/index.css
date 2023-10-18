@@ -40,6 +40,7 @@
   aspect-ratio: 1;
   background-color: darkgray;
   margin: 0.5em 0;
+  object-fit: cover;
 }
 
 #preview {
@@ -158,6 +159,8 @@ hr {
   justify-content: space-around;
   color: white;
   column-gap: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 #emailSpan {
@@ -348,7 +351,7 @@ input:required:valid:focus:not(.wrongsens) {
   width: 100%;
   background-color: var(--bgColorBody);
   border-radius: 0.5rem;
-  padding: 0.125rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   margin-bottom: 0.5rem;
 }
 

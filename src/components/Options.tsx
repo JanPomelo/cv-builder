@@ -7,12 +7,14 @@ export default function Options({
   onColorChange,
   onFontColorChange,
   onThemeChange,
+  onFontSizeChange,
 }: {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   onFontChange: React.ChangeEventHandler<HTMLSelectElement>;
   onColorChange: React.ChangeEventHandler<HTMLInputElement>;
   onFontColorChange: React.ChangeEventHandler<HTMLInputElement>;
   onThemeChange: React.ChangeEventHandler<HTMLSelectElement>;
+  onFontSizeChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) {
   const [fontColorFocus, setFontColorFocus] = useState(false);
   const [bgColorFocus, setBgColorFocus] = useState(false);
@@ -37,6 +39,18 @@ export default function Options({
               <option value="Tahoma">Tahoma</option>
               <option value="Times New Roman">Times New Roman</option>
               <option value="Verdana">Verdana</option>
+            </select>
+          </div>
+          <div className="optionsRow my-4">
+            <label htmlFor="fontSize">Font Size</label>
+            <select name="fontSize" id="fontSize" onChange={onFontSizeChange}>
+              <option value="tenPTfontSize">10pt</option>
+              <option value="elevenPTfontSize">11pt</option>
+              <option value="" defaultValue="selected" selected>
+                12pt
+              </option>
+              <option value="thirteenPTfontSize">13pt</option>
+              <option value="fourteenPTfontSize">14pt</option>
             </select>
           </div>
           <div className="optionsRow my-4">

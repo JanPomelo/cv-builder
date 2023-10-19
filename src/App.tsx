@@ -89,6 +89,7 @@ function App() {
   const [font, setFont] = useState("Arial");
   const [color, setColor] = useState("#375356");
   const [fontColor, setFontColor] = useState({ fontColor: "white", svgFilter: "" });
+  const [fontSize, setFontSize] = useState("");
   const [theme, setTheme] = useState("");
 
   const fullName: string = firstName + " " + lastName;
@@ -309,6 +310,11 @@ function App() {
     setFontColor({ fontColor: value, svgFilter: filter });
   }
 
+  function handleFontSizeChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const value = e.target.value;
+    setFontSize(value);
+  }
+
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
       const imgURL: string = URL.createObjectURL(e.target.files[0]);
@@ -417,6 +423,9 @@ function App() {
             onThemeChange={(e) => {
               handleThemeChange(e);
             }}
+            onFontSizeChange={(e) => {
+              handleFontSizeChange(e);
+            }}
           />
         </div>
         <Preview
@@ -438,6 +447,7 @@ function App() {
           technicSkills={technicSkills}
           softSkills={softSkills}
           languageSkills={languageSkills}
+          fontSize={fontSize}
         />
       </div>
     </div>

@@ -581,6 +581,23 @@ input[type="color"] {
   --buttonTextColor: white;
 }
 
+.tenPTfontSize {
+  --a4fontSize: 3.53px;
+}
+
+.elevenPTfontSize {
+  --a4fontSize: 3.88px;
+}
+
+.thirteenPTfontSize {
+  --a4fontSize: 4.59px;
+}
+
+.fourteenPTfontSize {
+  --a4fontSize: 4.94px;
+}
+
+
 @media screen and (min-width: 500px) {
   #preview {
     width: calc(var(--a4width) * 2);

@@ -260,6 +260,7 @@ export default function Preview({
   technicSkills,
   softSkills,
   languageSkills,
+  fontSize,
 }: {
   name: string;
   location: string;
@@ -279,11 +280,12 @@ export default function Preview({
   technicSkills: string;
   softSkills: string;
   languageSkills: string;
+  fontSize: string;
 }) {
   return (
     <div
       id="preview"
-      className="bg-white relative text-black self-center lg:self-start overflow-hidden"
+      className={"bg-white relative text-black self-center lg:self-start overflow-hidden " + fontSize}
       style={{
         fontFamily: font,
       }}

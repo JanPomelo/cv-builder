@@ -309,7 +309,8 @@ body {
 
 input[type="text"],
 input[type="email"],
-input[type="phone"] {
+input[type="phone"],
+input[type="date"] {
   appearance: none;
   outline: none;
   border-radius: 0.5rem;

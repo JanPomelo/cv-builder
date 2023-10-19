@@ -109,6 +109,19 @@ function App() {
       document.head.appendChild(link);
     }
     link.href = "/favicon.svg";
+    const metaTags = document.getElementsByTagName("meta") as HTMLCollectionOf<HTMLMetaElement>;
+    for (let i = 0; i < metaTags.length; i++) {
+      if (metaTags[i].getAttribute("name") === "description") {
+        metaTags[i].remove();
+      }
+    }
+    const metaDescr = document.createElement("meta") as HTMLMetaElement;
+    metaDescr.setAttribute("name", "description");
+    metaDescr.setAttribute(
+      "content",
+      "Create your professional CV with ease on this CV builder platform. Tailor your resume to perfection and download it as PDF. Craft your career story today!"
+    );
+    document.getElementsByTagName("head")[0].appendChild(metaDescr);
     document.body.className = theme;
   });
 

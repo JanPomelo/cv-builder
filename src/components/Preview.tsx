@@ -40,7 +40,7 @@ function InfoResult({
           <h3 className="">{location}</h3>
         </div>
       </div>
-      <img className="profilePic" src={image.imageURL}></img>
+      <img className="profilePic" src={image.imageURL} alt='profile picture'></img>
     </div>
   );
 }

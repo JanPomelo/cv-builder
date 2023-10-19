@@ -278,8 +278,11 @@ textarea::placeholder {
 
 input[type="date"] {
   border-radius: 0;
+  outline: none;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  background-color: white;
+  color: black;
 }
 
 .groupDiv {
@@ -309,8 +312,7 @@ body {
 
 input[type="text"],
 input[type="email"],
-input[type="phone"],
-input[type="date"] {
+input[type="phone"] {
   appearance: none;
   outline: none;
   border-radius: 0.5rem;

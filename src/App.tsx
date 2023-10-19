@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import EducationDiv from "./components/EducationDiv";
 import GeneralInfo from "./components/GeneralInformation";
 import PracticalDiv from "./components/PracticalDiv";
@@ -11,9 +11,13 @@ import Options from "./components/Options";
 import { gimmeDaFilter } from "./svgColorChanger.js";
 import Skills from "./components/Skills.js";
 
-function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
+function handleChanges(
+  f: (s: string) => void,
+  e: React.FormEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | undefined
+): void {
   if (e) f(e.currentTarget.value);
 }
+
 function checkValue(element: HTMLInputElement) {
   element.classList.add("required");
   if (element.value === "" || element.value === "mm/dd/yyyy") {
@@ -75,13 +79,18 @@ function App() {
   const [linkedIn, setLinkedIn] = useState("");
   const [gitHub, setGitHub] = useState("");
 
+  //skill States
+  const [technicSkills, setTechnicSkills] = useState("");
+  const [softSkills, setSoftSkills] = useState("");
+  const [languageSkills, setLanguageSkills] = useState("");
+
   //customization States
   const [blackLine, setBlackLine] = useState(true);
   const [font, setFont] = useState("Arial");
   const [color, setColor] = useState("#375356");
   const [fontColor, setFontColor] = useState({ fontColor: "white", svgFilter: "" });
-
   const [theme, setTheme] = useState("");
+
   const fullName: string = firstName + " " + lastName;
 
   function getKeyFromElement(e: React.MouseEvent<HTMLButtonElement>): string {
@@ -383,7 +392,15 @@ function App() {
             edit={editEducation}
             educationToEdit={educationToEdit}
           />
-          <Skills />
+          <Skills
+            onSoftChange={(e) => handleChanges(setSoftSkills, e)}
+            onTechnicalChange={(e) => {
+              handleChanges(setTechnicSkills, e);
+            }}
+            onLanguageChange={(e) => {
+              handleChanges(setLanguageSkills, e);
+            }}
+          />
           <Options
             onClick={() => {
               handleBlackLineClick();
@@ -418,6 +435,9 @@ function App() {
           font={font}
           color={color}
           fontColor={fontColor}
+          technicSkills={technicSkills}
+          softSkills={softSkills}
+          languageSkills={languageSkills}
         />
       </div>
     </div>

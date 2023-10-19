@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 export default function InputDiv({
   id,
   name,
@@ -8,7 +8,8 @@ export default function InputDiv({
   required,
   onFocus,
   minLength = 0,
-  initValue
+  initValue,
+  onTextAreaChange
 }: {
   id: string;
   name: string;
@@ -17,10 +18,11 @@ export default function InputDiv({
   image?: { imageURL: string; imageName: string };
   required?: { required: boolean };
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-    minLength?: number;
-    initValue?: string;
+  minLength?: number;
+  initValue?: string;
+  onTextAreaChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }): ReactElement {
-  if (type === "text" || type=== 'email') {
+  if (type === "text" || type === "email") {
     return (
       <div className=" w-full flex justify-between items-center py-2">
         <label htmlFor={id} hidden>
@@ -70,7 +72,13 @@ export default function InputDiv({
         <label htmlFor={id} hidden>
           {name}
         </label>
-        <textarea id={id} className="w-full mx-1" placeholder={name} defaultValue={initValue}></textarea>
+        <textarea
+          id={id}
+          className="w-full mx-1"
+          placeholder={name}
+          defaultValue={initValue}
+          onChange={onTextAreaChange}
+        ></textarea>
       </div>
     );
   } else {

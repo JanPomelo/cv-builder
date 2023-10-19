@@ -40,7 +40,7 @@ function InfoResult({
           <h3 className="">{location}</h3>
         </div>
       </div>
-      <img className="profilePic" src={image.imageURL} alt='profile picture'></img>
+      <img className="profilePic" src={image.imageURL} alt="profile picture"></img>
     </div>
   );
 }
@@ -125,6 +125,49 @@ function EducationExp({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+function PreviewSkills({
+  color,
+  fontColor,
+  technicSkills,
+  softSkills,
+  languageSkills,
+}: {
+  color: string;
+  fontColor: {
+    fontColor: string;
+    svgFilter: string;
+  };
+  technicSkills: string;
+  softSkills: string;
+  languageSkills: string;
+}) {
+  return (
+    <div className="mt-2">
+      <h2
+        className="previewHeading"
+        style={{
+          backgroundColor: color,
+          color: fontColor.fontColor,
+        }}
+      >
+        Skills
+      </h2>
+      <div className="previewJobDiv text-left">
+        <p className="self-start">Technical Skills:</p>
+        <p>{technicSkills}</p>
+      </div>
+      <div className="previewJobDiv text-left">
+        <p className="self-start">Soft Skills:</p>
+        <p>{softSkills}</p>
+      </div>
+      <div className="previewJobDiv text-left">
+        <p className="self-start">Language Skills:</p>
+        <p>{languageSkills}</p>
+      </div>
     </div>
   );
 }
@@ -214,6 +257,9 @@ export default function Preview({
   font,
   color,
   fontColor,
+  technicSkills,
+  softSkills,
+  languageSkills,
 }: {
   name: string;
   location: string;
@@ -230,6 +276,9 @@ export default function Preview({
   font: string;
   color: string;
   fontColor: { fontColor: string; svgFilter: string };
+  technicSkills: string;
+  softSkills: string;
+  languageSkills: string;
 }) {
   return (
     <div
@@ -260,6 +309,13 @@ export default function Preview({
       {blackLine ? <hr className="h-1 bg-black"></hr> : <></>}
       <JobExp jobs={jobs} color={color} fontColor={fontColor} />
       <EducationExp educations={educations} color={color} fontColor={fontColor} />
+      <PreviewSkills
+        color={color}
+        fontColor={fontColor}
+        technicSkills={technicSkills}
+        softSkills={softSkills}
+        languageSkills={languageSkills}
+      />
       <button
         id="printBut"
         className="no-print"

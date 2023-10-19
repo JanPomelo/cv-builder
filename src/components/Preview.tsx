@@ -49,10 +49,12 @@ function JobExp({
   jobs,
   color,
   fontColor,
+  font,
 }: {
   jobs: profExp[];
   color: string;
   fontColor: { fontColor: string; svgFilter: string };
+  font: string;
 }) {
   return (
     <div className="mt-2">
@@ -79,7 +81,14 @@ function JobExp({
             <p>{job.location}</p>
             <p>{job.jobTitle}</p>
             <p></p>
-            <p className="previewJobDescription">{job.description}</p>
+            <pre
+              className="previewJobDescription"
+              style={{
+                fontFamily: font,
+              }}
+            >
+              {job.description}
+            </pre>
           </div>
         );
       })}
@@ -309,7 +318,7 @@ export default function Preview({
         fontColor={fontColor}
       />
       {blackLine ? <hr className="h-1 bg-black"></hr> : <></>}
-      <JobExp jobs={jobs} color={color} fontColor={fontColor} />
+      <JobExp jobs={jobs} color={color} fontColor={fontColor} font={font} />
       <EducationExp educations={educations} color={color} fontColor={fontColor} />
       <PreviewSkills
         color={color}

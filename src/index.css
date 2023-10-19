@@ -319,6 +319,8 @@ input[type="phone"] input[type="date"] label {
 input:focus,
 textarea:focus {
   outline: 2px black solid;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
 }
 
 input[type="checkbox"]:focus {
@@ -336,17 +338,25 @@ button[type="reset"] {
 
 input:required:focus {
   outline: 2px red solid;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
 }
 .required:required:invalid {
   outline: 2px red solid;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
 }
 
 .required:required:valid:not(.wrongsens) {
   outline: 2px green solid;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
 }
 
 input:required:valid:focus:not(.wrongsens) {
   outline: 2px green solid;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
 }
 
 .experience {
@@ -390,6 +400,8 @@ input:required:valid:focus:not(.wrongsens) {
 .wrongsens,
 .wrongsens:focus {
   outline: 2px red solid;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
 }
 
 textarea {
@@ -511,6 +523,8 @@ select {
 
 select:focus {
   outline: 2px black solid;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
 }
 
 .colorDiv {
@@ -596,7 +610,6 @@ input[type="color"] {
 .fourteenPTfontSize {
   --a4fontSize: 4.94px;
 }
-
 
 @media screen and (min-width: 500px) {
   #preview {

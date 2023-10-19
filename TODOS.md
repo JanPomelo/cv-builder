@@ -1,2 +1,3 @@
 - [x] Make font size adjustable
-- [ ] add linebreaks to the pdf
+- [x] add linebreaks to the pdf
+- [?] fix mobile outline

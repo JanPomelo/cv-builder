@@ -11,6 +11,7 @@ import Options from "./components/Options";
 import { gimmeDaFilter } from "./svgColorChanger.js";
 import Skills from "./components/Skills.js";
 
+// function to handle all string stateChanges in one
 function handleChanges(
   f: (s: string) => void,
   e: React.FormEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | undefined
@@ -18,6 +19,7 @@ function handleChanges(
   if (e) f(e.currentTarget.value);
 }
 
+// function to check if the values of the forms are empty or not
 function checkValue(element: HTMLInputElement) {
   element.classList.add("required");
   if (element.value === "" || element.value === "mm/dd/yyyy") {
@@ -26,6 +28,7 @@ function checkValue(element: HTMLInputElement) {
   return true;
 }
 
+// function to check the form before submitting (for Job experience and education)
 function checkForm(arr: HTMLInputElement[]): boolean {
   let success: boolean = true;
   for (let i = 0; i < arr.length; i++) {
@@ -37,6 +40,7 @@ function checkForm(arr: HTMLInputElement[]): boolean {
 }
 
 function App() {
+  // create empty job experience and education
   const emptyJob: profExp = {
     company: "",
     jobTitle: "",
@@ -92,8 +96,10 @@ function App() {
   const [fontSize, setFontSize] = useState("");
   const [theme, setTheme] = useState("");
 
+  // combine first and lastname to fullName
   const fullName: string = firstName + " " + lastName;
 
+  // function to get the key of the experience div when pressing the edit or delete button on the div get the data of the experience element
   function getKeyFromElement(e: React.MouseEvent<HTMLButtonElement>): string {
     const button: HTMLButtonElement = e.target as HTMLButtonElement;
     const div: HTMLDivElement = button.parentElement!.parentElement as HTMLDivElement;
@@ -101,6 +107,7 @@ function App() {
     return key;
   }
 
+  // sort the array so the experiences are ordered from newest to latest
   function sortArray(arr: profExp[] | education[]): profExp[] | education[] {
     return arr.sort((a, b) => {
       if (a.startDate > b.startDate) {
@@ -111,6 +118,7 @@ function App() {
     });
   }
 
+  // function to change the theme, set the favicon and write the meta description
   useEffect(() => {
     document.title = "CV Builder";
     let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
@@ -136,6 +144,7 @@ function App() {
     document.body.className = theme;
   });
 
+  // function to delete an element(profExp or education) out of the experiences array
   function filterArrDeleteID(
     e: React.MouseEvent<HTMLButtonElement>,
     arr: profExp[] | education[]
@@ -147,18 +156,21 @@ function App() {
     return newArr as profExp[] | education[];
   }
 
+  //function for the handle of the delete job button click
   function handleDeleteJob(e: React.MouseEvent<HTMLButtonElement>) {
     let newJobs = filterArrDeleteID(e, jobs);
     newJobs = sortArray(newJobs) as profExp[];
     setJobs([...newJobs]);
   }
 
+  // function for the handle of the delete education button click
   function handleDeleteEducation(e: React.MouseEvent<HTMLButtonElement>) {
     let newEducations = filterArrDeleteID(e, educations);
     newEducations = sortArray(newEducations) as education[];
     setEducations([...newEducations]);
   }
 
+  // function for the handle of the edit job button click
   function handleEditJob(e: React.MouseEvent<HTMLButtonElement>) {
     let theJob: profExp = { ...emptyJob };
     const key = getKeyFromElement(e);
@@ -171,6 +183,7 @@ function App() {
     setJobToEdit(theJob);
   }
 
+  // function for the handle of the edit education button click
   function handleEditEducation(e: React.MouseEvent<HTMLButtonElement>) {
     let theEducation: education = { ...emptyEducation };
     const key = getKeyFromElement(e);
@@ -187,6 +200,7 @@ function App() {
     setTheme(e.target.value);
   }
 
+  // function to get the current index of the experience element in the array
   function getElementIndex(experiences: profExp[] | education[], expToEdit: profExp | education): number | undefined {
     let index;
     if (expToEdit.id !== "") {
@@ -199,6 +213,7 @@ function App() {
     return index;
   }
 
+  //function to create a new experience
   function createNewExperience(form: HTMLFormElement, type: string) {
     if (type === "job") {
       return {
@@ -272,6 +287,7 @@ function App() {
     f(true);
   }
 
+  // function to handle the cancel button click
   function handleCancelClick(initVal: profExp | education, fEdit: (b: boolean) => void) {
     if ("company" in initVal) {
       setJobToEdit(initVal);
@@ -281,6 +297,7 @@ function App() {
     fEdit(false);
   }
 
+  // function to handle the click and show the black horizontal lines on the CV or not
   function handleBlackLineClick() {
     const button = document.getElementById("blackLine") as HTMLButtonElement;
     if (button.classList.contains("checked")) {

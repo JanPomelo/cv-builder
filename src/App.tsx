@@ -120,6 +120,10 @@ function App() {
 
   // function to change the theme, set the favicon and write the meta description
   useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  useEffect(() => {
     document.title = "CV Builder";
     let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
     if (!link) {
@@ -141,9 +145,7 @@ function App() {
       "Create your professional CV with ease on this CV builder platform. Tailor your resume to perfection and download it as PDF. Craft your career story today!"
     );
     document.getElementsByTagName("head")[0].appendChild(metaDescr);
-    document.body.className = theme;
-  });
-
+  }, []);
   // function to delete an element(profExp or education) out of the experiences array
   function filterArrDeleteID(
     e: React.MouseEvent<HTMLButtonElement>,

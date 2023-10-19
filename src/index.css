@@ -187,7 +187,8 @@ hr {
 #professionalSpan,
 #educationSpan,
 #contactSpan,
-#customizeSpan {
+#customizeSpan,
+#skillSpan {
   width: 32px;
   height: 32px;
   background-size: 32px;
@@ -225,6 +226,10 @@ hr {
 
 #customizeSpan {
   background-image: url(/customize.svg);
+}
+
+#skillSpan {
+  background-image: url(/skills.svg);
 }
 
 #locationSpan {

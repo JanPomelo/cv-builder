@@ -9,6 +9,7 @@ import React from "react";
 import ContactInfo from "./components/ContactInfo";
 import Options from "./components/Options";
 import { gimmeDaFilter } from "./svgColorChanger.js";
+import Skills from "./components/Skills.js";
 
 function handleChanges(f: (s: string) => void, e: React.FormEvent<HTMLInputElement> | undefined): void {
   if (e) f(e.currentTarget.value);
@@ -325,6 +326,23 @@ function App() {
             onImageUpload={(e) => handleImageUpload(e as React.ChangeEvent<HTMLInputElement>)}
             image={{ imageURL, imageName }}
           />
+          <ContactInfo
+            onEmailChange={(e) => {
+              handleChanges(setEmail, e);
+            }}
+            onPhoneChange={(e) => {
+              handleChanges(setPhone, e);
+            }}
+            onWebsiteChange={(e) => {
+              handleChanges(setWebsite, e);
+            }}
+            onGitHubChange={(e) => {
+              handleChanges(setGitHub, e);
+            }}
+            onLinkedInChange={(e) => {
+              handleChanges(setLinkedIn, e);
+            }}
+          />
           <PracticalDiv
             jobs={jobs}
             onDelete={(e) => {
@@ -365,23 +383,7 @@ function App() {
             edit={editEducation}
             educationToEdit={educationToEdit}
           />
-          <ContactInfo
-            onEmailChange={(e) => {
-              handleChanges(setEmail, e);
-            }}
-            onPhoneChange={(e) => {
-              handleChanges(setPhone, e);
-            }}
-            onWebsiteChange={(e) => {
-              handleChanges(setWebsite, e);
-            }}
-            onGitHubChange={(e) => {
-              handleChanges(setGitHub, e);
-            }}
-            onLinkedInChange={(e) => {
-              handleChanges(setLinkedIn, e);
-            }}
-          />
+          <Skills />
           <Options
             onClick={() => {
               handleBlackLineClick();

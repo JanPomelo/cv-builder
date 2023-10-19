@@ -309,7 +309,7 @@ body {
 
 input[type="text"],
 input[type="email"],
-input[type="phone"] input[type="date"] label {
+input[type="phone"] {
   appearance: none;
   outline: none;
   border-radius: 0.5rem;
@@ -318,9 +318,7 @@ input[type="phone"] input[type="date"] label {
 
 input:focus,
 textarea:focus {
-  outline: 2px black solid;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
+  border: 2px black solid;
 }
 
 input[type="checkbox"]:focus {
@@ -336,27 +334,24 @@ button[type="reset"] {
   color: var(--buttonTextColor);
 }
 
+input[type="date"]:focus {
+  outline: none;
+  max-height: 1.625rem;
+}
+
 input:required:focus {
-  outline: 2px red solid;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
+  border: 2px red solid;
 }
 .required:required:invalid {
-  outline: 2px red solid;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
+  border: 2px red solid;
 }
 
 .required:required:valid:not(.wrongsens) {
-  outline: 2px green solid;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
+  border: 2px green solid;
 }
 
 input:required:valid:focus:not(.wrongsens) {
-  outline: 2px green solid;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
+  border: 2px green solid;
 }
 
 .experience {
@@ -399,9 +394,7 @@ input:required:valid:focus:not(.wrongsens) {
 
 .wrongsens,
 .wrongsens:focus {
-  outline: 2px red solid;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
+  border: 2px red solid;
 }
 
 textarea {
@@ -522,9 +515,7 @@ select {
 }
 
 select:focus {
-  outline: 2px black solid;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
+  border: 2px black solid;
 }
 
 .colorDiv {

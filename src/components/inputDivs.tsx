@@ -43,8 +43,8 @@ export default function InputDiv({
     );
   } else if (type === "date") {
     return (
-      <div className="w-full flex py-2">
-        <label htmlFor={id}>{name}</label>
+      <div className="w-full flex py-2 dateDiv">
+        <label className='px-2' htmlFor={id}>{name}</label>
         <input
           id={id}
           pattern="\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}"

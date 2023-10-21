@@ -65,8 +65,11 @@
   margin-left: 1em;
   font-weight: bold;
   color: white;
-  padding: 0.2em 0.5em;
+  padding: 0em 0.5em 0em 0.5em;
   border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .previewLocation {
@@ -658,6 +661,11 @@ input[type="color"] {
   .no-print {
     display: none;
   }
+
+  :root {
+    --a4fontSize: 12pt;
+  }
+
   @page {
     size: A4;
     margin: 0;
@@ -683,9 +691,26 @@ input[type="color"] {
     margin: 0;
   }
 
+  .tenPTfontSize {
+    --a4fontSize: 10pt;
+  }
+
+  .elevenPTfontSize {
+    --a4fontSize: 11pt;
+  }
+
+  .thirteenPTfontSize {
+    --a4fontSize: 13pt;
+  }
+
+  .fourteenPTfontSize {
+    --a4fontSize: 14pt;
+  }
+
   #preview {
     border: none;
     padding: 1.9cm 1.32cm 3.67cm 1.9cm;
     margin: 0;
+    font-size: var(--a4fontSize);
   }
 }

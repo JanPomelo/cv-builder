@@ -273,9 +273,12 @@ input::placeholder,
 textarea::placeholder {
   color: #626161;
 }
-input {
+input,
+textarea,
+select {
   background-color: white;
 }
+
 .optionsRow > p,
 .optionsRow > label {
   color: #626161;
